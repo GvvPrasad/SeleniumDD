@@ -13,8 +13,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.annotations.Test;
-
 import io.github.bonigarcia.wdm.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -24,13 +22,14 @@ public class Base {
 	//Global Variables
 	static String browserName;
 	static String urlLink;
-	static WebDriver driver;
+	static WebDriver driver = null;
 	static String ProjectPath = System.getProperty("user.dir");
 	static String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()); 
 
-	@Test
-	public static void setUp() {
-
+	public static void BrowserSetUp() {
+		
+		AppConfig.GetProperties();
+		
 		if(browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
 			driver = new ChromeDriver();
@@ -56,6 +55,8 @@ public class Base {
 		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(screenshotFile,new File(ProjectPath+"//ScreenShot"+timeStamp+".png"));
 	}
-
+	
+	
+	//Fluid Wait
 }
 

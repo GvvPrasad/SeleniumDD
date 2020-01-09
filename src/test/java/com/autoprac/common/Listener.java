@@ -9,11 +9,6 @@ import org.testng.ITestResult;
 
 public class Listener implements ITestListener{
 
-	private static String getTestMethodName(ITestResult result) {
-        return result.getMethod().getConstructorOrMethod().getName();
-    }
-	
-	
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub
 		
@@ -25,7 +20,7 @@ public class Listener implements ITestListener{
 	}
 
 	public void onTestFailure(ITestResult result) {
-		System.out.println("Faild Test: " + getTestMethodName(result));
+		System.out.println("Faild Test: " + result.getName());
 		 WebDriver webDriver = Base.driver;
 		 try {
 			Base.Screenshot();
