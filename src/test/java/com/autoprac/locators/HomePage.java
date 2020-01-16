@@ -7,19 +7,19 @@ import org.testng.annotations.Test;
 
 public class HomePage{
 	
-	public WebDriver driver;
+	public static WebDriver driver;
 	
 	public HomePage(WebDriver driver) {
 		this.driver=driver;
 	}
 	
-	@FindBy(id = "contact-link")
+	@FindBy(id ="contact-link")
 	WebElement contactus;
 	
-	@FindBy(xpath = "/a[@class='login']")
+	@FindBy(xpath ="/a[@class='login']")
 	WebElement login;
 	
-	@FindBy(id = "search_query_top")
+	@FindBy(id ="search_query_top")
 	WebElement searchbox;
 	
 

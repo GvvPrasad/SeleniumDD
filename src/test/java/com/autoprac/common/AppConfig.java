@@ -22,18 +22,13 @@ public class AppConfig {
 			Prop.load(Input);
 			
 			//Application 
-			String browserName = Prop.getProperty("Browser");
-			String urlLink = Prop.getProperty("Url");
-			Base.browserName = browserName;
-			Base.urlLink = urlLink;
+			Base.browserName = Prop.getProperty("Browser");
+			Base.urlLink = Prop.getProperty("Url");
 			
 			//Mail
-			String SenderMail = Prop.getProperty("SenderMailId");
-			String SenderPassword = Prop.getProperty("SenderMailPassword");
-			String ReceiverMail = Prop.getProperty("ReceiverMailId");
-			EmailReports.SenderMail = SenderMail;
-			EmailReports.SenderPassword = SenderPassword;
-			EmailReports.ReceiverMail = ReceiverMail;
+			EmailReports.SenderMail = Prop.getProperty("SenderMailId");
+			EmailReports.SenderPassword = Prop.getProperty("SenderMailPassword");
+			EmailReports.ReceiverMail = Prop.getProperty("ReceiverMailId");
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

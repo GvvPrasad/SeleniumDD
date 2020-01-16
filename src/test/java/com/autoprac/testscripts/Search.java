@@ -8,7 +8,7 @@ import com.autoprac.locators.HomePage;
 
 public class Search {
 	
-	static WebDriver driver;
+	public static WebDriver driver;
 
 	@Test
 	public static void ProductSearch() {
@@ -16,8 +16,8 @@ public class Search {
 		Base.BrowserSetUp();
 		
 		HomePage hp = new HomePage(driver);
-		hp.searchbox();
-		System.out.println(hp.searchbox());
+		hp.searchbox().sendKeys("prasad");
+		
 		
 	}
 	
