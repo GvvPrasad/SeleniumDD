@@ -1,24 +1,19 @@
 package com.autoprac.testscripts;
 
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import com.autoprac.common.Base;
 import com.autoprac.locators.HomePage;
 
-public class Search {
+public class Search extends Base{
 	
-	public static WebDriver driver;
 
 	@Test
-	public static void ProductSearch() {
-		Base base = new Base();
-		Base.BrowserSetUp();
-		
+	public static void ProductSearch(){
 		HomePage hp = new HomePage(driver);
 		hp.searchbox().sendKeys("prasad");
-		
-		
+		driver.findElement(By.id("sdsa"));
 	}
 	
 }

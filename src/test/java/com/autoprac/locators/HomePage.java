@@ -3,15 +3,17 @@ package com.autoprac.locators;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.testng.annotations.Test;
+import org.openqa.selenium.support.PageFactory;
 
-public class HomePage{
-	
-	public static WebDriver driver;
-	
+import com.autoprac.common.Base;
+
+public class HomePage extends Base{
+		
 	public HomePage(WebDriver driver) {
-		this.driver=driver;
+		super();
+		PageFactory.initElements(driver, this);
 	}
+	
 	
 	@FindBy(id ="contact-link")
 	WebElement contactus;
@@ -31,7 +33,5 @@ public class HomePage{
 	
 
 	public WebElement searchbox() {
-		return searchbox;}
-	
-	
+		return searchbox;}	
 }

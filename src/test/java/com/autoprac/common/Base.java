@@ -3,6 +3,7 @@ package com.autoprac.common;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
@@ -13,6 +14,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
+
 import io.github.bonigarcia.wdm.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -22,14 +26,16 @@ public class Base {
 	//Global Variables
 	static String browserName;
 	static String urlLink;
-	static WebDriver driver = null;
+	protected static WebDriver driver = null;
 	static String ProjectPath = System.getProperty("user.dir");
 	static String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()); 
 
+
+	//Browser config
 	public static void BrowserSetUp() {
-		
+
 		AppConfig.GetProperties();
-		
+
 		if(browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
 			driver = new ChromeDriver();
@@ -47,16 +53,21 @@ public class Base {
 		driver.get(urlLink);
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
-
 	}
+
 
 	//Screenshots
 	public static void Screenshot() throws IOException {
 		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshotFile,new File(ProjectPath+"//ScreenShot"+timeStamp+".png"));
+		FileUtils.copyFile(screenshotFile,new File(ProjectPath+"//ScreenShots//"+timeStamp+".png"));
 	}
-	
-	
-	//Fluid Wait
+
+
+	/*Fluent Wait
+	Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+			.withTimeout(Duration.ofSeconds(10))
+			.pollingEvery(Duration.ofSeconds(2))
+			.ignoring(Exception.class); 
+			*/
 }
 
