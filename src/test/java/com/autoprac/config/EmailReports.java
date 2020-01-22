@@ -72,13 +72,17 @@ public class EmailReports {
 			DataSource source = new FileDataSource(filename);
 			messageBodyPart1.setDataHandler(new DataHandler(source));
 			messageBodyPart1.setFileName(filename);
-			messageBodyPart1.setFileName(filename1);
-
+			
+			MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+			DataSource source1 = new FileDataSource(filename2);
+			messageBodyPart2.setDataHandler(new DataHandler(source1));
+			messageBodyPart2.setFileName(filename2);
 			
 			// Create object of MimeMultipart class
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messageBodyPart);
 			multipart.addBodyPart(messageBodyPart1);
+			multipart.addBodyPart(messageBodyPart2);
 
 			
 			// set the content

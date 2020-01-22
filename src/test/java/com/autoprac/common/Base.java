@@ -9,6 +9,7 @@ import java.util.function.Function;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -65,7 +66,7 @@ public class Base {
 
 
 	//Fluent Wait
-	public WebElement presenceOfTheElement(final By elementIdentifier) {
+	public WebElement PresenceOfTheElement(final By elementIdentifier) {
 		FluentWait <WebDriver> wait = new FluentWait<WebDriver>(driver)
 				.withTimeout(Duration.ofSeconds(10))
 				.pollingEvery(Duration.ofSeconds(3))
@@ -76,6 +77,12 @@ public class Base {
 				return driver.findElement(elementIdentifier);
 			}
 		});
+	}
+	
+	//Vertical Scroll
+	public static void VerticalScroll() {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(0,250)");
 	}
 }
 
