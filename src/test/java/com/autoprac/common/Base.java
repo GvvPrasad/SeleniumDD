@@ -5,18 +5,19 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.function.Function;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-
 import io.github.bonigarcia.wdm.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -63,11 +64,18 @@ public class Base {
 	}
 
 
-	/*Fluent Wait
-	Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-			.withTimeout(Duration.ofSeconds(10))
-			.pollingEvery(Duration.ofSeconds(2))
-			.ignoring(Exception.class); 
-			*/
+	//Fluent Wait
+	public WebElement presenceOfTheElement(final By elementIdentifier) {
+		FluentWait <WebDriver> wait = new FluentWait<WebDriver>(driver)
+				.withTimeout(Duration.ofSeconds(10))
+				.pollingEvery(Duration.ofSeconds(3))
+				.ignoring(Exception.class); 
+		return wait.until(new Function<WebDriver, WebElement>() {
+			public WebElement apply(WebDriver driver) {
+				System.out.println(elementIdentifier);
+				return driver.findElement(elementIdentifier);
+			}
+		});
+	}
 }
 

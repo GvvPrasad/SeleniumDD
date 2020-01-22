@@ -18,7 +18,7 @@ public class HomePage extends Base{
 	@FindBy(id ="contact-link")
 	WebElement contactus;
 	
-	@FindBy(xpath ="/a[@class='login']")
+	@FindBy(xpath ="//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a")
 	WebElement login;
 	
 	@FindBy(id ="search_query_top")

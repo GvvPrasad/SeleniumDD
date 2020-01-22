@@ -17,11 +17,15 @@ public class TestSuit extends Base{
 	}
 
 	
-	@Test
+	@Test(enabled=false)
 	public void searchProduct() {
 		Search.ProductSearch();
 	}
-
+	
+	@Test
+	public void loginPage() throws InterruptedException {
+		Login.SingIn();
+	}
 	
 	@AfterSuite
 	public void afterSuite() {
