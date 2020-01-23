@@ -16,8 +16,6 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-import com.autoprac.common.AppConfig;
-
 public class EmailReports {
 
 	//Mail Variables

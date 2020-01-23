@@ -19,6 +19,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.support.ui.FluentWait;
+
+import com.autoprac.config.AppConfig;
+
 import io.github.bonigarcia.wdm.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -26,8 +29,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class Base {
 
 	//Global Variables
-	static String browserName;
-	static String urlLink;
+	public static String browserName;
+	public static String urlLink;
 	protected static WebDriver driver = null;
 	static String ProjectPath = System.getProperty("user.dir");
 	static String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()); 

@@ -1,4 +1,4 @@
-package com.autoprac.common;
+package com.autoprac.config;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -6,7 +6,7 @@ import java.util.Properties;
 
 import org.testng.annotations.Test;
 
-import com.autoprac.config.EmailReports;
+import com.autoprac.common.Base;
 
 public class AppConfig {
 
