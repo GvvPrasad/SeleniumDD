@@ -8,33 +8,40 @@ import org.openqa.selenium.support.PageFactory;
 import com.autoprac.common.Base;
 
 public class LoginPage extends Base{
-	
-	public LoginPage(WebDriver driver) {
-		super();
-		PageFactory.initElements(driver, this);
-	}
-	
+
 	@FindBy(id = "email")
 	WebElement email;
-	
+
 	@FindBy(id = "passwd")
 	WebElement passwd;
-	
+
 	@FindBy(id = "SubmitLogin")
 	WebElement SubmitLogin;
 	
-	
-	
+	@FindBy(className = "logout")
+	WebElement logout;
+
+
+	public LoginPage(WebDriver driver) {
+		Base.driver=driver;
+		PageFactory.initElements(driver, this);
+	}
+
+
 	public WebElement email() {
 		return email;
 	}
-	
+
 	public WebElement password() {
 		return passwd;
 	}
-	
-	public WebElement submit() {
+
+	public WebElement submitlogin() {
 		return SubmitLogin;
+	}
+	
+	public WebElement logout() {
+		return logout;
 	}
 
 }

@@ -5,10 +5,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class HomePage{
+import com.autoprac.common.Base;
 
-	public WebDriver driver;
-
+public class HomePage extends Base{
 
 	@FindBy(id ="contact-link")
 	WebElement contactbtn;
@@ -21,7 +20,7 @@ public class HomePage{
 
 
 	public HomePage(WebDriver driver) {
-		this.driver=driver;
+		Base.driver=driver;
 		PageFactory.initElements(driver, this);
 	}
 
