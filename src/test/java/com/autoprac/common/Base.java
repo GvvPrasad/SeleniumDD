@@ -31,7 +31,7 @@ public class Base {
 	//Global Variables
 	public static String browserName;
 	public static String urlLink;
-	protected static WebDriver driver = null;
+	protected static WebDriver driver;
 	static String ProjectPath = System.getProperty("user.dir");
 	static String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()); 
 

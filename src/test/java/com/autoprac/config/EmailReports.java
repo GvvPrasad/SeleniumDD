@@ -16,12 +16,13 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class EmailReports {
+public class EmailReports{
 
 	//Mail Variables
-	public static String SenderMail;
-	public static String SenderPassword;
-	public static String ReceiverMail;
+	static String SenderMail;
+	static String SenderPassword;
+	static String ReceiverMail;
+	static String ProjectPath = System.getProperty("user.dir");
 
 	public static void main(String[] args) {
 
@@ -54,35 +55,26 @@ public class EmailReports {
 			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(ReceiverMail));
 
 			// Add the subject 
-			message.setSubject("Testing Mail through");
+			message.setSubject("Testing Mail through log");
 
 			// Create object to add content
 			MimeBodyPart messageBodyPart = new MimeBodyPart();
 			messageBodyPart.setText("This is message body using java");
 
 			// Mention the file which you want to send
-			String filename = "E:\\Dump\\dummyPDF.pdf";
-			String filename1 = "E:\\Dump\\Sample.docx";
-			String filename2 = "E:\\Dump\\black.jpeg";
+			String filename = ProjectPath+"/Logs/application.log";
 
 			// Create another object to add Attachment
 			MimeBodyPart messageBodyPart1 = new MimeBodyPart();
 			DataSource source = new FileDataSource(filename);
 			messageBodyPart1.setDataHandler(new DataHandler(source));
 			messageBodyPart1.setFileName(filename);
-			
-			MimeBodyPart messageBodyPart2 = new MimeBodyPart();
-			DataSource source1 = new FileDataSource(filename2);
-			messageBodyPart2.setDataHandler(new DataHandler(source1));
-			messageBodyPart2.setFileName(filename2);
-			
+					
 			// Create object of MimeMultipart class
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messageBodyPart);
 			multipart.addBodyPart(messageBodyPart1);
-			multipart.addBodyPart(messageBodyPart2);
 
-			
 			// set the content
 			message.setContent(multipart);
 

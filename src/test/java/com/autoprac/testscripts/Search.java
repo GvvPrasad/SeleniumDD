@@ -1,21 +1,51 @@
 package com.autoprac.testscripts;
 
-import org.openqa.selenium.Keys;
-import org.testng.annotations.Test;
-
 import com.autoprac.common.Base;
+import com.autoprac.common.ExcelUtil;
 import com.autoprac.locators.HomePage;
 
-public class Search extends Base{
-	
-	static HomePage hp = new HomePage(driver);
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Test;
 
-	@Test
-	public static void ProductSearch() throws InterruptedException{
-		
-		hp.searchbox().sendKeys("T-shirts");
-		hp.searchbox().sendKeys(Keys.ENTER);
-	}
+import java.io.IOException;
+
+import org.apache.poi.ss.usermodel.CellType;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.AfterSuite;
+
+@Listeners(com.autoprac.common.Listener.class)
+public class Search extends Base{
+
+	//Objects
+	ExcelUtil eu = new ExcelUtil();
 	
+	
+	@BeforeSuite
+	public void beforeSuite() throws IOException {
+		Base.BrowserSetUp();
+		ExcelUtil.readExcel();
+	}
+
+	
+	@Test
+	public void searchProduct() {
+		HomePage hp = PageFactory.initElements(driver, HomePage.class);
+		ExcelUtil.Sfile = ExcelUtil.WBfile.getSheetAt(0);
+		
+		for(int i=0; i<= ExcelUtil.Sfile.getLastRowNum(); i++) {
+			ExcelUtil.cell = ExcelUtil.Sfile.getRow(i).getCell(0);
+			ExcelUtil.cell.setCellType(CellType.STRING);
+			hp.searchbox().sendKeys(ExcelUtil.cell.getStringCellValue());
+			hp.searchbox().sendKeys(Keys.ENTER);
+		}
+	}
+
+
+	@AfterSuite
+	public void afterSuite() {
+		driver.close();
+	}
+
 }
- 

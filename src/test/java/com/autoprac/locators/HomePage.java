@@ -5,32 +5,33 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.autoprac.common.Base;
+public class HomePage{
 
-public class HomePage extends Base{
-		
-	public HomePage(WebDriver driver) {
-		super();
-		PageFactory.initElements(driver, this);
-	}
-	
-	
+	public WebDriver driver;
+
+
 	@FindBy(id ="contact-link")
-	WebElement contactus;
-	
-	@FindBy(xpath ="//*[@id=\"header\"]/div[2]/div/div/nav/div[1]/a")
-	WebElement login;
-	
+	WebElement contactbtn;
+
+	@FindBy(className = "login")
+	WebElement signinbtn;
+
 	@FindBy(id ="search_query_top")
 	WebElement searchbox;
-	
 
-	public WebElement contactus() {
-		return contactus;}
-	
-	public WebElement login() {
-		return login;}
-	
+
+	public HomePage(WebDriver driver) {
+		this.driver=driver;
+		PageFactory.initElements(driver, this);
+	}
+
+
+	public WebElement contactbtn() {
+		return contactbtn;}
+
+	public WebElement signinbtn() {
+		return signinbtn;}
+
 
 	public WebElement searchbox() {
 		return searchbox;}	
