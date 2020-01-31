@@ -9,6 +9,12 @@ import com.autoprac.common.Base;
 
 public class LoginPage extends Base{
 
+	public LoginPage(WebDriver driver) {
+		Base.driver=driver;
+		PageFactory.initElements(driver, this);
+	}
+	
+	
 	@FindBy(id = "email")
 	WebElement email;
 
@@ -20,12 +26,6 @@ public class LoginPage extends Base{
 	
 	@FindBy(className = "logout")
 	WebElement logout;
-
-
-	public LoginPage(WebDriver driver) {
-		Base.driver=driver;
-		PageFactory.initElements(driver, this);
-	}
 
 
 	public WebElement email() {

@@ -18,6 +18,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import com.autoprac.config.AppConfig;
@@ -32,14 +33,14 @@ public class Base {
 	public static String browserName;
 	public static String urlLink;
 	protected static WebDriver driver;
-	static String ProjectPath = System.getProperty("user.dir");
+	static String projectPath = System.getProperty("user.dir");
 	static String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()); 
 
 
 	//Browser config
-	public static void BrowserSetUp() {
+	public static void browserSetUp() {
 
-		AppConfig.GetProperties();
+		AppConfig.getProperties();
 
 		if(browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
@@ -62,30 +63,43 @@ public class Base {
 
 
 	//Screenshots
-	public static void Screenshot() throws IOException {
+	public static void screenshot() throws IOException {
 		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshotFile,new File(ProjectPath+"//ScreenShots//"+timeStamp+".png"));
+		FileUtils.copyFile(screenshotFile,new File(projectPath+"//ScreenShots//"+timeStamp+".png"));
 	}
 
 
 	//Fluent Wait
-	public WebElement PresenceOfTheElement(final By elementIdentifier) {
+	public WebElement presenceOfTheElement(final WebElement webElement) {
 		FluentWait <WebDriver> wait = new FluentWait<WebDriver>(driver)
 				.withTimeout(Duration.ofSeconds(10))
 				.pollingEvery(Duration.ofSeconds(3))
 				.ignoring(Exception.class); 
 		return wait.until(new Function<WebDriver, WebElement>() {
 			public WebElement apply(WebDriver driver) {
-				System.out.println(elementIdentifier);
-				return driver.findElement(elementIdentifier);
+				System.out.println(webElement);
+				return driver.findElement((By) webElement);
 			}
 		});
 	}
 	
+	
 	//Vertical Scroll
-	public static void VerticalScroll() {
+	public static void verticalScrollElement(WebElement element) {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(0,250)");
+		jse.executeScript("arguments[0].scrollIntoView(true);",element);
+	}
+	
+	public static void verticalScroll(int x, int y) {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(x,y)");
+	}
+	
+	
+	//Mousehover
+	public static void mouseHover(WebElement element) {
+		Actions act = new Actions(driver);
+		act.moveToElement(element).build().perform();
 	}
 }
 

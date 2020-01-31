@@ -19,14 +19,14 @@ import javax.mail.internet.MimeMultipart;
 public class EmailReports{
 
 	//Mail Variables
-	static String SenderMail;
-	static String SenderPassword;
-	static String ReceiverMail;
-	static String ProjectPath = System.getProperty("user.dir");
+	static String senderMail;
+	static String senderPassword;
+	static String receiverMail;
+	static String projectPath = System.getProperty("user.dir");
 
 	public static void main(String[] args) {
 
-		AppConfig.GetProperties();
+		AppConfig.getProperties();
 
 		// Create object of Property file
 		Properties props = new Properties();
@@ -43,7 +43,7 @@ public class EmailReports{
 		Session session = Session.getDefaultInstance(props,
 				new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(SenderMail, SenderPassword);
+				return new PasswordAuthentication(senderMail, senderPassword);
 			}
 		});
 
@@ -51,8 +51,8 @@ public class EmailReports{
 
 			// Create object of MimeMessage class
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(SenderMail));
-			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(ReceiverMail));
+			message.setFrom(new InternetAddress(senderMail));
+			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(receiverMail));
 
 			// Add the subject 
 			message.setSubject("Testing Mail through log");
@@ -62,7 +62,7 @@ public class EmailReports{
 			messageBodyPart.setText("This is message body using java");
 
 			// Mention the file which you want to send
-			String filename = ProjectPath+"/Logs/application.log";
+			String filename = projectPath+"/Logs/application.log";
 
 			// Create another object to add Attachment
 			MimeBodyPart messageBodyPart1 = new MimeBodyPart();

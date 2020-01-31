@@ -22,7 +22,7 @@ public class Listener implements ITestListener{
 		System.out.println("Faild Test: " + result.getName());
 	
 		 try {
-			Base.Screenshot();
+			Base.screenshot();
 		} catch (IOException e) {
 			e.printStackTrace();
 			

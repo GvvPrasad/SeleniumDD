@@ -18,13 +18,9 @@ import org.testng.annotations.AfterSuite;
 @Listeners(com.autoprac.common.Listener.class)
 public class Search extends Base{
 
-	//Objects
-	ExcelUtil eu = new ExcelUtil();
-	
-	
 	@BeforeSuite
 	public void beforeSuite() throws IOException {
-		Base.BrowserSetUp();
+		Base.browserSetUp();
 		ExcelUtil.readExcel();
 	}
 
@@ -32,10 +28,10 @@ public class Search extends Base{
 	@Test
 	public void searchProduct() {
 		HomePage hp = PageFactory.initElements(driver, HomePage.class);
-		ExcelUtil.Sfile = ExcelUtil.WBfile.getSheetAt(0);
+		ExcelUtil.sFile = ExcelUtil.wbFile.getSheetAt(0);
 		
-		for(int i=0; i<= ExcelUtil.Sfile.getLastRowNum(); i++) {
-			ExcelUtil.cell = ExcelUtil.Sfile.getRow(i).getCell(0);
+		for(int i=0; i<= ExcelUtil.sFile.getLastRowNum(); i++) {
+			ExcelUtil.cell = ExcelUtil.sFile.getRow(i).getCell(0);
 			ExcelUtil.cell.setCellType(CellType.STRING);
 			hp.searchbox().sendKeys(ExcelUtil.cell.getStringCellValue());
 			hp.searchbox().sendKeys(Keys.ENTER);
