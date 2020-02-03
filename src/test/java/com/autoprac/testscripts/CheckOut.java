@@ -27,6 +27,7 @@ public class CheckOut extends Base{
 	@BeforeSuite
 	public void beforeSuite() throws IOException {
 		Base.browserSetUp();
+		Base.htmlReports();
 	}
 
 	
@@ -38,8 +39,10 @@ public class CheckOut extends Base{
 
 	
 	@Test(priority = 2)
-	public void addToCart() {
+	public void addToCart() throws Exception {
 		CheckOutPage cop = PageFactory.initElements(driver, CheckOutPage.class);
+		
+		CommomMethods.scrollTillElement(cop.list());
 		cop.list().click();
 		cop.addtocart().click();
 
@@ -49,6 +52,8 @@ public class CheckOut extends Base{
 			subWindowHandler = iterator.next();
 		}
 		driver.switchTo().window(subWindowHandler);
+		
+		CommomMethods.waitTime();
 		
 		cop.popupcheckout().click();
 		cop.proceedtocheckout().click();
@@ -65,14 +70,13 @@ public class CheckOut extends Base{
 
 	
 	@Test(priority = 4)
-	public void checkOut() {
+	public void checkOut() throws Exception {
 		CheckOutPage cop = PageFactory.initElements(driver, CheckOutPage.class);
 		cop.addresscheckout().click();
 		cop.termconditions().click();
-
-		CommonMethods cm = new CommomMethods();
 		
-		scrollTillElement(cop.shippingcheckout());
+		CommomMethods.scrollTillElement(cop.shippingcheckout());
+		
 		cop.shippingcheckout().click();
 		
 		cop.payment().click();
@@ -87,6 +91,6 @@ public class CheckOut extends Base{
 	
 	@AfterSuite
 	public void afterSuite() {
-		driver.close();
+		Base.driverclose();
 	}
 }

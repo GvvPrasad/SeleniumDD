@@ -65,11 +65,6 @@ public class Base {
 		FileUtils.copyFile(screenshotFile,new File(projectPath+"//ScreenShots//"+timeStamp+".png"));
 	}
 
-	
-	//Logs
-	public static void logsSet() {
-		
-	}
 
 	//HTML Reports
 	public static void htmlReports() {

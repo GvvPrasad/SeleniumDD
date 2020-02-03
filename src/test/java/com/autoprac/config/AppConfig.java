@@ -34,6 +34,8 @@ public class AppConfig {
 			EmailReports.senderMail = prop.getProperty("SenderMailId");
 			EmailReports.senderPassword = prop.getProperty("SenderMailPassword");
 			EmailReports.receiverMail = prop.getProperty("ReceiverMailId");
+			EmailReports.mailSubject = prop.getProperty("MailSubject");
+			EmailReports.mailContent = prop.getProperty("MailContent");
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

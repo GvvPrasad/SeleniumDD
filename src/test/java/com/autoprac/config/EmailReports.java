@@ -22,7 +22,10 @@ public class EmailReports{
 	static String senderMail;
 	static String senderPassword;
 	static String receiverMail;
+	static String mailSubject;
+	static String mailContent;
 	static String projectPath = System.getProperty("user.dir");
+	static String filename = projectPath+"/Logs/application.log";
 
 	public static void main(String[] args) {
 
@@ -55,14 +58,11 @@ public class EmailReports{
 			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(receiverMail));
 
 			// Add the subject 
-			message.setSubject("Testing Mail through log");
+			message.setSubject(mailSubject);
 
 			// Create object to add content
 			MimeBodyPart messageBodyPart = new MimeBodyPart();
-			messageBodyPart.setText("This is message body using java");
-
-			// Mention the file which you want to send
-			String filename = projectPath+"/Logs/application.log";
+			messageBodyPart.setText(mailContent);
 
 			// Create another object to add Attachment
 			MimeBodyPart messageBodyPart1 = new MimeBodyPart();
