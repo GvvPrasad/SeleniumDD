@@ -15,12 +15,32 @@ public class ExcelUtil extends Base{
 	public static XSSFSheet sFile;
 	public static XSSFRow row;
 	public static XSSFCell cell;
+	static int sheetindex ;
 
 
 	public static void readExcel() throws IOException {
-		FileInputStream testdatafile = new FileInputStream(filePath);
-		wbFile = new XSSFWorkbook(testdatafile);
+
+		try {
+			FileInputStream testdatafile = new FileInputStream(filePath);
+			wbFile = new XSSFWorkbook(testdatafile);
+		} catch (Exception e) {
+			System.out.println("File not found");
+		}
 	}
+
+	private static int getRowCount(int sheetindex) {
+		sFile = wbFile.getSheetAt(sheetindex);
+		int rowCount = sFile.getLastRowNum()+1;
+		return rowCount;
+	}
+
+	public static int getColumnCount(int sheetindex){
+		sFile = wbFile.getSheetAt(sheetindex);
+		row = sFile.getRow(0);
+		int colCount = row.getLastCellNum();
+		return colCount;
+	}
+
 
 }
 

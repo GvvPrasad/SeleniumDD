@@ -10,12 +10,13 @@ import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 import com.autoprac.common.Base;
+import com.autoprac.common.CommomMethods;
 import com.autoprac.locators.HomePage;
 import com.autoprac.locators.LoginPage;
-import com.autoprac.locators.ProductPage;
+import com.autoprac.locators.CheckOutPage;
 
 public class CheckOut extends Base{
-	
+
 	//Variables
 	public static String emailid;
 	public static String password;
@@ -27,32 +28,32 @@ public class CheckOut extends Base{
 	public void beforeSuite() throws IOException {
 		Base.browserSetUp();
 	}
+
 	
 	@Test(priority = 1)
 	public void selectProduct() throws InterruptedException {
 		HomePage hp = PageFactory.initElements(driver, HomePage.class);
-		mouseHover(hp.tshirts());
 		hp.tshirts().click();
 	}
+
 	
 	@Test(priority = 2)
 	public void addToCart() {
-		ProductPage pp = PageFactory.initElements(driver, ProductPage.class);
-		pp.list().click();
-		pp.addtocart().click();
-		
+		CheckOutPage cop = PageFactory.initElements(driver, CheckOutPage.class);
+		cop.list().click();
+		cop.addtocart().click();
+
 		Set<String> handles = driver.getWindowHandles(); 
 		Iterator<String> iterator = handles.iterator();
 		while (iterator.hasNext()){
-		    subWindowHandler = iterator.next();
+			subWindowHandler = iterator.next();
 		}
 		driver.switchTo().window(subWindowHandler);
 		
-		pp.popupcheckout().click();
-		
-		mouseHover(pp.proceedtocheckout());
-		pp.proceedtocheckout().click();
+		cop.popupcheckout().click();
+		cop.proceedtocheckout().click();
 	}
+
 	
 	@Test(priority = 3)
 	public void signIn() {
@@ -61,17 +62,28 @@ public class CheckOut extends Base{
 		lp.password().sendKeys(password);
 		lp.submitlogin().click();
 	}
+
 	
 	@Test(priority = 4)
 	public void checkOut() {
-		ProductPage pp = PageFactory.initElements(driver, ProductPage.class);
-		mouseHover(pp.proceedtocheckout());
-		pp.proceedtocheckout().click();
+		CheckOutPage cop = PageFactory.initElements(driver, CheckOutPage.class);
+		cop.addresscheckout().click();
+		cop.termconditions().click();
+
+		CommonMethods cm = new CommomMethods();
 		
-		pp.termconditions().click();
-		pp.proceedtocheckout().click();
+		scrollTillElement(cop.shippingcheckout());
+		cop.shippingcheckout().click();
+		
+		cop.payment().click();
+		cop.confirmorder().click();
 	}
 	
+	
+	@Test(priority = 5)
+	public void checkoutVerification() {
+		
+	}
 	
 	@AfterSuite
 	public void afterSuite() {

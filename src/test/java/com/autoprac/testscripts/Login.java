@@ -6,11 +6,12 @@ import com.autoprac.common.Base;
 import com.autoprac.common.ExcelUtil;
 import com.autoprac.locators.LoginPage;
 
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.IOException;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import org.apache.poi.ss.usermodel.CellType;
 import org.openqa.selenium.support.PageFactory;
@@ -21,12 +22,13 @@ public class Login extends Base{
 
 	//SignUrl
 	String loginUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";	
-
+	public static Logger log =LogManager.getLogger(Base.class.getName());
 
 	@BeforeSuite
 	public void beforeSuite() throws IOException {
 		Base.browserSetUp();
 		ExcelUtil.readExcel();
+		Base.htmlReports();
 	}
 
 
@@ -36,7 +38,7 @@ public class Login extends Base{
 		
 		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
 		
-		ExcelUtil.sFile = ExcelUtil.wbFile.getSheetAt(1);
+		ExcelUtil.sFile = ExcelUtil.wbFile.getSheetAt(1);		
 
 		for(int i=1; i<= ExcelUtil.sFile.getLastRowNum(); i++) {
 			//Email
@@ -44,13 +46,15 @@ public class Login extends Base{
 			ExcelUtil.cell = ExcelUtil.sFile.getRow(i).getCell(0);
 			ExcelUtil.cell.setCellType(CellType.STRING);
 			lp.email().sendKeys(ExcelUtil.cell.getStringCellValue());
-
+			log.info("email sent");
+			
 			//Password
 			lp.password().clear();
 			ExcelUtil.cell = ExcelUtil.sFile.getRow(i).getCell(1);
 			ExcelUtil.cell.setCellType(CellType.STRING);
 			lp.password().sendKeys(ExcelUtil.cell.getStringCellValue());
-
+			log.info("password sent");
+			
 			//Submit
 			lp.submitlogin().click();
 
@@ -61,12 +65,15 @@ public class Login extends Base{
 				lp.logout().click();
 			}
 		}
+		
+		
 	}
 
 
 	@AfterSuite
 	public void afterSuite() {
-		driver.close();
+		
+		Base.driverclose();
 	}
 
 }
