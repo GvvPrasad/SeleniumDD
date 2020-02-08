@@ -23,6 +23,7 @@ public class Login extends Base{
 	//SignUrl
 	String loginUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";	
 	public static Logger log =LogManager.getLogger(Base.class.getName());
+	LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
 
 	@BeforeSuite
 	public void beforeSuite() throws IOException {
@@ -35,8 +36,6 @@ public class Login extends Base{
 	@Test
 	public void signIn() throws IOException {
 		driver.navigate().to(loginUrl);
-
-		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
 
 		ExcelUtil.sFile = ExcelUtil.wbFile.getSheetAt(1);		
 

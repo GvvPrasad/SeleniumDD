@@ -21,27 +21,27 @@ public class CheckOut extends Base{
 	public static String emailid;
 	public static String password;
 	String parentWindowHandler;
-	String subWindowHandler;
+	static String subWindowHandler;
+	static HomePage hp = PageFactory.initElements(driver, HomePage.class);
+	static CheckOutPage cop = PageFactory.initElements(driver, CheckOutPage.class);
+	static LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
 
 
 	@BeforeSuite
-	public void beforeSuite() throws IOException {
+	public static void beforeSuite() throws IOException {
 		Base.browserSetUp();
 		Base.htmlReports();
 	}
 
-	
+
 	@Test(priority = 1)
-	public void selectProduct() throws InterruptedException {
-		HomePage hp = PageFactory.initElements(driver, HomePage.class);
+	public static void selectProduct() throws InterruptedException {	
 		hp.tshirts().click();
 	}
 
-	
+
 	@Test(priority = 2)
-	public void addToCart() throws Exception {
-		CheckOutPage cop = PageFactory.initElements(driver, CheckOutPage.class);
-		
+	public static void addToCart() throws Exception {
 		CommomMethods.scrollTillElement(cop.list());
 		cop.list().click();
 		cop.addtocart().click();
@@ -52,45 +52,44 @@ public class CheckOut extends Base{
 			subWindowHandler = iterator.next();
 		}
 		driver.switchTo().window(subWindowHandler);
-		
+
 		CommomMethods.waitTime();
-		
+
 		cop.popupcheckout().click();
 		cop.proceedtocheckout().click();
 	}
 
-	
+
 	@Test(priority = 3)
-	public void signIn() {
-		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
+	public static void signIn() {
+
 		lp.email().sendKeys(emailid);
 		lp.password().sendKeys(password);
 		lp.submitlogin().click();
 	}
 
-	
+
 	@Test(priority = 4)
-	public void checkOut() throws Exception {
-		CheckOutPage cop = PageFactory.initElements(driver, CheckOutPage.class);
+	public static void checkOut() throws Exception {
 		cop.addresscheckout().click();
 		cop.termconditions().click();
-		
+
 		CommomMethods.scrollTillElement(cop.shippingcheckout());
-		
+
 		cop.shippingcheckout().click();
-		
+
 		cop.payment().click();
 		cop.confirmorder().click();
 	}
-	
-	
+
+
 	@Test(priority = 5)
-	public void checkoutVerification() {
-		
+	public static void checkoutVerification() {
+
 	}
-	
+
 	@AfterSuite
-	public void afterSuite() {
+	public static void afterSuite() {
 		Base.driverclose();
 	}
 }
