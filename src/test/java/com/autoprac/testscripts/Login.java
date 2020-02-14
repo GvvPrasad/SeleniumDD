@@ -37,19 +37,19 @@ public class Login extends Base{
 	public void signIn() throws IOException {
 		driver.navigate().to(loginUrl);
 
-		ExcelUtil.sFile = ExcelUtil.wbFile.getSheetAt(1);		
+		ExcelUtil.shFile = ExcelUtil.wbFile.getSheetAt(1);		
 
-		for(int i=1; i<= ExcelUtil.sFile.getLastRowNum(); i++) {
+		for(int i=1; i<= ExcelUtil.shFile.getLastRowNum(); i++) {
 			//Email
 			lp.email().clear();
-			ExcelUtil.cell = ExcelUtil.sFile.getRow(i).getCell(0);
+			ExcelUtil.cell = ExcelUtil.shFile.getRow(i).getCell(0);
 			ExcelUtil.cell.setCellType(CellType.STRING);
 			lp.email().sendKeys(ExcelUtil.cell.getStringCellValue());
 			log.info("email sent");
 
 			//Password
 			lp.password().clear();
-			ExcelUtil.cell = ExcelUtil.sFile.getRow(i).getCell(1);
+			ExcelUtil.cell = ExcelUtil.shFile.getRow(i).getCell(1);
 			ExcelUtil.cell.setCellType(CellType.STRING);
 			lp.password().sendKeys(ExcelUtil.cell.getStringCellValue());
 			log.info("password sent");

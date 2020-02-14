@@ -32,10 +32,10 @@ public class Search extends Base{
 
 	@Test
 	public void searchProduct() {
-		ExcelUtil.sFile = ExcelUtil.wbFile.getSheetAt(0);
+		ExcelUtil.shFile = ExcelUtil.wbFile.getSheetAt(0);
 
-		for(int i=0; i<= ExcelUtil.sFile.getLastRowNum(); i++) {
-			ExcelUtil.cell = ExcelUtil.sFile.getRow(i).getCell(0);
+		for(int i=0; i<= ExcelUtil.shFile.getLastRowNum(); i++) {
+			ExcelUtil.cell = ExcelUtil.shFile.getRow(i).getCell(0);
 			ExcelUtil.cell.setCellType(CellType.STRING);
 			hp.searchbox().sendKeys(ExcelUtil.cell.getStringCellValue());
 			hp.searchbox().sendKeys(Keys.ENTER);

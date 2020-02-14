@@ -2,11 +2,13 @@ package com.autoprac.common;
 
 import java.io.IOException;
 
+import org.testng.ISuite;
+import org.testng.ISuiteListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class Listener implements ITestListener{
+public class Listener implements ITestListener, ISuiteListener{
 
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub
@@ -45,6 +47,16 @@ public class Listener implements ITestListener{
 	}
 
 	public void onFinish(ITestContext context) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onStart(ISuite suite) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onFinish(ISuite suite) {
 		// TODO Auto-generated method stub
 		
 	}
