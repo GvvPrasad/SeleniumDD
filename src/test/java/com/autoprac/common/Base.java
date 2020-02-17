@@ -17,7 +17,6 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
-import io.github.bonigarcia.wdm.DriverManagerType;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
@@ -40,16 +39,16 @@ public class Base {
 		AppConfig.getProperties();
 
 		if(browserName.equalsIgnoreCase("chrome")) {
-			WebDriverManager.getInstance(DriverManagerType.CHROME).setup();
+			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		} else if (browserName.equalsIgnoreCase("firefox")) {
-			WebDriverManager.getInstance(DriverManagerType.FIREFOX).setup();
+			WebDriverManager.firefoxdriver().setup();
 			driver = new FirefoxDriver();
 		} else if (browserName.equalsIgnoreCase("edge")) {
-			WebDriverManager.getInstance(DriverManagerType.EDGE).setup();
+			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
 		} else if (browserName.equalsIgnoreCase("IE")) {
-			WebDriverManager.getInstance(DriverManagerType.IEXPLORER).setup();
+			WebDriverManager.iedriver().setup();
 			driver = new InternetExplorerDriver();
 		}
 
@@ -69,7 +68,7 @@ public class Base {
 	//HTML Reports
 	public static void htmlReports() {
 		extent = new ExtentReports();
-		htmlReporter = new ExtentHtmlReporter(projectPath+"//Reports//report"+timeStamp+".html");
+		htmlReporter = new ExtentHtmlReporter(projectPath+"//Reports//"+timeStamp+".html");
 		extent.attachReporter(htmlReporter);
 		setup = extent.createTest("SetUp");
 	}

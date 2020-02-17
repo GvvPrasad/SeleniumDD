@@ -10,36 +10,29 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import org.apache.poi.ss.usermodel.CellType;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterSuite;
 
-@Listeners(com.autoprac.common.Listener.class)
+@Listeners(com.autoprac.listeners.TestNGListener.class)
 public class Search extends Base{
 
-	HomePage hp = PageFactory.initElements(driver, HomePage.class);
-	public static Logger log =LogManager.getLogger(Base.class.getName());
 	@BeforeSuite
 	public void beforeSuite() throws IOException {
 		Base.browserSetUp();
-		ExcelUtil.readExcel();
 		Base.htmlReports();
+		ExcelUtil.getExcel();
 	}
 
 
 	@Test
-	public void searchProduct() {
-		ExcelUtil.shFile = ExcelUtil.wbFile.getSheetAt(0);
+	public void searchProduct() throws IOException {
+		HomePage hp = PageFactory.initElements(driver, HomePage.class);
 
-		for(int i=0; i<= ExcelUtil.shFile.getLastRowNum(); i++) {
-			ExcelUtil.cell = ExcelUtil.shFile.getRow(i).getCell(0);
-			ExcelUtil.cell.setCellType(CellType.STRING);
-			hp.searchbox().sendKeys(ExcelUtil.cell.getStringCellValue());
-			hp.searchbox().sendKeys(Keys.ENTER);
-		}
+		ExcelUtil.getSheet(0);
+		String value = ExcelUtil.getCellDataString(0, 0);
+		hp.searchbox().sendKeys(value);
+		hp.searchbox().sendKeys(Keys.RETURN);
 	}
 
 

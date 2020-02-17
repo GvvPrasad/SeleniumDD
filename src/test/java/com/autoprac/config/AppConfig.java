@@ -7,7 +7,6 @@ import java.util.Properties;
 import org.testng.annotations.Test;
 
 import com.autoprac.common.Base;
-import com.autoprac.testscripts.CheckOut;
 
 public class AppConfig {
 
@@ -15,6 +14,7 @@ public class AppConfig {
 	static Properties prop = new Properties();
 	static String projectPath = System.getProperty("user.dir");
 
+	
 	//Get Data from AppProperties.properties file
 	@Test(priority=0)
 	public static void getProperties() {
@@ -25,10 +25,6 @@ public class AppConfig {
 			//Application 
 			Base.browserName = prop.getProperty("Browser");
 			Base.urlLink = prop.getProperty("Url");
-			
-			//Application Login
-			CheckOut.emailid = prop.getProperty("EmialId");
-			CheckOut.password = prop.getProperty("Password");
 			
 			//Mail
 			EmailReports.senderMail = prop.getProperty("SenderMailId");

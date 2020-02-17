@@ -1,4 +1,4 @@
-package com.autoprac.common;
+package com.autoprac.listeners;
 
 import java.io.IOException;
 
@@ -8,7 +8,9 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class Listener implements ITestListener, ISuiteListener{
+import com.autoprac.common.Base;
+
+public class TestNGListener implements ITestListener, ISuiteListener{
 
 	public void onTestStart(ITestResult result) {
 		// TODO Auto-generated method stub
@@ -32,12 +34,12 @@ public class Listener implements ITestListener, ISuiteListener{
 	}
 
 	public void onTestSkipped(ITestResult result) {
-		System.out.println("Faild Test: " + result.getName());
+		System.out.println("Skipped Test: " + result.getName());
 		
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-		System.out.println("Faild Test: " + result.getName());
+		System.out.println("FailedButWithinSuccessPercentage Test: " + result.getName());
 		
 	}
 

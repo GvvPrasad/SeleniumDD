@@ -28,7 +28,7 @@ public class CommomMethods extends Base{
 	}
 
 	//Fluent Wait
-	public WebElement presenceOfTheElement(final WebElement webElement) {
+	public static WebElement presenceOfTheElement(final WebElement webElement) {
 		FluentWait <WebDriver> wait = new FluentWait<WebDriver>(driver)
 				.withTimeout(Duration.ofSeconds(10))
 				.pollingEvery(Duration.ofSeconds(3))
