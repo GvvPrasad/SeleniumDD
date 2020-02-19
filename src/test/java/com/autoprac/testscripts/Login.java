@@ -19,8 +19,8 @@ public class Login extends Base{
 
 	//SignUrl
 	String loginUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
-	Logger log =(Logger) LogManager.getLogger(Login.class);
-	
+
+
 	@BeforeSuite
 	public void beforeSuite() throws IOException {
 		Base.browserSetUp();

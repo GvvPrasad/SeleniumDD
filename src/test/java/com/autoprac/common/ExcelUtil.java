@@ -3,7 +3,9 @@ package com.autoprac.common;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -18,9 +20,8 @@ public class ExcelUtil extends Base{
 	public static XSSFCell cell;
 	public static int sheetindex ;
 
-
+	//Get Excel File
 	public static void getExcel() throws IOException {
-
 		try {
 			FileInputStream testdatafile = new FileInputStream(filePath);
 			wbFile = new XSSFWorkbook(testdatafile);
@@ -31,8 +32,8 @@ public class ExcelUtil extends Base{
 	}
 
 
+	//Get Excel Sheet
 	public static void getSheet(int sheetno) throws IOException {
-
 		try {
 			shFile = wbFile.getSheetAt(sheetno);
 		} catch (Exception e) {
@@ -41,6 +42,8 @@ public class ExcelUtil extends Base{
 		}
 	}
 
+
+	//Row Count
 	private static int getRowCount() {
 		int rowCount=0;
 		try {
@@ -55,6 +58,7 @@ public class ExcelUtil extends Base{
 	}
 
 
+	//Column Count
 	public static int getColumnCount(){
 		int colCount=0;
 		try {
@@ -69,6 +73,7 @@ public class ExcelUtil extends Base{
 	}
 
 
+	//Get String Value
 	public static String getCellDataString(int rowNum, int colNum) {
 		String cellData = null;
 		try {
@@ -82,6 +87,7 @@ public class ExcelUtil extends Base{
 	}
 
 
+	//Get Numeric Value
 	public static double getCellDataNumber(int rowNum, int colNum) {
 		double cellData = 0;
 		try {
@@ -94,7 +100,8 @@ public class ExcelUtil extends Base{
 		return cellData;
 	}
 
-	
+
+	//Set data to String
 	public static String setCellDataToString(int rowNum, int colNum) {
 		String cellData = null;
 		try {
@@ -107,6 +114,20 @@ public class ExcelUtil extends Base{
 		return cellData;
 	}
 
+
+	//Get Date
+	public static String getDateValue(int rowNum, int colNum) {
+		String dateValue = null;
+		try {
+			DataFormatter dataFormatter = new DataFormatter();
+			if (HSSFDateUtil.isCellDateFormatted(shFile.getRow(rowNum).getCell(colNum))) {
+				dateValue = dataFormatter.formatCellValue((Cell) shFile.getRow(rowNum).getCell(colNum).getDateCellValue());
+			}
+		} catch (Exception exp) {
+			System.out.println(exp.getMessage());;
+			System.out.println(exp.getCause());
+			exp.printStackTrace();
+		}
+		return dateValue;
+	}
 }
-
-

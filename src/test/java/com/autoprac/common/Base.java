@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.apache.commons.io.FileUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -31,9 +33,10 @@ public class Base {
 	static ExtentHtmlReporter htmlReporter;
 	static ExtentReports extent;
 	static ExtentTest setup;
+	protected static Logger log = (Logger) LogManager.getLogger();
 
 
-	//Browser config
+	//Browser Setup
 	public static void browserSetUp() {
 
 		AppConfig.getProperties();
@@ -72,15 +75,15 @@ public class Base {
 		extent.attachReporter(htmlReporter);
 		setup = extent.createTest("SetUp");
 	}
-	
-	
-	//Close Driver
+
+
+	//Close Driver & Browser
 	public static void driverclose() {
 		driver.close();
 		driver.quit();
 		extent.flush();
 	}
-	
+
 }
 
 

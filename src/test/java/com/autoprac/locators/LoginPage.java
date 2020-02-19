@@ -13,8 +13,8 @@ public class LoginPage extends Base{
 		Base.driver=driver;
 		PageFactory.initElements(driver, this);
 	}
-	
-	
+
+
 	@FindBy(id = "email")
 	WebElement email;
 
@@ -23,7 +23,7 @@ public class LoginPage extends Base{
 
 	@FindBy(id = "SubmitLogin")
 	WebElement SubmitLogin;
-	
+
 	@FindBy(className = "logout")
 	WebElement logout;
 
@@ -39,7 +39,7 @@ public class LoginPage extends Base{
 	public WebElement submitlogin() {
 		return SubmitLogin;
 	}
-	
+
 	public WebElement logout() {
 		return logout;
 	}

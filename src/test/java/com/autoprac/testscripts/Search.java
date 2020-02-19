@@ -15,10 +15,11 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterSuite;
 
 @Listeners(com.autoprac.listeners.TestNGListener.class)
-public class Search extends Base{
+public class Search extends Base {
+
 
 	@BeforeSuite
-	public void beforeSuite() throws IOException {
+	public static void beforeSuite() throws IOException {
 		Base.browserSetUp();
 		Base.htmlReports();
 		ExcelUtil.getExcel();
@@ -26,18 +27,19 @@ public class Search extends Base{
 
 
 	@Test
-	public void searchProduct() throws IOException {
+	public static void searchProduct() throws IOException {
 		HomePage hp = PageFactory.initElements(driver, HomePage.class);
 
 		ExcelUtil.getSheet(0);
 		String value = ExcelUtil.getCellDataString(0, 0);
 		hp.searchbox().sendKeys(value);
 		hp.searchbox().sendKeys(Keys.RETURN);
+		log.info("searched item");	
 	}
 
 
 	@AfterSuite
-	public void afterSuite() {
+	public static void afterSuite() {
 		Base.driverclose();
 	}
 
