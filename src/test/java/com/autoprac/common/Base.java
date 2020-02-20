@@ -7,6 +7,7 @@ import java.util.Date;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
+import org.automationtesting.excelreport.Xl;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +16,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import com.autoprac.config.AppConfig;
+import com.autoprac.config.EmailReports;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -28,11 +30,13 @@ public class Base {
 	public static String browserName;
 	public static String urlLink;
 	protected static WebDriver driver;
-	static String projectPath = System.getProperty("user.dir");
-	static String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date()); 
+	protected static String projectPath = System.getProperty("user.dir");
+	static String timeStamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()); 
 	static ExtentHtmlReporter htmlReporter;
 	static ExtentReports extent;
 	static ExtentTest setup;
+	protected static String htmlReport = projectPath+"//Reports//"+timeStamp+".html";
+	protected static String excelReport = projectPath+"//Reports//"+timeStamp+".xlsx";
 	protected static Logger log = (Logger) LogManager.getLogger();
 
 
@@ -71,19 +75,30 @@ public class Base {
 	//HTML Reports
 	public static void htmlReports() {
 		extent = new ExtentReports();
-		htmlReporter = new ExtentHtmlReporter(projectPath+"//Reports//"+timeStamp+".html");
+		htmlReporter = new ExtentHtmlReporter(htmlReport);
 		extent.attachReporter(htmlReporter);
 		setup = extent.createTest("SetUp");
 	}
+	
 
-
+	//Excel Reports
+	public static void excelReports() throws Exception {
+		Xl.generateReport(projectPath+"//Reports//", timeStamp+".xlsx");
+	}
+	
 	//Close Driver & Browser
-	public static void driverclose() {
+	public static void driverclose() throws Exception {
 		driver.close();
 		driver.quit();
 		extent.flush();
+		excelReports();
 	}
-
+	
+	
+	//Mails Reports
+	public static void mailReports() {
+		EmailReports.main(null);
+	}
 }
 
 

@@ -16,7 +16,9 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-public class EmailReports{
+import com.autoprac.common.Base;
+
+public class EmailReports extends Base{
 
 	//Mail Variables
 	static String senderMail;
@@ -25,12 +27,12 @@ public class EmailReports{
 	static String mailSubject;
 	static String mailContent;
 	static String projectPath = System.getProperty("user.dir");
-	static String filename = projectPath+"/Logs/application.log";
-
+	
 	public static void main(String[] args) {
-
+		
+		//Objects
 		AppConfig.getProperties();
-
+		
 		// Create object of Property file
 		Properties props = new Properties();
 
@@ -56,6 +58,7 @@ public class EmailReports{
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(senderMail));
 			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(receiverMail));
+			//message.setRecipients(Message.RecipientType.CC,InternetAddress.parse(receiverMail));
 
 			// Add the subject 
 			message.setSubject(mailSubject);
@@ -66,14 +69,20 @@ public class EmailReports{
 
 			// Create another object to add Attachment
 			MimeBodyPart messageBodyPart1 = new MimeBodyPart();
-			DataSource source = new FileDataSource(filename);
+			DataSource source = new FileDataSource(Base.htmlReport);
 			messageBodyPart1.setDataHandler(new DataHandler(source));
-			messageBodyPart1.setFileName(filename);
+			messageBodyPart1.setFileName(Base.htmlReport);
+			
+			MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+			DataSource source1 = new FileDataSource(Base.excelReport);
+			messageBodyPart2.setDataHandler(new DataHandler(source1));
+			messageBodyPart2.setFileName(Base.excelReport);
 					
 			// Create object of MimeMultipart class
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messageBodyPart);
 			multipart.addBodyPart(messageBodyPart1);
+			multipart.addBodyPart(messageBodyPart2);
 
 			// set the content
 			message.setContent(multipart);
@@ -84,7 +93,7 @@ public class EmailReports{
 			System.out.println("=====Email Sent=====");
 
 		} catch (MessagingException e) {
-
+			System.out.println("=====Email did not Sent=====");
 			throw new RuntimeException(e);
 
 		}

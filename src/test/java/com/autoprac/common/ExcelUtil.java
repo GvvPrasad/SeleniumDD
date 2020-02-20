@@ -12,7 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtil extends Base{
-
+	
 	public static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
 	public static XSSFWorkbook wbFile;
 	public static XSSFSheet shFile;
@@ -23,8 +23,8 @@ public class ExcelUtil extends Base{
 	//Get Excel File
 	public static void getExcel() throws IOException {
 		try {
-			FileInputStream testdatafile = new FileInputStream(filePath);
-			wbFile = new XSSFWorkbook(testdatafile);
+			FileInputStream datafile = new FileInputStream(filePath);
+			wbFile = new XSSFWorkbook(datafile);
 		} catch (Exception e) {
 			System.out.println("File not found");
 			e.printStackTrace();
@@ -49,10 +49,9 @@ public class ExcelUtil extends Base{
 		try {
 			rowCount = shFile.getPhysicalNumberOfRows();
 			System.out.println("No of rows : "+rowCount);
-		}catch(Exception exp) {
-			System.out.println(exp.getMessage());;
-			System.out.println(exp.getCause());
-			exp.printStackTrace();
+		}catch(Exception e) {
+			System.out.println("Did not get Rows");
+			e.printStackTrace();
 		}
 		return rowCount;
 	}
@@ -64,10 +63,9 @@ public class ExcelUtil extends Base{
 		try {
 			colCount = shFile.getRow(0).getPhysicalNumberOfCells();
 			System.out.println("No of columns : "+colCount);
-		}catch(Exception exp) {
-			System.out.println(exp.getMessage());;
-			System.out.println(exp.getCause());
-			exp.printStackTrace();
+		}catch(Exception e) {
+			System.out.println("Dis not get Columns");
+			e.printStackTrace();
 		}
 		return colCount;
 	}
@@ -78,10 +76,9 @@ public class ExcelUtil extends Base{
 		String cellData = null;
 		try {
 			cellData = shFile.getRow(rowNum).getCell(colNum).getStringCellValue();
-		}catch(Exception exp) {
-			System.out.println(exp.getMessage());;
-			System.out.println(exp.getCause());
-			exp.printStackTrace();
+		}catch(Exception e) {
+			System.out.println("Data not found");
+			e.printStackTrace();
 		}
 		return cellData;
 	}
@@ -92,10 +89,9 @@ public class ExcelUtil extends Base{
 		double cellData = 0;
 		try {
 			cellData = shFile.getRow(rowNum).getCell(colNum).getNumericCellValue();
-		}catch(Exception exp) {
-			System.out.println(exp.getMessage());;
-			System.out.println(exp.getCause());
-			exp.printStackTrace();
+		}catch(Exception e) {
+			System.out.println("Data not found");
+			e.printStackTrace();
 		}
 		return cellData;
 	}
@@ -106,10 +102,9 @@ public class ExcelUtil extends Base{
 		String cellData = null;
 		try {
 			cellData = shFile.getRow(rowNum).getCell(colNum).toString();
-		}catch(Exception exp) {
-			System.out.println(exp.getMessage());;
-			System.out.println(exp.getCause());
-			exp.printStackTrace();
+		}catch(Exception e) {
+			System.out.println("Data not found");
+			e.printStackTrace();
 		}
 		return cellData;
 	}
@@ -123,10 +118,9 @@ public class ExcelUtil extends Base{
 			if (HSSFDateUtil.isCellDateFormatted(shFile.getRow(rowNum).getCell(colNum))) {
 				dateValue = dataFormatter.formatCellValue((Cell) shFile.getRow(rowNum).getCell(colNum).getDateCellValue());
 			}
-		} catch (Exception exp) {
-			System.out.println(exp.getMessage());;
-			System.out.println(exp.getCause());
-			exp.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("Data not found");
+			e.printStackTrace();
 		}
 		return dateValue;
 	}

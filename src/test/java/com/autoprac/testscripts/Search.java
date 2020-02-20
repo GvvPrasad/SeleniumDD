@@ -39,8 +39,9 @@ public class Search extends Base {
 
 
 	@AfterSuite
-	public static void afterSuite() {
+	public static void afterSuite() throws Exception {
 		Base.driverclose();
+		Base.mailReports();
 	}
 
 }

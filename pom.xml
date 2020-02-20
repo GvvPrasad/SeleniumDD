@@ -54,12 +54,12 @@
 			<artifactId>extentreports</artifactId>
 			<version>4.0.9</version>
 		</dependency>
-<!-- https://mvnrepository.com/artifact/com.github.vsspt/excel-exporter -->
-<dependency>
-    <groupId>com.github.vsspt</groupId>
-    <artifactId>excel-exporter</artifactId>
-    <version>1.0.0</version>
-</dependency>
+		<!-- https://mvnrepository.com/artifact/com.github.vsspt/excel-exporter -->
+		<dependency>
+			<groupId>com.github.vsspt</groupId>
+			<artifactId>excel-exporter</artifactId>
+			<version>1.0.0</version>
+		</dependency>
 
 
 

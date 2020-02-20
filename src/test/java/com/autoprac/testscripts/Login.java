@@ -64,7 +64,7 @@ public class Login extends Base{
 
 
 	@AfterSuite
-	public void afterSuite() {
+	public void afterSuite() throws Exception {
 		Base.driverclose();
 	}
 }
