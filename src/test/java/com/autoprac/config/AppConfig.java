@@ -13,14 +13,18 @@ public class AppConfig {
 	//Properties Object
 	static Properties prop = new Properties();
 	static String projectPath = System.getProperty("user.dir");
+	static String propertiesPath = projectPath+"/src/test/java/com/autoprac/config/";
 
 	
 	//Get Data from AppProperties.properties file
 	@Test(priority=0)
 	public static void getProperties() {
 		try {
-			InputStream Input = new FileInputStream(projectPath+"/src/test/java/com/autoprac/config/AppProperties.properties");
-			prop.load(Input);
+			InputStream applicationProp = new FileInputStream(propertiesPath+"AppProperties.properties");
+			prop.load(applicationProp);
+			
+			InputStream emailProp = new FileInputStream(propertiesPath+"EmailProperties.properties");
+			prop.load(emailProp);
 			
 			//Application 
 			Base.browserName = prop.getProperty("Browser");

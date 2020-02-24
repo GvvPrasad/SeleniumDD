@@ -2,11 +2,10 @@ package com.autoprac.testscripts;
 
 import java.io.IOException;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.core.Logger;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -29,30 +28,25 @@ public class Login extends Base{
 	}
 
 
-	@Test
-	public void signIn() throws IOException {
+	@Test(dataProvider = "getData")
+	public void signIn(String email, String password) throws IOException {
 		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
 
 		driver.navigate().to(loginUrl);
-		ExcelUtil.getSheet(1);
-
-		for(int i=1; i<= ExcelUtil.shFile.getLastRowNum(); i++) {
-
+		
 			//Email
 			lp.email().clear();
-			String email = ExcelUtil.setCellDataToString(i, 0);
 			lp.email().sendKeys(email);
-			log.info("email sent");
 
 			//Password
 			lp.password().clear();
-			String password = ExcelUtil.setCellDataToString(i, 1);
 			lp.password().sendKeys(password);
-			log.info("password sent");
 
 			//Submit
 			lp.submitlogin().click();
-
+			log.info("Login Details are old:  " + email, password);
+			
+			//Verify
 			String expectedUrl = "http://automationpractice.com/index.php?controller=my-account";
 			String actualUrl = driver.getCurrentUrl();
 
@@ -60,6 +54,17 @@ public class Login extends Base{
 				lp.logout().click();
 			}
 		}
+	
+	@DataProvider
+	public Object[][] getData() throws IOException {
+		Object[][] data = loginTestData();
+		return data;
+	}
+	
+	
+	public Object[][] loginTestData() throws IOException{
+		ExcelUtil.getSheet(1);
+		return ExcelUtil.getData();
 	}
 
 

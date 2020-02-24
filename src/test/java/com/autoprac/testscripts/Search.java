@@ -31,7 +31,7 @@ public class Search extends Base {
 		HomePage hp = PageFactory.initElements(driver, HomePage.class);
 
 		ExcelUtil.getSheet(0);
-		String value = ExcelUtil.getCellDataString(0, 0);
+		String value = ExcelUtil.getCellDataString(1, 0);
 		hp.searchbox().sendKeys(value);
 		hp.searchbox().sendKeys(Keys.RETURN);
 		log.info("searched item");	

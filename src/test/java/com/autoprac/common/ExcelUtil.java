@@ -12,7 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtil extends Base{
-	
+
 	public static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
 	public static XSSFWorkbook wbFile;
 	public static XSSFSheet shFile;
@@ -44,7 +44,7 @@ public class ExcelUtil extends Base{
 
 
 	//Row Count
-	private static int getRowCount() {
+	public static int getRowCount() {
 		int rowCount=0;
 		try {
 			rowCount = shFile.getPhysicalNumberOfRows();
@@ -123,5 +123,25 @@ public class ExcelUtil extends Base{
 			e.printStackTrace();
 		}
 		return dateValue;
+	}
+
+
+	//Data Provider for Excel
+	public static Object[][] getData() throws IOException{
+		
+		int rowCount = ExcelUtil.getRowCount();
+		int colCount = ExcelUtil.getColumnCount();
+
+		Object data[][] = new Object[rowCount-1][colCount];
+
+		for(int i=1; i<rowCount; i++)
+		{
+			for(int j=0; j<colCount; j++)
+			{
+				data[i-1][j] = ExcelUtil.setCellDataToString(i, j);
+			}
+
+		}
+		return data;
 	}
 }
