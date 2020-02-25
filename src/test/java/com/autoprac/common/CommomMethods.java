@@ -1,8 +1,6 @@
 package com.autoprac.common;
 
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,8 +15,8 @@ import com.google.common.base.Function;
 public class CommomMethods extends Base{
 
 	//Implicit Wait
-	public static void waitTime() {
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+	public static void waitTime() throws InterruptedException {
+		Thread.sleep(5000);
 	}
 
 	//Explicit Wait
