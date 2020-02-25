@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -99,9 +100,12 @@ public class ExcelUtil extends Base{
 
 	//Set data to String
 	public static String setCellDataToString(int rowNum, int colNum) {
+		XSSFCell cell = null;
 		String cellData = null;
 		try {
-			cellData = shFile.getRow(rowNum).getCell(colNum).toString();
+			cell = shFile.getRow(rowNum).getCell(colNum);
+			cell.setCellType(CellType.STRING);
+			cellData = cell.getStringCellValue();
 		}catch(Exception e) {
 			System.out.println("Data not found");
 			e.printStackTrace();
@@ -128,11 +132,11 @@ public class ExcelUtil extends Base{
 
 	//Data Provider for Excel
 	public static Object[][] getData() throws IOException{
-		
+
 		int rowCount = ExcelUtil.getRowCount();
 		int colCount = ExcelUtil.getColumnCount();
 
-		Object data[][] = new Object[rowCount-1][colCount];
+		Object[][] data = new Object[rowCount-1][colCount];
 
 		for(int i=1; i<rowCount; i++)
 		{
@@ -140,8 +144,8 @@ public class ExcelUtil extends Base{
 			{
 				data[i-1][j] = ExcelUtil.setCellDataToString(i, j);
 			}
-
 		}
 		return data;
+
 	}
 }
