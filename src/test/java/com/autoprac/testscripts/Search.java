@@ -17,7 +17,6 @@ import org.testng.annotations.AfterSuite;
 @Listeners(com.autoprac.listeners.TestNGListener.class)
 public class Search extends Base {
 
-
 	@BeforeSuite
 	public static void beforeSuite() throws IOException {
 		Base.browserSetUp();
@@ -37,11 +36,9 @@ public class Search extends Base {
 		log.info("searched item");	
 	}
 
-
+	
 	@AfterSuite
 	public static void afterSuite() throws Exception {
 		Base.driverclose();
-		Base.mailReports();
 	}
-
 }

@@ -53,12 +53,10 @@ public class EmailReports extends Base{
 		});
 
 		try {
-
 			// Create object of MimeMessage class
 			Message message = new MimeMessage(session);
 			message.setFrom(new InternetAddress(senderMail));
 			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(receiverMail));
-			//message.setRecipients(Message.RecipientType.CC,InternetAddress.parse(receiverMail));
 
 			// Add the subject 
 			message.setSubject(mailSubject);

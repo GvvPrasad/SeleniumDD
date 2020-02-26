@@ -56,7 +56,6 @@ public class Login extends Base{
 	}
 
 
-
 	@DataProvider
 	public Object[][] loginTestData() throws IOException{
 		ExcelUtil.getSheet(1);

@@ -3,10 +3,7 @@ package com.autoprac.common;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.apache.poi.hssf.usermodel.HSSFDateUtil;
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -98,7 +95,7 @@ public class ExcelUtil extends Base{
 	}
 
 
-	//Set data to String
+	//Change data to String
 	public static String setCellDataToString(int rowNum, int colNum) {
 		XSSFCell cell = null;
 		String cellData = null;
@@ -114,23 +111,7 @@ public class ExcelUtil extends Base{
 	}
 
 
-	//Get Date
-	public static String getDateValue(int rowNum, int colNum) {
-		String dateValue = null;
-		try {
-			DataFormatter dataFormatter = new DataFormatter();
-			if (HSSFDateUtil.isCellDateFormatted(shFile.getRow(rowNum).getCell(colNum))) {
-				dateValue = dataFormatter.formatCellValue((Cell) shFile.getRow(rowNum).getCell(colNum).getDateCellValue());
-			}
-		} catch (Exception e) {
-			System.out.println("Data not found");
-			e.printStackTrace();
-		}
-		return dateValue;
-	}
-
-
-	//Data Provider for Excel
+	//DataProvider from Excel
 	public static Object[][] getData() throws IOException{
 
 		int rowCount = ExcelUtil.getRowCount();
@@ -146,6 +127,5 @@ public class ExcelUtil extends Base{
 			}
 		}
 		return data;
-
 	}
 }

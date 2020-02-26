@@ -26,12 +26,12 @@ public class CommomMethods extends Base{
 	}
 
 	//Fluent Wait
-	public static WebElement presenceOfTheElement(final WebElement webElement) {
+	public static void presenceOfTheElement(final WebElement webElement) {
 		FluentWait <WebDriver> wait = new FluentWait<WebDriver>(driver)
 				.withTimeout(Duration.ofSeconds(10))
 				.pollingEvery(Duration.ofSeconds(3))
 				.ignoring(Exception.class); 
-		return wait.until(new Function<WebDriver, WebElement>() {
+		wait.until(new Function<WebDriver, WebElement>() {
 			public WebElement apply(WebDriver driver) {
 				System.out.println(webElement);
 				return driver.findElement((By) webElement);
@@ -58,6 +58,4 @@ public class CommomMethods extends Base{
 		Actions act = new Actions(driver);
 		act.moveToElement(element).build().perform();
 	}
-
-
 }

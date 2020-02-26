@@ -79,13 +79,14 @@ public class Base {
 		extent.attachReporter(htmlReporter);
 		setup = extent.createTest("SetUp");
 	}
-	
+
 
 	//Excel Reports
 	public static void excelReports() throws Exception {
 		Xl.generateReport(projectPath+"//Reports//", timeStamp+".xlsx");
 	}
-	
+
+
 	//Close Driver & Browser
 	public static void driverclose() throws Exception {
 		driver.close();
@@ -93,8 +94,8 @@ public class Base {
 		extent.flush();
 		excelReports();
 	}
-	
-	
+
+
 	//Mails Reports
 	public static void mailReports() {
 		EmailReports.main(null);
