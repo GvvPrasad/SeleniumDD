@@ -1,6 +1,8 @@
 package com.autoprac.common;
 
 import java.time.Duration;
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -58,4 +60,39 @@ public class CommomMethods extends Base{
 		Actions act = new Actions(driver);
 		act.moveToElement(element).build().perform();
 	}
+	
+	
+	//Drag and Drop
+	public static void draganddrop(WebElement source, WebElement target) {
+		Actions act = new Actions(driver);
+		act.dragAndDrop(source, target).build().perform();
+	}
+
+
+	//Web Tables
+	public static String webTable(WebElement element) {
+		String celltext = null;
+
+		List<WebElement> rows = element.findElements(By.tagName("tr"));
+		int rowCount=rows.size();
+
+		for (int i = 0; i<rowCount; i++) {
+			List<WebElement> Columns = rows.get(i).findElements(By.tagName("td"));
+			int columnCount = Columns.size();
+			for (int j = 0; j <columnCount; j++) {
+				celltext = Columns.get(j).getText()+" ";
+				System.out.print(celltext);
+			}
+		}
+		return celltext;
+	}
+	
+	
+	//Alerts
+	public static void alert() {
+		driver.switchTo().alert();
+	}
+	
+	
+	//Windows Handlers
 }

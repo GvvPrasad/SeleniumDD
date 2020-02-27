@@ -16,6 +16,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import org.testng.annotations.Test;
+
 import com.autoprac.common.Base;
 
 public class EmailReports extends Base{
@@ -28,6 +30,7 @@ public class EmailReports extends Base{
 	static String mailContent;
 	static String projectPath = System.getProperty("user.dir");
 	
+	@Test
 	public static void main(String[] args) {
 		
 		//Objects
