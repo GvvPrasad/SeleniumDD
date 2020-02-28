@@ -16,12 +16,13 @@ import org.testng.annotations.AfterSuite;
 
 @Listeners(com.autoprac.listeners.TestNGListener.class)
 public class Search extends Base {
+	public static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
 
 	@BeforeSuite
 	public static void beforeSuite() throws IOException {
 		Base.browserSetUp();
 		Base.htmlReports();
-		ExcelUtil.getExcel();
+		ExcelUtil.getExcel(filePath);
 	}
 
 

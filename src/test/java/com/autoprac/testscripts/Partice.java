@@ -9,7 +9,6 @@ import org.testng.annotations.BeforeTest;
 import java.io.IOException;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterTest;
 
 public class Partice extends Base{
@@ -21,12 +20,11 @@ public class Partice extends Base{
 
 
 	@Test
-	public void sample() {
-		driver.navigate().to("http://only-testing-blog.blogspot.com/2014/05/form.html");
-		WebElement table = driver.findElement(By.xpath("//div[@id='post-body-8228718889842861683']//div//table"));
-
-		CommomMethods.webTable(table);
-
+	public void sample() throws InterruptedException {
+		driver.navigate().to("https://www.flipkart.com/");
+		CommomMethods.modelPopUp();
+		driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div/div[2]/div/form/div[1]/input")).sendKeys("jack");
+		CommomMethods.waitTime();
 	}
 
 

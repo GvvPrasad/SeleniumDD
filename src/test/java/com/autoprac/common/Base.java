@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
@@ -16,6 +18,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import com.autoprac.config.AppConfig;
 import com.autoprac.config.EmailReports;
@@ -42,17 +45,46 @@ public class Base {
 	protected static Logger log = (Logger) LogManager.getLogger();
 
 
-	//Browser Setup
+	//Browser Setup and file download
 	public static void browserSetUp() {
 
 		AppConfig.getProperties();
 
+		//For Chrome
+		//Saving file loaction path
+		String downloadFilepath = projectPath+"//Files";
+
+		//Setting New download path
+		HashMap < String, Object > chromePrefs = new HashMap < String, Object > ();
+		chromePrefs.put("profile.default_content_settings.popups", 0);
+		chromePrefs.put("download.default_directory", downloadFilepath);
+
+		//Adding Capabilities to ChromeOptions
+		ChromeOptions options = new ChromeOptions();
+		options.setExperimentalOption("prefs", chromePrefs);
+		options.addArguments("start-maximized");
+		options.addArguments("--test-type");
+		options.addArguments("--disable-extensions"); //to disable browser extension popup
+
+
+		//For Firefox
+		FirefoxProfile profile = new FirefoxProfile();
+		profile.setPreference("browser.download.folderList", 2);
+		profile.setPreference("browser.download.dir", downloadFilepath);
+		profile.setPreference("browser.download.useDownloadDir", true);
+		profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
+		profile.setPreference("browser.download.manager.showwhenStarting", false);
+
+		FirefoxOptions foptions = new FirefoxOptions();
+		foptions.setProfile(profile);
+
+
 		if(browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(options);
 		} else if (browserName.equalsIgnoreCase("firefox")) {
 			WebDriverManager.firefoxdriver().setup();
-			driver = new FirefoxDriver();
+			driver = new FirefoxDriver(foptions);
 		} else if (browserName.equalsIgnoreCase("edge")) {
 			WebDriverManager.edgedriver().setup();
 			driver = new EdgeDriver();
@@ -66,18 +98,19 @@ public class Base {
 		driver.manage().window().maximize();
 	}
 
+
 	//HeadLess browser setup
 	public static void headlessBrowserSetUp() {
 
 		AppConfig.getProperties();
-		
+
 		ChromeOptions options = new ChromeOptions();
 		options.setHeadless(true);
 		options.addArguments("--headless");
-		
+
 		FirefoxOptions foptions = new FirefoxOptions();
 		foptions.setHeadless(true);
-		
+
 		if(browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver(options);
@@ -90,7 +123,6 @@ public class Base {
 		driver.manage().deleteAllCookies();
 	}
 
-	
 
 	//Screenshots
 	public static void screenshot() throws IOException {
@@ -128,5 +160,3 @@ public class Base {
 		EmailReports.main(null);
 	}
 }
-
-

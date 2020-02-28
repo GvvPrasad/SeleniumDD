@@ -2,10 +2,13 @@ package com.autoprac.common;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
 
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriver.Navigation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -21,11 +24,13 @@ public class CommomMethods extends Base{
 		Thread.sleep(5000);
 	}
 
+
 	//Explicit Wait
 	public static WebElement waitForElement(WebElement element) {
 		WebDriverWait exwait = new WebDriverWait(driver,10);
 		return exwait.until(ExpectedConditions.visibilityOfElementLocated((By) element));
 	}
+
 
 	//Fluent Wait
 	public static void presenceOfTheElement(final WebElement webElement) {
@@ -48,10 +53,18 @@ public class CommomMethods extends Base{
 		jse.executeScript("arguments[0].scrollIntoView(true);",element);
 	}
 
+
 	//Scroll length
 	public static void scrollLength(int x, int y) {
-		JavascriptExecutor jsl = (JavascriptExecutor) driver;
-		jsl.executeScript("window.scrollBy(x,y)");
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollBy(x,y)");
+	}
+
+
+	//Scroll to the bottom of page
+	public static void scrollToBottom() {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 	}
 
 
@@ -60,8 +73,8 @@ public class CommomMethods extends Base{
 		Actions act = new Actions(driver);
 		act.moveToElement(element).build().perform();
 	}
-	
-	
+
+
 	//Drag and Drop
 	public static void draganddrop(WebElement source, WebElement target) {
 		Actions act = new Actions(driver);
@@ -86,13 +99,39 @@ public class CommomMethods extends Base{
 		}
 		return celltext;
 	}
-	
-	
-	//Alerts
-	public static void alert() {
-		driver.switchTo().alert();
+
+
+	//Browser Alerts
+	public static Alert browserAlert() {
+		return driver.switchTo().alert();
 	}
-	
-	
+
+
+	//Browser Actions
+	public static Navigation browserActions() {
+		return driver.navigate();
+	}
+
+
 	//Windows Handlers
+	public static String getWindowHandles() {
+		String handles = null;
+		Set<String> allWindowHandles = driver.getWindowHandles();
+		for(String handle : allWindowHandles) {
+			handles = handle;
+		}
+		return handles;
+	}
+
+
+	//switch to windows
+	public static void switchWindows(String windowname) {
+		driver.switchTo().window(windowname);
+	}
+
+
+	//Model popup
+	public static void modelPopUp() {
+		driver.switchTo().activeElement();
+	}
 }

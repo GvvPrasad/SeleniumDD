@@ -13,7 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtil extends Base{
 
-	public static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
+	//public static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
 	public static XSSFWorkbook wbFile;
 	public static XSSFSheet shFile;
 	public static XSSFRow row;
@@ -21,7 +21,7 @@ public class ExcelUtil extends Base{
 	public static int sheetindex ;
 
 	//Get Excel File
-	public static void getExcel() throws IOException {
+	public static void getExcel(String filePath) throws IOException {
 		try {
 			FileInputStream datafile = new FileInputStream(filePath);
 			wbFile = new XSSFWorkbook(datafile);
@@ -144,7 +144,7 @@ public class ExcelUtil extends Base{
 
 	
 	//Write 404URL into Excel
-	public static void writeExcel(int sheetno, String dataToWrite) {
+	public static void writeExcel(String filePath, int sheetno, String dataToWrite) {
 		int rowCount = 0;
 		try {
 			ExcelUtil.getSheet(sheetno);

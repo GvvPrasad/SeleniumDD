@@ -10,6 +10,7 @@ import io.restassured.specification.RequestSpecification;
 
 public class ApiPostRequest {
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public static void postCustomerDetails() {
 		//API URl

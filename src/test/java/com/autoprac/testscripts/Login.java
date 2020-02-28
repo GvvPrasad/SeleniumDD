@@ -18,13 +18,14 @@ public class Login extends Base{
 
 	//SignUrl
 	static String loginUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+	public static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
 
 
 	@BeforeSuite
 	public static void beforeSuite() throws IOException {
 		Base.browserSetUp();
 		Base.htmlReports();
-		ExcelUtil.getExcel();
+		ExcelUtil.getExcel(filePath);
 	}
 
 
