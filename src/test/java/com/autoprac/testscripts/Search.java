@@ -16,7 +16,7 @@ import org.testng.annotations.AfterSuite;
 
 @Listeners(com.autoprac.listeners.TestNGListener.class)
 public class Search extends Base {
-	public static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
+	public static String filePath = projectPath+"//testDataFiles//TestLinks.xlsx";
 
 	@BeforeSuite
 	public static void beforeSuite() throws IOException {
@@ -30,7 +30,7 @@ public class Search extends Base {
 	public static void searchProduct() throws IOException {
 		HomePage hp = PageFactory.initElements(driver, HomePage.class);
 
-		ExcelUtil.getSheet(0);
+		ExcelUtil.getSheet(1);
 		String value = ExcelUtil.getCellDataString(1, 0);
 		hp.searchbox().sendKeys(value);
 		hp.searchbox().sendKeys(Keys.RETURN);

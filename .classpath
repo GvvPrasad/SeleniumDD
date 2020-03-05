@@ -33,9 +33,6 @@
 	<classpathentry kind="lib" path="E:/workspace/frameworkStructure/JarFiles/commons-collections4-4.1.jar"/>
 	<classpathentry kind="lib" path="E:/workspace/frameworkStructure/JarFiles/jfreechart.jar"/>
 	<classpathentry kind="lib" path="E:/workspace/frameworkStructure/JarFiles/jfreechart-dependency-jcommon-1.0.12.jar"/>
-	<classpathentry kind="lib" path="E:/workspace/frameworkStructure/JarFiles/poi-3.15.jar"/>
-	<classpathentry kind="lib" path="E:/workspace/frameworkStructure/JarFiles/poi-ooxml-3.15.jar"/>
-	<classpathentry kind="lib" path="E:/workspace/frameworkStructure/JarFiles/poi-ooxml-schemas-3.15.jar"/>
 	<classpathentry kind="lib" path="E:/workspace/frameworkStructure/JarFiles/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

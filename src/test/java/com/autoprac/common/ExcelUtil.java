@@ -13,12 +13,10 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class ExcelUtil extends Base{
 
-	//public static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
 	public static XSSFWorkbook wbFile;
 	public static XSSFSheet shFile;
 	public static XSSFRow row;
 	public static XSSFCell cell;
-	public static int sheetindex ;
 
 	//Get Excel File
 	public static void getExcel(String filePath) throws IOException {
@@ -48,12 +46,12 @@ public class ExcelUtil extends Base{
 		int rowCount = 0; 
 		try {
 			rowCount = shFile.getLastRowNum()+1;
-			System.out.println("No of rows : "+rowCount);
+			System.out.println("No of rows are: "+rowCount);
 		}catch(Exception e) {
 			System.out.println("Did not get Rows");
 			e.printStackTrace();
 		}
-		
+
 		return rowCount;
 	}
 
@@ -63,7 +61,7 @@ public class ExcelUtil extends Base{
 		int colCount=0;
 		try {
 			colCount = shFile.getRow(0).getLastCellNum();
-			System.out.println("No of columns : "+colCount);
+			System.out.println("No of columns are: "+colCount);
 		}catch(Exception e) {
 			System.out.println("Did not get Columns");
 			e.printStackTrace();
@@ -127,48 +125,49 @@ public class ExcelUtil extends Base{
 			for(int j=0; j<colCount; j++)
 			{
 				data[i-1][j] = ExcelUtil.setCellDataToString(i, j);
-				
 			}
 		}
 		return data;
 	}
 
-	
+
 	//Create Sheet
 	public static int createExcelSheet() throws IOException {
-		shFile = wbFile.createSheet();
-		String shName = shFile.getSheetName();
-		int newSheet = wbFile.getSheetIndex(shName);
-		return newSheet;
+		XSSFSheet newSheet = wbFile.createSheet();
+		String shName = newSheet.getSheetName();
+		int newSheetno = wbFile.getSheetIndex(shName);
+		return newSheetno;
 	}
 
-	
-	//Write 404URL into Excel
-	public static void writeExcel(String filePath, int sheetno, String dataToWrite) {
-		int rowCount = 0;
+
+	//Create Row
+	public static void createRow() {
+		int rowCount = ExcelUtil.getRowCount();
 		try {
-			ExcelUtil.getSheet(sheetno);
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("Sheet not found");
-		}
-		try {
-			//Get 1st row
-			Row row = shFile.getRow(0);
-			//Create a new row and append it at last of sheet
-			Row newRow = shFile.createRow(rowCount+1);
-			//Create a loop over the cell of newly created Row
-			for(int i = 0; i < row.getLastCellNum(); i++){
-				//Fill data in row
-				Cell cell = newRow.createCell(i);
-				cell.setCellValue(dataToWrite);
-				FileOutputStream fileOutput = new FileOutputStream(filePath);
-				wbFile.write(fileOutput);
-			}
+			shFile.createRow(rowCount);
 		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("Row not created");
+			System.out.println("New Row did not ccreated");
 		}
 	}
 
+
+	//Create Column
+	public static void createColumn() {
+
+	}
+
+
+	//Write into Excel
+	public static void writeIntoExcel(String filePath, String dataToWrite) throws IOException {
+		int lastRow = ExcelUtil.getRowCount();
+		int lastColumn = ExcelUtil.getColumnCount();
+		FileOutputStream fos = new FileOutputStream(filePath);
+		for(int i=1; i<=lastRow; i++){
+			Row row = shFile.getRow(i);
+			Cell cell = row.createCell(lastColumn);
+			cell.setCellValue(dataToWrite);
+			wbFile.write(fos);
+			wbFile.close();
+		}
+	}
 }

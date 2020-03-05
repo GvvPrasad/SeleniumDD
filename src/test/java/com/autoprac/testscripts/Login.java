@@ -18,7 +18,7 @@ public class Login extends Base{
 
 	//SignUrl
 	static String loginUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
-	public static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
+	protected static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
 
 
 	@BeforeSuite
@@ -36,11 +36,9 @@ public class Login extends Base{
 		driver.navigate().to(loginUrl);
 
 		//Email
-		lp.email().clear();
 		lp.email().sendKeys(email);
 
 		//Password
-		lp.password().clear();
 		lp.password().sendKeys(password);
 
 		//Submit
@@ -50,10 +48,16 @@ public class Login extends Base{
 		//Verify
 		String expectedUrl = "http://automationpractice.com/index.php?controller=my-account";
 		String actualUrl = driver.getCurrentUrl();
+		String loginmessage;
 
-		if (expectedUrl.equals(actualUrl)) {
+		if (expectedUrl.equalsIgnoreCase(actualUrl)) {
+			loginmessage = "pass";
 			lp.logout().click();
+		}else {
+			loginmessage ="fail";
 		}
+		
+		ExcelUtil.writeIntoExcel(filePath, loginmessage);
 	}
 
 

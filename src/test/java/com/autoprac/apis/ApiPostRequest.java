@@ -3,12 +3,14 @@ package com.autoprac.apis;
 import org.json.simple.JSONObject;
 import org.testng.annotations.Test;
 
+import com.autoprac.common.Base;
+
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
-public class ApiPostRequest {
+public class ApiPostRequest extends Base{
 
 	@SuppressWarnings("unchecked")
 	@Test
