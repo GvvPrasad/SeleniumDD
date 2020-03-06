@@ -134,4 +134,28 @@ public class CommomMethods extends Base{
 	public static void modelPopUp() {
 		driver.switchTo().activeElement();
 	}
+	
+	
+	//Compare two values
+	public static boolean compareValues(String actualValue, String expectedValue) {
+		if (actualValue.equalsIgnoreCase(expectedValue)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	
+	//Convert String to Int
+	public static int stringToInt(String stringValue) {
+		int intValue = Integer.parseInt(stringValue);
+		return intValue;
+	}
+	
+	
+	//Convert Int to String
+	public static String intToString(int intValue) {
+		String stringValue = Integer.toString(intValue);
+		return stringValue;
+	}
 }

@@ -157,6 +157,6 @@ public class Base {
 
 	//Mails Reports
 	public static void mailReports() {
-		EmailReports.main(null);
+		EmailReports.email();
 	}
 }

@@ -30,7 +30,7 @@ public class Login extends Base{
 
 
 	@Test(dataProvider = "loginTestData")
-	public static void signIn(String email, String password) throws IOException {
+	public static void signIn(String email, String password) throws IOException, InterruptedException {
 		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
 
 		driver.navigate().to(loginUrl);
@@ -63,7 +63,7 @@ public class Login extends Base{
 
 	@DataProvider
 	public Object[][] loginTestData() throws IOException{
-		ExcelUtil.getSheet(1);
+		ExcelUtil.getSheet(0);
 		return ExcelUtil.getData();
 	}
 

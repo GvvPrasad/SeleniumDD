@@ -1,9 +1,14 @@
 package com.autoprac.apis;
 
+import java.io.IOException;
 import org.json.simple.JSONObject;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.autoprac.common.Base;
+import com.autoprac.common.CommomMethods;
+import com.autoprac.common.ExcelUtil;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
@@ -12,34 +17,60 @@ import io.restassured.specification.RequestSpecification;
 
 public class ApiPostRequest extends Base{
 
-	@SuppressWarnings("unchecked")
-	@Test
-	public static void postCustomerDetails() {
+	protected static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
+
+	@BeforeClass
+	public static void beforeSuite() throws IOException {
+		ExcelUtil.getExcel(filePath);
+	}
+
+	@Test(dataProvider = "apitestdata")
+	public static void postDetails(String sno, String description, String apiurl, String apiparameter, String responsedata, String responseCode) {
+
 		//API URl
-		RestAssured.baseURI = "http://restapi.demoqa.com/customer";
+		RestAssured.baseURI = apiurl;
 
 		//Request Object
 		RequestSpecification httpRequest = RestAssured.given();
-		
+
 		//Request payload
 		JSONObject requestparms = new JSONObject();
-		
-		requestparms.put("FirstName", "gvv");
-		requestparms.put("LastName", "Jh");
-		requestparms.put("UserName", "Johnjh");
-		requestparms.put("Password", "John123");
-		requestparms.put("Email", "gvv@gmail.com");
-		
+
+		requestparms.put("email", "eve.holt@reqres.in");
+		requestparms.put("password", "cityslicka");
+
+
 		httpRequest.header("Content-Type","application/json");
-		
+
 		//Attach above data to request
 		httpRequest.body(requestparms.toJSONString());
-		
-		//Response Object
-		Response response = httpRequest.request(Method.POST,"/register");
 
-		//Print
+		//Post Request
+		Response response = httpRequest.request(Method.POST,apiparameter);
+
+		//Get Response Body
 		String responseBody = response.getBody().asString();
-		System.out.println(responseBody);
+
+		//Get Response Code
+		int statusCode = response.getStatusCode();
+		String responseCode2 = Integer.toString(statusCode);
+		
+		boolean data = CommomMethods.compareValues(responseBody, responsedata);
+		boolean code = CommomMethods.compareValues(responseCode2, responseCode);
+		
+		if ((data && code) == true) {
+			System.out.println("Api Pass");
+		} else {
+			System.out.println("Api Fail");
+		}
+		
+		System.out.println("received data is : " + responseBody);
+	}
+
+
+	@DataProvider
+	public Object[][] apitestdata() throws IOException{
+		ExcelUtil.getSheet(1);
+		return ExcelUtil.getData();
 	}
 }

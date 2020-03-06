@@ -3,9 +3,14 @@ package com.autoprac.common;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.RowIdLifetime;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.IconMultiStateFormatting.IconSet;
 import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -131,6 +136,8 @@ public class ExcelUtil extends Base{
 	}
 
 
+
+
 	//Create Sheet
 	public static int createExcelSheet() throws IOException {
 		XSSFSheet newSheet = wbFile.createSheet();
@@ -161,13 +168,13 @@ public class ExcelUtil extends Base{
 	public static void writeIntoExcel(String filePath, String dataToWrite) throws IOException {
 		int lastRow = ExcelUtil.getRowCount();
 		int lastColumn = ExcelUtil.getColumnCount();
-		FileOutputStream fos = new FileOutputStream(filePath);
+
 		for(int i=1; i<=lastRow; i++){
 			Row row = shFile.getRow(i);
 			Cell cell = row.createCell(lastColumn);
 			cell.setCellValue(dataToWrite);
+			OutputStream  fos = new FileOutputStream(filePath);
 			wbFile.write(fos);
-			wbFile.close();
 		}
 	}
 }
