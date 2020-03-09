@@ -57,7 +57,7 @@ public class Login extends Base{
 			loginmessage ="fail";
 		}
 		
-		ExcelUtil.writeIntoExcel(filePath, loginmessage);
+		System.out.println(email + "-" + password + "-" + loginmessage);
 	}
 
 

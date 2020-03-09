@@ -8,29 +8,27 @@ import org.testng.annotations.BeforeTest;
 
 import java.io.IOException;
 
-import org.openqa.selenium.By;
 import org.testng.annotations.AfterTest;
 
 public class Partice extends Base{
 
 	@BeforeTest
 	public void beforeTest() throws IOException {
-		Base.browserSetUp();
+		//Base.headlessBrowserSetUp();
 	}
 
 
 	@Test
 	public void sample() throws InterruptedException {
-		driver.navigate().to("https://www.flipkart.com/");
-		CommomMethods.modelPopUp();
-		driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div/div[2]/div/form/div[1]/input")).sendKeys("jack");
-		CommomMethods.waitTime();
+		String dat = CommomMethods.getCurrentDate("dd/MM/yyyy");
+		System.out.println(dat);
+		
 	}
 
 
 	@AfterTest
 	public void afterTest() throws Exception {
-		Base.driverclose();
+		//Base.driverclose();
 	}
 
 }

@@ -13,13 +13,11 @@ import com.autoprac.common.Base;
 public class TestNGListener implements ITestListener, ISuiteListener{
 
 	public void onTestStart(ITestResult result) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void onTestSuccess(ITestResult result) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void onTestFailure(ITestResult result) {
@@ -44,23 +42,19 @@ public class TestNGListener implements ITestListener, ISuiteListener{
 	}
 
 	public void onStart(ITestContext context) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void onFinish(ITestContext context) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void onStart(ISuite suite) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 	public void onFinish(ISuite suite) {
-		// TODO Auto-generated method stub
-
+		
 	}
 
 }

@@ -1,6 +1,9 @@
 package com.autoprac.common;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 
@@ -40,7 +43,6 @@ public class CommomMethods extends Base{
 				.ignoring(Exception.class); 
 		wait.until(new Function<WebDriver, WebElement>() {
 			public WebElement apply(WebDriver driver) {
-				System.out.println(webElement);
 				return driver.findElement((By) webElement);
 			}
 		});
@@ -94,7 +96,6 @@ public class CommomMethods extends Base{
 			int columnCount = Columns.size();
 			for (int j = 0; j <columnCount; j++) {
 				celltext = Columns.get(j).getText()+" ";
-				System.out.print(celltext);
 			}
 		}
 		return celltext;
@@ -157,5 +158,13 @@ public class CommomMethods extends Base{
 	public static String intToString(int intValue) {
 		String stringValue = Integer.toString(intValue);
 		return stringValue;
+	}
+	
+	
+	//Get current Date
+	public static String getCurrentDate(String presentDate) {
+		DateFormat df = new SimpleDateFormat(presentDate);
+		Calendar calobj = Calendar.getInstance();
+		return df.format(calobj.getTime());
 	}
 }

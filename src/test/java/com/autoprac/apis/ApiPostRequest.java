@@ -24,8 +24,9 @@ public class ApiPostRequest extends Base{
 		ExcelUtil.getExcel(filePath);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Test(dataProvider = "apitestdata")
-	public static void postDetails(String sno, String description, String apiurl, String apiparameter, String responsedata, String responseCode) {
+	public static void postDetails(String sno, String description, String apiurl, String page, String email, String password, String responsedata, String responseCode) {
 
 		//API URl
 		RestAssured.baseURI = apiurl;
@@ -36,8 +37,8 @@ public class ApiPostRequest extends Base{
 		//Request payload
 		JSONObject requestparms = new JSONObject();
 
-		requestparms.put("email", "eve.holt@reqres.in");
-		requestparms.put("password", "cityslicka");
+		requestparms.put("email", email);
+		requestparms.put("password", password);
 
 
 		httpRequest.header("Content-Type","application/json");
@@ -46,7 +47,7 @@ public class ApiPostRequest extends Base{
 		httpRequest.body(requestparms.toJSONString());
 
 		//Post Request
-		Response response = httpRequest.request(Method.POST,apiparameter);
+		Response response = httpRequest.request(Method.POST,page);
 
 		//Get Response Body
 		String responseBody = response.getBody().asString();

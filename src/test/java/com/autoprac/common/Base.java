@@ -124,6 +124,12 @@ public class Base {
 	}
 
 
+	//Close Driver & Browser
+	public static void driverclose() throws Exception {
+		driver.close();
+		driver.quit();
+	}
+
 	//Screenshots
 	public static void screenshot() throws IOException {
 		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
@@ -145,11 +151,9 @@ public class Base {
 		Xl.generateReport(projectPath+"//Reports//", timeStamp+".xlsx");
 	}
 
-
-	//Close Driver & Browser
-	public static void driverclose() throws Exception {
-		driver.close();
-		driver.quit();
+	
+	//All reports generate
+	public static void generateReports() throws Exception {
 		extent.flush();
 		excelReports();
 	}

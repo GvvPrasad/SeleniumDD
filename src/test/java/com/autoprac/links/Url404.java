@@ -10,34 +10,38 @@ import java.util.Iterator;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+import com.autoprac.common.Base;
+import com.autoprac.common.ExcelUtil;
 
-public class Url404 {
+public class Url404 extends Base{
 
-	//Main Method 
-	public static void main(String[] args) {
+	protected static String filePath = projectPath+"//testDataFiles//TestLinks.xlsx"; 
 
+
+	@BeforeClass
+	public static void beforeClass() throws IOException {
+		Base.headlessBrowserSetUp();
+		ExcelUtil.getExcel(filePath);
+	}
+
+
+	@Test(dataProvider = "linksData")
+	public static void get404Links(String pageUrl) {
 		//Initiate Variables
 		String url = "";
 		HttpURLConnection huc = null;
 		int respCode;
 
-		//Set & Open Chrome Browser
-		WebDriverManager.chromedriver().setup();
-		ChromeDriver driver = new ChromeDriver();
-
-		//Set Web Page that need to check
-		driver.get("http://automationpractice.com/index.php");     
-
+		driver.navigate().to(pageUrl);     
 
 		//collect all the links of the Web Page
 		List <WebElement> links = driver.findElements(By.tagName("a"));
 		Iterator <WebElement> it = links.iterator();
-
-		// Display Total no of links
-		System.out.println("Total links are "+links.size());
 
 		while(it.hasNext()){
 			//Get the href Value of anchor tag
@@ -45,7 +49,6 @@ public class Url404 {
 
 			//Check if URL is empty or not
 			if(url == null || url.isEmpty()){
-				System.out.println(url);
 				continue;
 			}
 
@@ -62,15 +65,25 @@ public class Url404 {
 					System.out.println(url);
 				}
 
-
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}         
 		}
-
-		System.out.println("\n Checking the Links Complated");
-		driver.close();
 	}
+
+
+	@DataProvider
+	public Object[][] linksData() throws IOException{
+		ExcelUtil.getSheet(0);
+		return ExcelUtil.getData();
+	}
+
+
+	@AfterClass
+	public void afterClass() throws Exception {
+		Base.driverclose();
+	}
+
 }

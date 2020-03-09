@@ -1,16 +1,8 @@
 package com.autoprac.common;
 
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.sql.RowIdLifetime;
-
-import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.IconMultiStateFormatting.IconSet;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -51,7 +43,6 @@ public class ExcelUtil extends Base{
 		int rowCount = 0; 
 		try {
 			rowCount = shFile.getLastRowNum()+1;
-			System.out.println("No of rows are: "+rowCount);
 		}catch(Exception e) {
 			System.out.println("Did not get Rows");
 			e.printStackTrace();
@@ -66,7 +57,6 @@ public class ExcelUtil extends Base{
 		int colCount=0;
 		try {
 			colCount = shFile.getRow(0).getLastCellNum();
-			System.out.println("No of columns are: "+colCount);
 		}catch(Exception e) {
 			System.out.println("Did not get Columns");
 			e.printStackTrace();
@@ -130,6 +120,9 @@ public class ExcelUtil extends Base{
 			for(int j=0; j<colCount; j++)
 			{
 				data[i-1][j] = ExcelUtil.setCellDataToString(i, j);
+				if (data[i-1][j] == null) {
+					data[i-1][j] = "";
+				}
 			}
 		}
 		return data;
@@ -166,15 +159,6 @@ public class ExcelUtil extends Base{
 
 	//Write into Excel
 	public static void writeIntoExcel(String filePath, String dataToWrite) throws IOException {
-		int lastRow = ExcelUtil.getRowCount();
-		int lastColumn = ExcelUtil.getColumnCount();
-
-		for(int i=1; i<=lastRow; i++){
-			Row row = shFile.getRow(i);
-			Cell cell = row.createCell(lastColumn);
-			cell.setCellValue(dataToWrite);
-			OutputStream  fos = new FileOutputStream(filePath);
-			wbFile.write(fos);
-		}
+		
 	}
 }
