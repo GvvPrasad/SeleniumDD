@@ -13,7 +13,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 
-public class ApiGetRequest extends Base{
+public class ApiAllRequest extends Base{
 	
 	protected static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
 	
@@ -24,16 +24,27 @@ public class ApiGetRequest extends Base{
 	
 	
 	@Test(priority = 2, dataProvider = "apitestdata")
-	public static void getDetails(String sno, String description, String apiurl, String page, String id, String responsedata, String responseCode) throws IOException {
+	public static void getDetails(String sno, String description, String apiurl, String page, String id, String method, String email, String job, String name, String password, String responsedata, String responseCode) throws IOException {
+		
+		Response response = null;
 		
 		//API URl
-		RestAssured.baseURI = apiurl;
+		RestAssured.baseURI = apiurl; 
 		
 		//Request Object
 		RequestSpecification httpRequest = RestAssured.given(); 
 		
-		//Response Object
-		Response response = httpRequest.request(Method.GET,page+id);
+		if (method.equalsIgnoreCase("get")) {
+			response = httpRequest.request(Method.GET,page+id);
+		} else if(method.equalsIgnoreCase("post")) {
+			response = httpRequest.request(Method.POST,page);
+		} else if (method.equalsIgnoreCase("put")) {
+			response = httpRequest.request(Method.PUT,page+id);
+		} else if (method.equalsIgnoreCase("delete")) {
+			response = httpRequest.request(Method.DELETE,page+id);
+		}else {
+			System.out.println("Not a valid input method");
+		}
 		
 		//Get Response Body
 		String responseBody = response.getBody().asString();
@@ -56,7 +67,7 @@ public class ApiGetRequest extends Base{
 	
 	@DataProvider
 	public Object[][] apitestdata() throws IOException{
-		ExcelUtil.getSheet(0);
+		ExcelUtil.getSheet(4);
 		return ExcelUtil.getData();
 	}
 }

@@ -2,7 +2,6 @@ package com.autoprac.apis;
 
 import java.io.IOException;
 import org.json.simple.JSONObject;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -19,14 +18,14 @@ public class ApiPostRequest extends Base{
 
 	protected static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
 
-	@BeforeClass
-	public static void beforeSuite() throws IOException {
+	@Test(priority = 1)
+	public static void setExcel() throws IOException {
 		ExcelUtil.getExcel(filePath);
 	}
 
 	@SuppressWarnings("unchecked")
-	@Test(dataProvider = "apitestdata")
-	public static void postDetails(String sno, String description, String apiurl, String page, String email, String password, String responsedata, String responseCode) {
+	@Test(priority = 2, dataProvider = "apitestdata")
+	public static void postDetails(String sno, String description, String apiurl, String page, String email, String job, String name, String password, String responsedata, String responseCode) {
 
 		//API URl
 		RestAssured.baseURI = apiurl;
@@ -38,9 +37,11 @@ public class ApiPostRequest extends Base{
 		JSONObject requestparms = new JSONObject();
 
 		requestparms.put("email", email);
+		requestparms.put("job", job);
+		requestparms.put("name", name);
 		requestparms.put("password", password);
-
-
+		
+		
 		httpRequest.header("Content-Type","application/json");
 
 		//Attach above data to request
@@ -65,7 +66,6 @@ public class ApiPostRequest extends Base{
 			System.out.println("Api Fail");
 		}
 		
-		System.out.println("received data is : " + responseBody);
 	}
 
 

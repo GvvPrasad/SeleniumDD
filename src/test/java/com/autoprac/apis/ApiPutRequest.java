@@ -1,43 +1,58 @@
 package com.autoprac.apis;
 
 import java.io.IOException;
-
+import org.json.simple.JSONObject;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+
 import com.autoprac.common.Base;
 import com.autoprac.common.CommomMethods;
 import com.autoprac.common.ExcelUtil;
+
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
+public class ApiPutRequest extends Base{
 
-public class ApiGetRequest extends Base{
-	
 	protected static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
-	
+
 	@Test(priority = 1)
 	public static void setExcel() throws IOException {
 		ExcelUtil.getExcel(filePath);
 	}
-	
-	
+
+	@SuppressWarnings("unchecked")
 	@Test(priority = 2, dataProvider = "apitestdata")
-	public static void getDetails(String sno, String description, String apiurl, String page, String id, String responsedata, String responseCode) throws IOException {
-		
+	public static void postDetails(String sno, String description, String apiurl, String page, String id, String email, String job, String name, String password, String responsedata, String responseCode) {
+
 		//API URl
 		RestAssured.baseURI = apiurl;
-		
+
 		//Request Object
-		RequestSpecification httpRequest = RestAssured.given(); 
+		RequestSpecification httpRequest = RestAssured.given();
+
+		//Request payload
+		JSONObject requestparms = new JSONObject();
+
+		requestparms.put("email", email);
+		requestparms.put("job", job);
+		requestparms.put("name", name);
+		requestparms.put("password", password);
 		
-		//Response Object
-		Response response = httpRequest.request(Method.GET,page+id);
 		
+		httpRequest.header("Content-Type","application/json");
+
+		//Attach above data to request
+		httpRequest.body(requestparms.toJSONString());
+
+		//Post Request
+		Response response = httpRequest.request(Method.PUT,page+id);
+
 		//Get Response Body
 		String responseBody = response.getBody().asString();
-		
+
 		//Get Response Code
 		int statusCode = response.getStatusCode();
 		String responseCode2 = Integer.toString(statusCode);
@@ -52,11 +67,11 @@ public class ApiGetRequest extends Base{
 		}
 		
 	}
-	
-	
+
+
 	@DataProvider
 	public Object[][] apitestdata() throws IOException{
-		ExcelUtil.getSheet(0);
+		ExcelUtil.getSheet(2);
 		return ExcelUtil.getData();
 	}
 }

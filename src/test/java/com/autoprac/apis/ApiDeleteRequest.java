@@ -13,7 +13,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 
-public class ApiGetRequest extends Base{
+public class ApiDeleteRequest extends Base{
 	
 	protected static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
 	
@@ -30,10 +30,10 @@ public class ApiGetRequest extends Base{
 		RestAssured.baseURI = apiurl;
 		
 		//Request Object
-		RequestSpecification httpRequest = RestAssured.given(); 
+		RequestSpecification httpRequest = RestAssured.given();
 		
 		//Response Object
-		Response response = httpRequest.request(Method.GET,page+id);
+		Response response = httpRequest.request(Method.DELETE,page+id);
 		
 		//Get Response Body
 		String responseBody = response.getBody().asString();
@@ -56,7 +56,7 @@ public class ApiGetRequest extends Base{
 	
 	@DataProvider
 	public Object[][] apitestdata() throws IOException{
-		ExcelUtil.getSheet(0);
+		ExcelUtil.getSheet(3);
 		return ExcelUtil.getData();
 	}
 }
