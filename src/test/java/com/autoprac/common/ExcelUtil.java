@@ -19,11 +19,14 @@ public class ExcelUtil extends Base{
 	public static XSSFSheet shFile;
 	public static XSSFRow row;
 	public static XSSFCell cell;
+	public static FileInputStream datafile;
+	public static FileOutputStream fileOut;
+
 
 	//Get Excel File
 	public static void getExcel(String filePath) throws IOException {
 		try {
-			FileInputStream datafile = new FileInputStream(filePath);
+			datafile = new FileInputStream(filePath);
 			wbFile = new XSSFWorkbook(datafile);
 		} catch (Exception e) {
 			System.out.println("File not found");
@@ -52,7 +55,6 @@ public class ExcelUtil extends Base{
 			System.out.println("Did not get Rows");
 			e.printStackTrace();
 		}
-
 		return rowCount;
 	}
 
@@ -96,6 +98,13 @@ public class ExcelUtil extends Base{
 	}
 
 
+	//Get raw value
+	public static Object getRawValue(int rowNum, int colNum) {
+		Object cellData = shFile.getRow(rowNum).getCell(colNum).getRawValue();
+		return cellData;
+	}
+
+
 	//Get Date Value
 	public static String getDateValue(int rowNum, int colNum) {
 		XSSFCell cellData;
@@ -111,12 +120,12 @@ public class ExcelUtil extends Base{
 			}else {
 				System.out.println("Not a Date Value");
 			}
-
 		} catch (Exception e) {
 			System.out.println("Not a Date Value");
 		}
 		return datevalue;
 	}
+
 
 	//Change data to String
 	public static String setCellDataToString(int rowNum, int colNum) {
@@ -162,8 +171,6 @@ public class ExcelUtil extends Base{
 	}
 
 
-
-
 	//Create Sheet
 	public static int createSheet() throws IOException {
 		XSSFSheet newSheet = wbFile.createSheet();
@@ -203,16 +210,17 @@ public class ExcelUtil extends Base{
 
 
 	//Write into Excel
-	public static void writeIntoExcel(String dataToWrite, String FilePath) throws IOException {
+	public static void writeIntoExcel(String filePath, String dataToWrite) throws IOException {
 		int rowCount = ExcelUtil.getRowCount();
 		int colCount = ExcelUtil.getColumnCount();
 
 		try {
-			for (int i = 0; i < rowCount; i++) {
-				shFile.getRow(i).createCell(colCount).setCellValue(dataToWrite);
+			for (int i = 1; i <= rowCount; i++) {
+				shFile.getRow(i).createCell(colCount-1).setCellValue(dataToWrite); 
+				fileOut = new FileOutputStream(filePath);
+				wbFile.write(fileOut);
+				fileOut.close();
 			}
-			FileOutputStream fileOutput = new FileOutputStream(FilePath);
-			wbFile.write(fileOutput);
 		} catch (Exception e) {
 			System.out.println("Data is not entered into excel");
 		}
