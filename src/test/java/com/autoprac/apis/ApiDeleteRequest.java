@@ -51,7 +51,6 @@ public class ApiDeleteRequest extends Base{
 		} else {
 			System.out.println("Api Fail");
 		}
-		
 	}
 	
 	
