@@ -1,8 +1,8 @@
 package com.autoprac.testscripts;
 
 import com.autoprac.common.Base;
-import com.autoprac.common.ExcelUtil;
 import com.autoprac.locators.HomePage;
+import com.autoprac.utilities.ExcelUtil;
 
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
@@ -21,7 +21,6 @@ public class Search extends Base {
 	@BeforeSuite
 	public static void beforeSuite() throws IOException {
 		Base.browserSetUp();
-		Base.htmlReports();
 		ExcelUtil.getExcel(filePath);
 	}
 

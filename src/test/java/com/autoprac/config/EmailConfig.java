@@ -18,9 +18,10 @@ import javax.mail.internet.MimeMultipart;
 
 import org.testng.annotations.Test;
 
-import com.autoprac.common.Base;
+import com.autoprac.utilities.ReportsGeneration;
 
-public class EmailReports extends Base{
+
+public class EmailConfig extends ReportsGeneration{
 
 	//Mail Variables
 	static String senderMail;
@@ -29,10 +30,10 @@ public class EmailReports extends Base{
 	static String mailSubject;
 	static String mailContent;
 	static String projectPath = System.getProperty("user.dir");
+
 	
 	@Test
-	public static void email(){
-		
+	public static void email(){	
 		//Objects
 		AppConfig.getProperties();
 		
@@ -70,14 +71,14 @@ public class EmailReports extends Base{
 
 			// Create another object to add Attachment
 			MimeBodyPart messageBodyPart1 = new MimeBodyPart();
-			DataSource source = new FileDataSource(Base.htmlReport);
+			DataSource source = new FileDataSource(ReportsGeneration.htmlReport);
 			messageBodyPart1.setDataHandler(new DataHandler(source));
-			messageBodyPart1.setFileName(Base.htmlReport);
+			messageBodyPart1.setFileName(ReportsGeneration.htmlReport);
 			
 			MimeBodyPart messageBodyPart2 = new MimeBodyPart();
-			DataSource source1 = new FileDataSource(Base.excelReport);
+			DataSource source1 = new FileDataSource(ReportsGeneration.excelReport);
 			messageBodyPart2.setDataHandler(new DataHandler(source1));
-			messageBodyPart2.setFileName(Base.excelReport);
+			messageBodyPart2.setFileName(ReportsGeneration.excelReport);
 					
 			// Create object of MimeMultipart class
 			Multipart multipart = new MimeMultipart();
@@ -96,8 +97,6 @@ public class EmailReports extends Base{
 		} catch (MessagingException e) {
 			System.out.println("=====Email did not Sent=====");
 			throw new RuntimeException(e);
-
 		}
-
 	}
 }

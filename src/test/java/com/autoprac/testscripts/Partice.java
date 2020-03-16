@@ -3,7 +3,7 @@ package com.autoprac.testscripts;
 import org.testng.annotations.Test;
 
 import com.autoprac.common.Base;
-import com.autoprac.common.ExcelUtil;
+import com.autoprac.utilities.ExcelUtil;
 
 import org.testng.annotations.BeforeTest;
 
@@ -22,10 +22,10 @@ public class Partice extends Base{
 
 	@Test
 	public void sample() throws InterruptedException, IOException {	
-		String message = "pass";
+		
 		ExcelUtil.getExcel(filePath);
 		ExcelUtil.getSheet(1);
-		ExcelUtil.writeIntoExcel(message, filePath);
+		ExcelUtil.getRawValue(0, 0);
 	}
 
 

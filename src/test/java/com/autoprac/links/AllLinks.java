@@ -13,7 +13,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.autoprac.common.Base;
-import com.autoprac.common.ExcelUtil;
+import com.autoprac.utilities.ExcelUtil;
+
 
 public class AllLinks extends Base{
 
@@ -57,4 +58,3 @@ public class AllLinks extends Base{
 		Base.driverclose();
 	}
 }
-

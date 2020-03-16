@@ -13,7 +13,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.autoprac.common.Base;
-import com.autoprac.common.ExcelUtil;
+import com.autoprac.utilities.ExcelUtil;
+
 
 public class OtherDomain extends Base{
 
@@ -26,7 +27,7 @@ public class OtherDomain extends Base{
 		ExcelUtil.getExcel(filePath);
 	}
 
-	
+
 	@Test(dataProvider = "linksData")
 	public static void getOtherDomainLinks(String BaseUrl, String pageUrl) {
 		String url = "";
@@ -51,8 +52,8 @@ public class OtherDomain extends Base{
 				continue;
 			}
 		}
-
 	}
+
 
 	@DataProvider
 	public Object[][] linksData() throws IOException{
@@ -60,7 +61,7 @@ public class OtherDomain extends Base{
 		return ExcelUtil.getData();
 	}
 
-	
+
 	@AfterClass
 	public void afterClass() throws Exception {
 		Base.driverclose();

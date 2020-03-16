@@ -6,7 +6,8 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.autoprac.common.Base;
 import com.autoprac.common.CommomMethods;
-import com.autoprac.common.ExcelUtil;
+import com.autoprac.utilities.ExcelUtil;
+
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;

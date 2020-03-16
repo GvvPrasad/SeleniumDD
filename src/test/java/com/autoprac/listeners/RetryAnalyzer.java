@@ -3,6 +3,7 @@ package com.autoprac.listeners;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
+
 public class RetryAnalyzer implements IRetryAnalyzer{
 
 	private int count = 0;
@@ -20,8 +21,8 @@ public class RetryAnalyzer implements IRetryAnalyzer{
 			result.setStatus(ITestResult.SUCCESS);      //If test passes, TestNG marks it as passed
 		}
 		return false;
-
 	}
+
 
 	private void failOperations(ITestResult result) {
 		System.out.println("The retry count is: " + count);

@@ -1,17 +1,11 @@
 package com.autoprac.common;
 
-import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
-import org.automationtesting.excelreport.Xl;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -21,11 +15,6 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import com.autoprac.config.AppConfig;
-import com.autoprac.config.EmailReports;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 
@@ -37,11 +26,6 @@ public class Base {
 	protected static WebDriver driver;
 	protected static String projectPath = System.getProperty("user.dir");
 	static String timeStamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()); 
-	static ExtentHtmlReporter htmlReporter;
-	static ExtentReports extent;
-	static ExtentTest setup;
-	protected static String htmlReport = projectPath+"//Reports//"+timeStamp+".html";
-	protected static String excelReport = projectPath+"//Reports//"+timeStamp+".xlsx";
 	protected static Logger log = (Logger) LogManager.getLogger();
 
 
@@ -130,37 +114,4 @@ public class Base {
 		driver.quit();
 	}
 
-	//Screenshots
-	public static void screenshot() throws IOException {
-		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshotFile,new File(projectPath+"//ScreenShots//"+timeStamp+".png"));
-	}
-
-
-	//HTML Reports
-	public static void htmlReports() {
-		extent = new ExtentReports();
-		htmlReporter = new ExtentHtmlReporter(htmlReport);
-		extent.attachReporter(htmlReporter);
-		setup = extent.createTest("SetUp");
-	}
-
-
-	//Excel Reports
-	public static void excelReports() throws Exception {
-		Xl.generateReport(projectPath+"//Reports//", timeStamp+".xlsx");
-	}
-
-	
-	//All reports generate
-	public static void generateReports() throws Exception {
-		extent.flush();
-		excelReports();
-	}
-
-
-	//Mails Reports
-	public static void mailReports() {
-		EmailReports.email();
-	}
 }

@@ -8,23 +8,24 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import com.autoprac.common.Base;
+import com.autoprac.common.CommomMethods;
+
 
 public class TestNGListener implements ITestListener, ISuiteListener{
 
 	public void onTestStart(ITestResult result) {
-		
+
 	}
 
 	public void onTestSuccess(ITestResult result) {
-		
+
 	}
 
 	public void onTestFailure(ITestResult result) {
 		System.out.println("Faild Test: " + result.getName());
 
 		try {
-			Base.screenshot();
+			CommomMethods.screenshot();
 		} catch (IOException e) {
 			e.printStackTrace();
 
@@ -42,19 +43,19 @@ public class TestNGListener implements ITestListener, ISuiteListener{
 	}
 
 	public void onStart(ITestContext context) {
-		
+
 	}
 
 	public void onFinish(ITestContext context) {
-		
+
 	}
 
 	public void onStart(ISuite suite) {
-		
+
 	}
 
 	public void onFinish(ISuite suite) {
-		
+
 	}
 
 }

@@ -10,8 +10,8 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.autoprac.common.Base;
-import com.autoprac.common.ExcelUtil;
 import com.autoprac.locators.LoginPage;
+import com.autoprac.utilities.ExcelUtil;
 
 @Listeners(com.autoprac.listeners.TestNGListener.class)
 public class Login extends Base{
@@ -24,27 +24,20 @@ public class Login extends Base{
 	@BeforeSuite
 	public static void beforeSuite() throws IOException {
 		Base.browserSetUp();
-		Base.htmlReports();
 		ExcelUtil.getExcel(filePath);
 	}
 
 
 	@Test(dataProvider = "loginTestData")
-	public static void signIn(String email, String password) throws IOException, InterruptedException {
+	public static void signIn(String email, String password, String result) throws IOException, InterruptedException {
 		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
 
 		driver.navigate().to(loginUrl);
 
-		//Email
 		lp.email().sendKeys(email);
-
-		//Password
-		lp.password().sendKeys(password);
-
-		//Submit
+		lp.password().sendKeys(password); 
 		lp.submitlogin().click();
-		log.info("Login Details are: " + email + " - " + password);
-
+		
 		//Verify
 		String expectedUrl = "http://automationpractice.com/index.php?controller=my-account";
 		String actualUrl = driver.getCurrentUrl();
@@ -57,7 +50,7 @@ public class Login extends Base{
 			loginmessage ="fail";
 		}
 		
-		System.out.println(email + "-" + password + "-" + loginmessage);
+		ExcelUtil.writeIntoExcel(filePath, loginmessage);
 	}
 
 

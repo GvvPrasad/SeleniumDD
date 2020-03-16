@@ -1,4 +1,4 @@
-package com.autoprac.common;
+package com.autoprac.utilities;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,8 +13,12 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-public class ExcelUtil extends Base{
+import com.autoprac.common.Base;
 
+
+public class ExcelUtil extends Base{
+	
+	//Global Variables
 	public static XSSFWorkbook wbFile;
 	public static XSSFSheet shFile;
 	public static XSSFRow row;

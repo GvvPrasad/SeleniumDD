@@ -7,12 +7,13 @@ import org.testng.annotations.Test;
 
 import com.autoprac.common.Base;
 import com.autoprac.common.CommomMethods;
-import com.autoprac.common.ExcelUtil;
+import com.autoprac.utilities.ExcelUtil;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+
 
 public class ApiPostRequest extends Base{
 
@@ -23,6 +24,7 @@ public class ApiPostRequest extends Base{
 		ExcelUtil.getExcel(filePath);
 	}
 
+	
 	@SuppressWarnings("unchecked")
 	@Test(priority = 2, dataProvider = "apitestdata")
 	public static void postDetails(String sno, String description, String apiurl, String page, String email, String job, String name, String password, String responsedata, String responseCode) {
@@ -40,8 +42,7 @@ public class ApiPostRequest extends Base{
 		requestparms.put("job", job);
 		requestparms.put("name", name);
 		requestparms.put("password", password);
-		
-		
+			
 		httpRequest.header("Content-Type","application/json");
 
 		//Attach above data to request

@@ -1,14 +1,19 @@
 package com.autoprac.common;
 
+import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriver.Navigation;
 import org.openqa.selenium.WebElement;
@@ -19,18 +24,28 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.base.Function;
 
+
 public class CommomMethods extends Base{
+
+	//Screenshots
+	public static void screenshot() throws IOException {
+		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshotFile,new File(projectPath+"//ScreenShots//"+timeStamp+".png"));
+	}
+
 
 	//Implicit Wait
 	public static void waitTime() throws InterruptedException {
 		Thread.sleep(5000);
 	}
 
+
 	//Explicit Wait
 	public static WebElement waitForElement(WebElement element) {
 		WebDriverWait exwait = new WebDriverWait(driver,10);
 		return exwait.until(ExpectedConditions.visibilityOfElementLocated((By) element));
 	}
+
 
 	//Fluent Wait
 	public static void presenceOfTheElement(final WebElement webElement) {
@@ -52,11 +67,13 @@ public class CommomMethods extends Base{
 		jse.executeScript("arguments[0].scrollIntoView(true);",element);
 	}
 
+
 	//Scroll length
 	public static void scrollLength(int x, int y) {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollBy(x,y)");
 	}
+
 
 	//Scroll to the bottom of page
 	public static void scrollToBottom() {
@@ -102,6 +119,7 @@ public class CommomMethods extends Base{
 		return driver.switchTo().alert();
 	}
 
+
 	//Browser Actions
 	public static Navigation browserActions() {
 		return driver.navigate();
@@ -118,17 +136,19 @@ public class CommomMethods extends Base{
 		return handles;
 	}
 
+
 	//switch to windows
 	public static void switchWindows(String windowname) {
 		driver.switchTo().window(windowname);
 	}
 
+
 	//Model popup
 	public static void modelPopUp() {
 		driver.switchTo().activeElement();
 	}
-	
-	
+
+
 	//Compare two values
 	public static boolean compareValues(String actualValue, String expectedValue) {
 		if (actualValue.equalsIgnoreCase(expectedValue)) {
@@ -137,26 +157,27 @@ public class CommomMethods extends Base{
 			return false;
 		}
 	}
-	
-	
+
+
 	//Convert String to Int
 	public static int stringToInt(String stringValue) {
 		int intValue = Integer.parseInt(stringValue);
 		return intValue;
 	}
-		
+
+
 	//Convert Int to String
 	public static String intToString(int intValue) {
 		String stringValue = Integer.toString(intValue);
 		return stringValue;
 	}
 
-	
+
 	//Get current Date [formatValue = dd/mm/yyyy HH:mm:ss] in desire format
 	public static String getCurrentDate(String format) {
 		SimpleDateFormat formatter = new SimpleDateFormat(format);  
-	    Date date = new Date(); 
-	    return formatter.format(date);
+		Date date = new Date(); 
+		return formatter.format(date);
 	}
 
 }

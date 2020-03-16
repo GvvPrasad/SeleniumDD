@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 
 import com.autoprac.common.Base;
 
+
 public class AppConfig {
 
 	//Properties Object
@@ -31,11 +32,11 @@ public class AppConfig {
 			Base.urlLink = prop.getProperty("Url");
 			
 			//Mail
-			EmailReports.senderMail = prop.getProperty("SenderMailId");
-			EmailReports.senderPassword = prop.getProperty("SenderMailPassword");
-			EmailReports.receiverMail = prop.getProperty("ReceiverMailId");
-			EmailReports.mailSubject = prop.getProperty("MailSubject");
-			EmailReports.mailContent = prop.getProperty("MailContent");
+			EmailConfig.senderMail = prop.getProperty("SenderMailId");
+			EmailConfig.senderPassword = prop.getProperty("SenderMailPassword");
+			EmailConfig.receiverMail = prop.getProperty("ReceiverMailId");
+			EmailConfig.mailSubject = prop.getProperty("MailSubject");
+			EmailConfig.mailContent = prop.getProperty("MailContent");
 			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -43,7 +44,5 @@ public class AppConfig {
 			e.printStackTrace();
 		}
 		// End of getting data from properties file
-
-
 	}
 }
