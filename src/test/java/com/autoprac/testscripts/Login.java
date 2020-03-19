@@ -29,14 +29,14 @@ public class Login extends Base{
 
 
 	@Test(dataProvider = "loginTestData")
-	public static void signIn(String email, String password, String result) throws IOException, InterruptedException {
+	public static void signIn(String useremail, String pwd, String result) throws IOException, InterruptedException {
 		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
 
 		driver.navigate().to(loginUrl);
 
-		lp.email().sendKeys(email);
-		lp.password().sendKeys(password); 
-		lp.submitlogin().click();
+		lp.setEmail(useremail);
+		lp.setPassword(pwd);
+		lp.clickSubmit();
 		
 		//Verify
 		String expectedUrl = "http://automationpractice.com/index.php?controller=my-account";
@@ -45,7 +45,7 @@ public class Login extends Base{
 
 		if (expectedUrl.equalsIgnoreCase(actualUrl)) {
 			loginmessage = "pass";
-			lp.logout().click();
+			lp.clickLogout();
 		}else {
 			loginmessage ="fail";
 		}
@@ -63,6 +63,6 @@ public class Login extends Base{
 
 	@AfterSuite
 	public void afterSuite() throws Exception {
-		Base.driverclose();
+		Base.tearDown();
 	}
 }

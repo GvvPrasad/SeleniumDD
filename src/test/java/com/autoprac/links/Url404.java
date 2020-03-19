@@ -84,7 +84,7 @@ public class Url404 extends Base{
 
 	@AfterClass
 	public void afterClass() throws Exception {
-		Base.driverclose();
+		Base.tearDown();
 	}
 
 }

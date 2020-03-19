@@ -19,29 +19,28 @@ public class LoginPage extends Base{
 	WebElement email;
 
 	@FindBy(id = "passwd")
-	WebElement passwd;
+	WebElement password;
 
 	@FindBy(id = "SubmitLogin")
-	WebElement SubmitLogin;
+	WebElement submit;
 
 	@FindBy(className = "logout")
 	WebElement logout;
 
-
-	public WebElement email() {
-		return email;
+	public void setEmail(String useremail) {
+		email.sendKeys(useremail);
 	}
-
-	public WebElement password() {
-		return passwd;
+	
+	public void setPassword(String pwd) {
+		password.sendKeys(pwd);
 	}
-
-	public WebElement submitlogin() {
-		return SubmitLogin;
+	
+	public void clickSubmit() {
+		submit.click();
 	}
-
-	public WebElement logout() {
-		return logout;
+	
+	public void clickLogout() {
+		logout.click();
 	}
 
 }

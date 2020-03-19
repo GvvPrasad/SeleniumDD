@@ -25,8 +25,12 @@ public class Base {
 	public static String urlLink;
 	protected static WebDriver driver;
 	protected static String projectPath = System.getProperty("user.dir");
-	static String timeStamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()); 
+	protected static String downloadFilepath = projectPath+"//Files";
 	protected static Logger log = (Logger) LogManager.getLogger();
+	static String timeStamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()); 
+	static ChromeOptions options = new ChromeOptions();
+	static FirefoxProfile profile = new FirefoxProfile();
+	static FirefoxOptions foptions = new FirefoxOptions();
 
 
 	//Browser Setup and file download
@@ -34,17 +38,12 @@ public class Base {
 
 		AppConfig.getProperties();
 
-		//For Chrome
-		//Saving file loaction path
-		String downloadFilepath = projectPath+"//Files";
-
 		//Setting New download path
 		HashMap < String, Object > chromePrefs = new HashMap < String, Object > ();
 		chromePrefs.put("profile.default_content_settings.popups", 0);
 		chromePrefs.put("download.default_directory", downloadFilepath);
 
 		//Adding Capabilities to ChromeOptions
-		ChromeOptions options = new ChromeOptions();
 		options.setExperimentalOption("prefs", chromePrefs);
 		options.addArguments("start-maximized");
 		options.addArguments("--test-type");
@@ -52,16 +51,13 @@ public class Base {
 
 
 		//For Firefox
-		FirefoxProfile profile = new FirefoxProfile();
 		profile.setPreference("browser.download.folderList", 2);
 		profile.setPreference("browser.download.dir", downloadFilepath);
 		profile.setPreference("browser.download.useDownloadDir", true);
 		profile.setPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf");
 		profile.setPreference("browser.download.manager.showwhenStarting", false);
 
-		FirefoxOptions foptions = new FirefoxOptions();
 		foptions.setProfile(profile);
-
 
 		if(browserName.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
@@ -88,7 +84,6 @@ public class Base {
 
 		AppConfig.getProperties();
 
-		ChromeOptions options = new ChromeOptions();
 		options.setHeadless(true);
 		options.addArguments("--headless");
 
@@ -109,7 +104,7 @@ public class Base {
 
 
 	//Close Driver & Browser
-	public static void driverclose() throws Exception {
+	public static void tearDown() throws Exception {
 		driver.close();
 		driver.quit();
 	}

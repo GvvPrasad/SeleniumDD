@@ -55,6 +55,6 @@ public class AllLinks extends Base{
 	
 	@AfterClass
 	public void afterClass() throws Exception {
-		Base.driverclose();
+		Base.tearDown();
 	}
 }

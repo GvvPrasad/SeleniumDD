@@ -16,11 +16,11 @@ import org.testng.annotations.AfterSuite;
 
 @Listeners(com.autoprac.listeners.TestNGListener.class)
 public class Search extends Base {
-	public static String filePath = projectPath+"//testDataFiles//TestLinks.xlsx";
+	public static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
 
 	@BeforeSuite
 	public static void beforeSuite() throws IOException {
-		Base.browserSetUp();
+		Base.headlessBrowserSetUp();
 		ExcelUtil.getExcel(filePath);
 	}
 
@@ -29,7 +29,7 @@ public class Search extends Base {
 	public static void searchProduct() throws IOException {
 		HomePage hp = PageFactory.initElements(driver, HomePage.class);
 
-		ExcelUtil.getSheet(1);
+		ExcelUtil.getSheet(0);
 		String value = ExcelUtil.getStringValue(1, 0);
 		hp.searchbox().sendKeys(value);
 		hp.searchbox().sendKeys(Keys.RETURN);
@@ -39,6 +39,6 @@ public class Search extends Base {
 	
 	@AfterSuite
 	public static void afterSuite() throws Exception {
-		Base.driverclose();
+		Base.tearDown();
 	}
 }
