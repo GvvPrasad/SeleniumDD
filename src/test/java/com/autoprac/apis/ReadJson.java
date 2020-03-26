@@ -14,7 +14,7 @@ import com.autoprac.common.Base;
 
 public class ReadJson extends Base{
 	
-	protected static String filePath = projectPath+"//testDataFiles//TestJson.json";
+	private static String filePath = projectPath+"//testDataFiles//TestJson.json";
 	
 	@Test
 	public static void getJsonData() throws IOException, ParseException {

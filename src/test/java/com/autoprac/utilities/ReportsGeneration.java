@@ -6,7 +6,6 @@ import java.util.Date;
 import org.automationtesting.excelreport.Xl;
 
 import com.autoprac.common.Base;
-import com.autoprac.config.EmailConfig;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -34,7 +33,7 @@ public class ReportsGeneration extends Base{
 
 	//Excel Reports
 	public static void excelReports() throws Exception {
-		Xl.generateReport(projectPath+"//Reports//", timeStamp+".xlsx");
+		Xl.generateReport(excelReport);
 	}
 
 

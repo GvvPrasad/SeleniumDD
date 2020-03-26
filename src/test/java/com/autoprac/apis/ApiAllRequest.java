@@ -6,7 +6,6 @@ import org.json.simple.JSONObject;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import com.autoprac.common.Base;
-import com.autoprac.common.CommomMethods;
 import com.autoprac.utilities.ExcelUtil;
 
 import io.restassured.RestAssured;
@@ -16,10 +15,11 @@ import io.restassured.specification.RequestSpecification;
 
 
 public class ApiAllRequest extends Base{
-
-	protected static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
-	protected static Response response = null;
-	protected static RequestSpecification httpRequest;
+	
+	//Global Variables
+	private static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
+	private static Response response = null;
+	private static RequestSpecification httpRequest;
 
 	@Test(priority = 1)
 	public static void setExcel() throws IOException {
@@ -27,26 +27,31 @@ public class ApiAllRequest extends Base{
 	}
 
 
+	@SuppressWarnings("unused")
 	@Test(priority = 2, dataProvider = "apiTestData")
-	public static void getDetails(String sno, String description, String apiurl, String page, String id, String method, String email, String job, String name, String password, String responsedata, String responseCode) throws IOException {
+	public static void getDetails(String sno, String description, String baseurl, String page, String id, String method, String email, String job, String name, String password, String responsedata, String responseCode, String result) throws IOException {
 
 		//API URl
-		RestAssured.baseURI = apiurl; 
+		RestAssured.baseURI = baseurl; 
 
 		//Request Object
 		httpRequest = RestAssured.given(); 
 
 		if (method.equalsIgnoreCase("get")) {
 			response = httpRequest.request(Method.GET,page+id);
-		} else if(method.equalsIgnoreCase("post")) {
+		} 
+		else if(method.equalsIgnoreCase("post")) {
 			postAndPut(email, job, name, password);
 			response = httpRequest.request(Method.POST,page);
-		} else if (method.equalsIgnoreCase("put")) {
+		} 
+		else if (method.equalsIgnoreCase("put")) {
 			postAndPut(email, job, name, password);
 			response = httpRequest.request(Method.PUT,page+id);
-		} else if (method.equalsIgnoreCase("delete")) {
+		} 
+		else if (method.equalsIgnoreCase("delete")) {
 			response = httpRequest.request(Method.DELETE,page+id);
-		}else {
+		}
+		else {
 			System.out.println("Not a valid input method");
 		}
 
@@ -55,16 +60,6 @@ public class ApiAllRequest extends Base{
 
 		//Get Response Code
 		int statusCode = response.getStatusCode();
-		String responseCode2 = Integer.toString(statusCode);
-
-		boolean data = CommomMethods.compareValues(responseBody, responsedata);
-		boolean code = CommomMethods.compareValues(responseCode2, responseCode);
-
-		if ((data && code) == true) {
-			System.out.println("Api Pass");
-		} else {
-			System.out.println("Api Fail");
-		}
 	}
 
 

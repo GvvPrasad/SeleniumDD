@@ -1,4 +1,4 @@
-package com.autoprac.config;
+package com.autoprac.utilities;
 
 import java.util.Properties;
 
@@ -17,8 +17,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import org.testng.annotations.Test;
-
-import com.autoprac.utilities.ReportsGeneration;
 
 
 public class EmailConfig extends ReportsGeneration{

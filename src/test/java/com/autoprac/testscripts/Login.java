@@ -3,8 +3,8 @@ package com.autoprac.testscripts;
 import java.io.IOException;
 
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -16,12 +16,12 @@ import com.autoprac.utilities.ExcelUtil;
 @Listeners(com.autoprac.listeners.TestNGListener.class)
 public class Login extends Base{
 
-	//SignUrl
+	//Global variables
 	static String loginUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
-	protected static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
+	private static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
 
 
-	@BeforeSuite
+	@BeforeTest
 	public static void beforeSuite() throws IOException {
 		Base.browserSetUp();
 		ExcelUtil.getExcel(filePath);
@@ -61,7 +61,7 @@ public class Login extends Base{
 	}
 
 
-	@AfterSuite
+	@AfterTest
 	public void afterSuite() throws Exception {
 		Base.tearDown();
 	}

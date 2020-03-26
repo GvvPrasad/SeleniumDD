@@ -1,4 +1,4 @@
-package com.autoprac.config;
+package com.autoprac.utilities;
 
 import java.io.FileInputStream;
 import java.io.InputStream;

@@ -19,12 +19,12 @@ import com.autoprac.common.Base;
 public class ExcelUtil extends Base{
 	
 	//Global Variables
-	public static XSSFWorkbook wbFile;
-	public static XSSFSheet shFile;
-	public static XSSFRow row;
-	public static XSSFCell cell;
-	public static FileInputStream datafile;
-	public static FileOutputStream fileOut;
+	private static XSSFWorkbook wbFile;
+	private static XSSFSheet shFile;
+	private static XSSFRow row;
+	private static XSSFCell cell;
+	private static FileInputStream datafile;
+	private static FileOutputStream fileOut;
 
 
 	//Get Excel File
@@ -204,8 +204,8 @@ public class ExcelUtil extends Base{
 		int colCount = ExcelUtil.getColumnCount();
 
 		try {
-			for (int i = 0; i < rowCount; i++) {
-				shFile.getRow(i).createCell(colCount);
+			for (int i =1; i < rowCount; i++) {
+				shFile.getRow(i).createCell(colCount-1);
 			}
 		} catch (Exception e) {
 			System.out.println("New Column did not ccreated");
@@ -219,7 +219,7 @@ public class ExcelUtil extends Base{
 		int colCount = ExcelUtil.getColumnCount();
 
 		try {
-			for (int i = 1; i <= rowCount; i++) {
+			for (int i = 1; i < rowCount; i++) {
 				shFile.getRow(i).createCell(colCount-1).setCellValue(dataToWrite); 
 				fileOut = new FileOutputStream(filePath);
 				wbFile.write(fileOut);

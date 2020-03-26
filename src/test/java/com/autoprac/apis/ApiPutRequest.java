@@ -6,7 +6,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import com.autoprac.common.Base;
-import com.autoprac.common.CommomMethods;
 import com.autoprac.utilities.ExcelUtil;
 
 import io.restassured.RestAssured;
@@ -17,7 +16,7 @@ import io.restassured.specification.RequestSpecification;
 
 public class ApiPutRequest extends Base{
 
-	protected static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
+	private static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
 
 	@Test(priority = 1)
 	public static void setExcel() throws IOException {
@@ -25,12 +24,12 @@ public class ApiPutRequest extends Base{
 	}
 
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	@Test(priority = 2, dataProvider = "apitestdata")
-	public static void postDetails(String sno, String description, String apiurl, String page, String id, String email, String job, String name, String password, String responsedata, String responseCode) {
+	public static void postDetails(String sno, String description, String baseurl, String page, String id, String email, String job, String name, String password, String responsedata, String responseCode) {
 
 		//API URl
-		RestAssured.baseURI = apiurl;
+		RestAssured.baseURI = baseurl;
 
 		//Request Object
 		RequestSpecification httpRequest = RestAssured.given();
@@ -56,17 +55,6 @@ public class ApiPutRequest extends Base{
 
 		//Get Response Code
 		int statusCode = response.getStatusCode();
-		String responseCode2 = Integer.toString(statusCode);
-		
-		boolean data = CommomMethods.compareValues(responseBody, responsedata);
-		boolean code = CommomMethods.compareValues(responseCode2, responseCode);
-		
-		if ((data && code) == true) {
-			System.out.println("Api Pass");
-		} else {
-			System.out.println("Api Fail");
-		}
-		
 	}
 
 

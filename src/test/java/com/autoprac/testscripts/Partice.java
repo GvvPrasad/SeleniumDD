@@ -24,8 +24,8 @@ public class Partice extends Base{
 	public void sample() throws InterruptedException, IOException {	
 		
 		ExcelUtil.getExcel(filePath);
-		ExcelUtil.getSheet(1);
-		ExcelUtil.getRawValue(0, 0);
+		
+		System.out.println(ExcelUtil.createSheet());
 	}
 
 
