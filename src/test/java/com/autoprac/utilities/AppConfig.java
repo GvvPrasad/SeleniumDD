@@ -6,7 +6,7 @@ import java.util.Properties;
 
 import org.testng.annotations.Test;
 
-import com.autoprac.common.Base;
+import com.autoprac.testscripts.Base;
 
 
 public class AppConfig {

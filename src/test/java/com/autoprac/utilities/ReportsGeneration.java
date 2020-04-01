@@ -1,11 +1,8 @@
 package com.autoprac.utilities;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.automationtesting.excelreport.Xl;
 
-import com.autoprac.common.Base;
+import com.autoprac.testscripts.Base;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
@@ -13,13 +10,12 @@ import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 public class ReportsGeneration extends Base{
 
-	//Global Variables
-	static String timeStamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date()); 
-	static ExtentHtmlReporter htmlReporter;
-	static ExtentReports extent;
-	static ExtentTest setup;
-	protected static String htmlReport = projectPath+"//Reports//"+timeStamp+".html";
-	protected static String excelReport = projectPath+"//Reports//"+timeStamp+".xlsx";
+	//Global Variables 
+	public static ExtentHtmlReporter htmlReporter;
+	public static ExtentReports extent;
+	public static ExtentTest setup;
+	public static String htmlReport = projectPath+"//Reports//"+timeStamp+".html";
+	public static String excelReport = projectPath+"//Reports//"+timeStamp+".xlsx";
 
 
 	//HTML Reports

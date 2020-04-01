@@ -9,7 +9,6 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import com.autoprac.common.Base;
 import com.autoprac.locators.LoginPage;
 import com.autoprac.utilities.ExcelUtil;
 
@@ -19,13 +18,6 @@ public class Login extends Base{
 	//Global variables
 	static String loginUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
 	private static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
-
-
-	@BeforeTest
-	public static void beforeSuite() throws IOException {
-		Base.browserSetUp();
-		ExcelUtil.getExcel(filePath);
-	}
 
 
 	@Test(dataProvider = "loginTestData")
@@ -56,13 +48,9 @@ public class Login extends Base{
 
 	@DataProvider
 	public Object[][] loginTestData() throws IOException{
+		ExcelUtil.getExcel(filePath);
 		ExcelUtil.getSheet(0);
 		return ExcelUtil.getData();
 	}
 
-
-	@AfterTest
-	public void afterSuite() throws Exception {
-		Base.tearDown();
-	}
 }

@@ -5,7 +5,8 @@ import java.io.IOException;
 import org.json.simple.JSONObject;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import com.autoprac.common.Base;
+
+import com.autoprac.testscripts.Base;
 import com.autoprac.utilities.ExcelUtil;
 
 import io.restassured.RestAssured;
@@ -14,7 +15,7 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 
 
-public class ApiAllRequest extends Base{
+public class ApiTestExcel extends Base{
 	
 	//Global Variables
 	private static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";

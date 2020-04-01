@@ -2,8 +2,8 @@ package com.autoprac.testscripts;
 
 import org.testng.annotations.Test;
 
-import com.autoprac.common.Base;
 import com.autoprac.utilities.ExcelUtil;
+import com.autoprac.utilities.ReportsGeneration;
 
 import org.testng.annotations.BeforeTest;
 
@@ -12,7 +12,7 @@ import org.testng.annotations.AfterTest;
 
 public class Partice extends Base{
 	
-	protected static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
+	private static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
 	
 	@BeforeTest
 	public void beforeTest() throws IOException {
@@ -24,8 +24,9 @@ public class Partice extends Base{
 	public void sample() throws InterruptedException, IOException {	
 		
 		ExcelUtil.getExcel(filePath);
+		ExcelUtil.getSheet(0);
+		ExcelUtil.createColumn(filePath);
 		
-		System.out.println(ExcelUtil.createSheet());
 	}
 
 

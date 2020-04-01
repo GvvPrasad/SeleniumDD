@@ -1,4 +1,4 @@
-package com.autoprac.common;
+package com.autoprac.testscripts;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,8 +14,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 
 import com.autoprac.utilities.AppConfig;
+import com.autoprac.utilities.ReportsGeneration;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -36,8 +39,13 @@ public class Base {
 
 
 	//Browser Setup and file download
+	@BeforeClass
 	public static void browserSetUp() {
-
+		
+		//For generating HTML Reports
+		ReportsGeneration.htmlReports();
+		
+		//Properties File
 		AppConfig.getProperties();
 
 		//Setting New download path
@@ -86,7 +94,8 @@ public class Base {
 
 	//HeadLess browser setup
 	public static void headlessBrowserSetUp() {
-
+		
+		//Properties File
 		AppConfig.getProperties();
 
 		options.setHeadless(true);
@@ -110,8 +119,11 @@ public class Base {
 
 
 	//Close Driver & Browser
+	@AfterClass
 	public static void tearDown() throws Exception {
 		driver.close();
 		driver.quit();
+		//For Generating Reports (HTML, Excel)
+		ReportsGeneration.generateReports();
 	}
 }

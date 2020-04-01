@@ -9,11 +9,12 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.testng.annotations.Test;
 
-import com.autoprac.common.Base;
+import com.autoprac.testscripts.Base;
 
 
-public class ReadJson extends Base{
+public class ApiTestJson extends Base{
 	
+	//Global Variables
 	private static String filePath = projectPath+"//testDataFiles//TestJson.json";
 	
 	@Test

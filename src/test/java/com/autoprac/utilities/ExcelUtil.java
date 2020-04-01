@@ -13,11 +13,11 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.autoprac.common.Base;
+import com.autoprac.testscripts.Base;
 
 
 public class ExcelUtil extends Base{
-	
+
 	//Global Variables
 	private static XSSFWorkbook wbFile;
 	private static XSSFSheet shFile;
@@ -199,7 +199,7 @@ public class ExcelUtil extends Base{
 
 
 	//Create Column
-	public static void createColumn() {
+	public static void createColumn(String filePath) throws IOException {
 		int rowCount = ExcelUtil.getRowCount();
 		int colCount = ExcelUtil.getColumnCount();
 

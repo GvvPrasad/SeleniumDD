@@ -21,8 +21,8 @@ This Framework and Code are written according to the above Website
     │		├── Locators
     │		├── Test Scripts
     │		└── Utilities  	
-    │    
-    │── JarFiles
+    ├── Files    
+    ├── JarFiles
     ├── Logs
     ├── Reports
     ├── ScreenShots
@@ -44,3 +44,14 @@ git clone https://github.com/GvvPrasad/frameworkStructure.git
 Configure build path to generate Excel Reports Using "ATExcelReport"
 
 The "ATExcelReport" Jar files are located in the "JarFiles" Folder 
+
+
+### Pending
+
+* Excel Report generation
+* API Testing using Json File
+* Writing Data into Excel
+* Preview of Excel Templates in Document
+* Details of Functions/Methods
+* Details of Package and workFlow
+* Documentation
