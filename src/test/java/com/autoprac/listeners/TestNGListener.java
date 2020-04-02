@@ -25,10 +25,9 @@ public class TestNGListener implements ITestListener, ISuiteListener{
 		System.out.println("Faild Test: " + result.getName());
 
 		try {
-			CommomMethods.screenshot();
+			CommomMethods.screenShot();
 		} catch (IOException e) {
 			e.printStackTrace();
-
 		}
 	}
 

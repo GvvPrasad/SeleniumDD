@@ -23,15 +23,15 @@ public class ExcelUtil extends Base{
 	private static XSSFSheet shFile;
 	private static XSSFRow row;
 	private static XSSFCell cell;
-	private static FileInputStream datafile;
+	private static FileInputStream dataFile;
 	private static FileOutputStream fileOut;
 
 
 	//Get Excel File
 	public static void getExcel(String filePath) throws IOException {
 		try {
-			datafile = new FileInputStream(filePath);
-			wbFile = new XSSFWorkbook(datafile);
+			dataFile = new FileInputStream(filePath);
+			wbFile = new XSSFWorkbook(dataFile);
 		} catch (Exception e) {
 			System.out.println("File not found");
 			e.printStackTrace();

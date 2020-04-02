@@ -29,7 +29,7 @@ import com.google.common.base.Function;
 public class CommomMethods extends Base{
 
 	//Screenshots
-	public static void screenshot() throws IOException {
+	public static void screenShot() throws IOException {
 		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(screenshotFile,new File(projectPath+"//ScreenShots//"+timeStamp+".png"));
 	}
@@ -91,7 +91,7 @@ public class CommomMethods extends Base{
 
 
 	//Drag and Drop
-	public static void draganddrop(WebElement source, WebElement target) {
+	public static void dragAndDrop(WebElement source, WebElement target) {
 		Actions act = new Actions(driver);
 		act.dragAndDrop(source, target).build().perform();
 	}
