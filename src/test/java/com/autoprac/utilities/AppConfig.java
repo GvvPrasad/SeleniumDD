@@ -12,9 +12,9 @@ import com.autoprac.testscripts.Base;
 public class AppConfig {
 
 	//Properties Object
-	static Properties prop = new Properties();
-	static String projectPath = System.getProperty("user.dir");
-	static String propertiesPath = projectPath+"/src/test/java/com/autoprac/config/";
+	private static Properties prop = new Properties();
+	private static String projectPath = System.getProperty("user.dir");
+	private static String propertiesPath = projectPath+"/src/test/java/com/autoprac/config/";
 
 	
 	//Get Data from AppProperties.properties file

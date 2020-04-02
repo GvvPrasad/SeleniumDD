@@ -27,7 +27,7 @@ public class EmailConfig extends ReportsGeneration{
 	static String receiverMail;
 	static String mailSubject;
 	static String mailContent;
-	static String projectPath = System.getProperty("user.dir");
+	
 
 	
 	@Test

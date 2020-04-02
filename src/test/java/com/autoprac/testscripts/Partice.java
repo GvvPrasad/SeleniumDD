@@ -3,36 +3,26 @@ package com.autoprac.testscripts;
 import org.testng.annotations.Test;
 
 import com.autoprac.utilities.ExcelUtil;
-import com.autoprac.utilities.ReportsGeneration;
-
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.DataProvider;
 
 import java.io.IOException;
 import org.testng.annotations.AfterTest;
 
-public class Partice extends Base{
+public class Partice{
 	
-	private static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
-	
-	@BeforeTest
-	public void beforeTest() throws IOException {
-		//Base.headlessBrowserSetUp();
+	public static String projectPath = System.getProperty("user.dir");
+	private static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
+
+	@Test(dataProvider = "loginTestData")
+	public static void signIn(String sno, String useremail, String pwd, String result) throws IOException, InterruptedException {
+		System.out.println(useremail+ "  " + pwd);
 	}
 
-
-	@Test
-	public void sample() throws InterruptedException, IOException {	
-		
+	@DataProvider
+	public Object[][] loginTestData() throws IOException{
 		ExcelUtil.getExcel(filePath);
 		ExcelUtil.getSheet(0);
-		ExcelUtil.createColumn(filePath);
-		
+		return ExcelUtil.getData();
 	}
-
-
-	@AfterTest
-	public void afterTest() throws Exception {
-		//Base.driverclose();
-	}
-
 }

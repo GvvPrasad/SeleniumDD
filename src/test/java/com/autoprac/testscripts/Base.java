@@ -30,7 +30,7 @@ public class Base {
 	public static String urlLink;
 	public static WebDriver driver;
 	public static String projectPath = System.getProperty("user.dir");
-	protected static String downloadFilepath = projectPath+"//Files";
+	private static String downloadFilepath = projectPath+"//Files";
 	protected static Logger log = (Logger) LogManager.getLogger(); 
 	protected static ChromeOptions options = new ChromeOptions();
 	protected static FirefoxProfile profile = new FirefoxProfile();

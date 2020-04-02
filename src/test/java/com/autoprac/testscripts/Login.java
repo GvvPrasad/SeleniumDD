@@ -3,8 +3,6 @@ package com.autoprac.testscripts;
 import java.io.IOException;
 
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -16,12 +14,13 @@ import com.autoprac.utilities.ExcelUtil;
 public class Login extends Base{
 
 	//Global variables
-	static String loginUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+	private static String loginUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
 	private static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
 
 
 	@Test(dataProvider = "loginTestData")
-	public static void signIn(String useremail, String pwd, String result) throws IOException, InterruptedException {
+	public static void signIn(String sno, String useremail, String pwd, String result) throws IOException, InterruptedException {
+		System.out.println(useremail + pwd);
 		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
 
 		driver.navigate().to(loginUrl);
@@ -52,5 +51,4 @@ public class Login extends Base{
 		ExcelUtil.getSheet(0);
 		return ExcelUtil.getData();
 	}
-
 }

@@ -131,7 +131,7 @@ public class ExcelUtil extends Base{
 	}
 
 
-	//Change data to String
+	//Change datavalue to String
 	public static String setCellDataToString(int rowNum, int colNum) {
 		XSSFCell cell = null;
 		String cellData = null;
@@ -157,7 +157,7 @@ public class ExcelUtil extends Base{
 
 		for(int i=1; i<rowCount; i++)
 		{
-			for(int j=0; j<colCount; j++)
+			for(int j=1; j<colCount; j++)
 			{
 				//Check cell is empty or not
 				if (data[i-1][j] == null) {

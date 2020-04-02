@@ -4,18 +4,17 @@ import org.automationtesting.excelreport.Xl;
 
 import com.autoprac.testscripts.Base;
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 
 public class ReportsGeneration extends Base{
 
 	//Global Variables 
-	public static ExtentHtmlReporter htmlReporter;
-	public static ExtentReports extent;
-	public static ExtentTest setup;
-	public static String htmlReport = projectPath+"//Reports//"+timeStamp+".html";
-	public static String excelReport = projectPath+"//Reports//"+timeStamp+".xlsx";
+	private static ExtentHtmlReporter htmlReporter;
+	private static ExtentReports extent;
+	private static String reportsPath = projectPath+"//Reports//"; 
+	protected static String htmlReport = reportsPath+timeStamp+".html";
+	protected static String excelReport = timeStamp+".xlsx";
 
 
 	//HTML Reports
@@ -23,13 +22,12 @@ public class ReportsGeneration extends Base{
 		extent = new ExtentReports();
 		htmlReporter = new ExtentHtmlReporter(htmlReport);
 		extent.attachReporter(htmlReporter);
-		setup = extent.createTest("SetUp");
 	}
 
 
 	//Excel Reports
 	public static void excelReports() throws Exception {
-		Xl.generateReport(excelReport);
+		Xl.generateReport(reportsPath, excelReport);
 	}
 
 

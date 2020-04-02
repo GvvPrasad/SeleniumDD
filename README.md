@@ -1,26 +1,18 @@
 ### Description
-
-It is a DataDriven Framework made for Web Applications in Java Programming Language with Maven and TestNG.
-
-Demo Site: https://orangehrm-demo-6x.orangehrmlive.com/
-
-This Framework and Code are written according to the above Website
-
-
+It is a Java Selenium DataDriven Framework made with TestNG for Web Applications. 
 
 ### Project Structure
-
 ```
   Root
     ├── src/test
-    │		├── Apis
-    │		├── Common
-    │		├── Config
-    │		├── Links
-    │		├── Listeners
-    │		├── Locators
-    │		├── Test Scripts
-    │		└── Utilities  	
+    │	├── Apis
+    │	├── Common
+    │	├── Config
+    │	├── Links
+    │	├── Listeners
+    │	├── Locators
+    │	├── Test Scripts
+    │	└── Utilities  	
     ├── Files    
     ├── JarFiles
     ├── Logs
@@ -31,27 +23,25 @@ This Framework and Code are written according to the above Website
     └── testNG.xml
 ```
 
-
 ### Usage
-
 Clone the project
 
 ```
 git clone https://github.com/GvvPrasad/frameworkStructure.git
 ```
 
+Configure build path to generate Excel Reports Using "ATExcelReport". The "ATExcelReport" Jar files are located in the "JarFiles" Folder 
 
-Configure build path to generate Excel Reports Using "ATExcelReport"
-
-The "ATExcelReport" Jar files are located in the "JarFiles" Folder 
-
+### Data File Design
+![Data File Design]()
 
 ### Pending
-
-* Excel Report generation
-* API Testing using Json File
+* Checking Data has Date value or not
 * Writing Data into Excel
+* API Testing using Json File
 * Preview of Excel Templates in Document
-* Details of Functions/Methods
 * Details of Package and workFlow
+* Details of Functions/Methods
 * Documentation
+
+
