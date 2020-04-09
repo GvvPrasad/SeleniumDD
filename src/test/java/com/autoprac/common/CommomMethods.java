@@ -8,6 +8,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
+import javax.imageio.ImageIO;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
@@ -25,6 +27,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.autoprac.testscripts.Base;
 import com.google.common.base.Function;
 
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
+
 
 public class CommomMethods extends Base{
 
@@ -32,6 +38,13 @@ public class CommomMethods extends Base{
 	public static void screenShot() throws IOException {
 		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		FileUtils.copyFile(screenshotFile,new File(projectPath+"//ScreenShots//"+timeStamp+".png"));
+	}
+
+
+	//Full Page ScreenShot
+	public static void fullPageScreenshot() throws IOException {
+		Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver); 
+		ImageIO.write(screenshot.getImage(),"PNG",new File(projectPath+"//ScreenShots//"+timeStamp+".png"));
 	}
 
 
@@ -97,7 +110,7 @@ public class CommomMethods extends Base{
 	}
 
 
-	//Web Tables
+	//Web Tables- All Data
 	public static String webTable(WebElement element) {
 		String celltext = null;
 
@@ -105,11 +118,28 @@ public class CommomMethods extends Base{
 		int rowCount=rows.size();
 
 		for (int i = 0; i<rowCount; i++) {
-			List<WebElement> Columns = rows.get(i).findElements(By.tagName("td"));
-			int columnCount = Columns.size();
+			List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
+			int columnCount = columns.size();
 			for (int j = 0; j <columnCount; j++) {
-				celltext = Columns.get(j).getText()+" ";
+				celltext = columns.get(j).getText()+" ";
+				System.out.println(celltext);
 			}
+		}
+		return celltext;
+	}
+
+
+	//Web Tables- Selected column data
+	public static String webTableSelectedData(WebElement element, int j) {
+		String celltext = null;
+
+		List<WebElement> rows = element.findElements(By.tagName("tr"));
+		int rowCount=rows.size();
+
+		for (int i = 0; i<rowCount; i++) {
+			List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
+			celltext = columns.get(j).getText()+" ";
+			System.out.println(celltext);
 		}
 		return celltext;
 	}

@@ -37,9 +37,4 @@ public class ReportsGeneration extends Base{
 		excelReports();
 	}
 
-
-	//Mail
-	public static void mailReports() {
-		EmailConfig.email();
-	}
 }

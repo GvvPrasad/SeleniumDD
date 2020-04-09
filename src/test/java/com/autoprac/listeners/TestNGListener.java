@@ -50,11 +50,11 @@ public class TestNGListener implements ITestListener, ISuiteListener{
 	}
 
 	public void onStart(ISuite suite) {
-
+		System.out.println("Test Suit Started: " + suite.getName());
 	}
 
 	public void onFinish(ISuite suite) {
-
+		System.out.println("Test Suit Finished: " + suite.getName());
 	}
 
 }

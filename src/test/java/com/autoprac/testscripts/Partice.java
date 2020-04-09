@@ -2,27 +2,17 @@ package com.autoprac.testscripts;
 
 import org.testng.annotations.Test;
 
-import com.autoprac.utilities.ExcelUtil;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.DataProvider;
+import com.autoprac.common.CommomMethods;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
-import java.io.IOException;
-import org.testng.annotations.AfterTest;
-
-public class Partice{
+public class Partice extends Base{
 	
-	public static String projectPath = System.getProperty("user.dir");
-	private static String filePath = projectPath+"//testDataFiles//TestData.xlsx";
-
-	@Test(dataProvider = "loginTestData")
-	public static void signIn(String sno, String useremail, String pwd, String result) throws IOException, InterruptedException {
-		System.out.println(useremail+ "  " + pwd);
-	}
-
-	@DataProvider
-	public Object[][] loginTestData() throws IOException{
-		ExcelUtil.getExcel(filePath);
-		ExcelUtil.getSheet(0);
-		return ExcelUtil.getData();
+	@Test
+	public static void tab() {
+		//driver.navigate().to("http://only-testing-blog.blogspot.in/2014/05/form.html");
+		WebElement mytable = driver.findElement(By.xpath(".//*[@id='post-body-8228718889842861683']/div[1]/table/tbody"));
+		System.out.println(CommomMethods.webTable(mytable));
+		
 	}
 }
