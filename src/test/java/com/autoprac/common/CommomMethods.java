@@ -11,13 +11,11 @@ import java.util.Set;
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriver.Navigation;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -146,14 +144,49 @@ public class CommomMethods extends Base{
 
 
 	//Browser Alerts
-	public static Alert browserAlert() {
-		return driver.switchTo().alert();
+	public static String browserAlert(String alertType, String textToSend) {
+
+		String alertMethod = alertType.toLowerCase();
+
+		switch (alertMethod) {
+		case "dismiss":
+			driver.switchTo().alert().dismiss();
+			break;
+
+		case "accept":
+			driver.switchTo().alert().accept();
+			break;
+
+		case "sendtext":
+			driver.switchTo().alert().sendKeys(textToSend);
+			break;
+
+		case "gettext":
+			String alertText = driver.switchTo().alert().getText();
+			return alertText;
+		}
+		return alertMethod;
 	}
 
 
 	//Browser Actions
-	public static Navigation browserActions() {
-		return driver.navigate();
+	public static void browserActions(String action) {
+
+		String requiredAction = action.toLowerCase();
+
+		switch (requiredAction) {
+		case "forward":
+			driver.navigate().forward();
+			break;
+
+		case "backward":
+			driver.navigate().back();
+			break;
+
+		case "refresh":
+			driver.navigate().refresh();
+			break;
+		}
 	}
 
 

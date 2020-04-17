@@ -66,4 +66,3 @@ Configure build path to generate Excel Reports Using "ATExcelReport". The "ATExc
 #### Pending
 * Checking Data has Date value or not
 * Writing Data into Excel
-* API Testing using Json File

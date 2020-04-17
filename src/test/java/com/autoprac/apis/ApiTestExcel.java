@@ -37,24 +37,28 @@ public class ApiTestExcel extends Base{
 
 		//Request Object
 		httpRequest = RestAssured.given(); 
-
-		if (method.equalsIgnoreCase("get")) {
-			response = httpRequest.request(Method.GET,page+id);
-		} 
-		else if(method.equalsIgnoreCase("post")) {
-			postAndPut(email, job, name, password);
+		
+		String requestmethod = method.toLowerCase();
+		
+		switch (requestmethod) {
+        case "get":
+        	response = httpRequest.request(Method.GET,page+id);
+            break;
+        case "post":
+        	postAndPut(email, job, name, password);
 			response = httpRequest.request(Method.POST,page);
-		} 
-		else if (method.equalsIgnoreCase("put")) {
-			postAndPut(email, job, name, password);
+            break;
+        case "put":
+        	postAndPut(email, job, name, password);
 			response = httpRequest.request(Method.PUT,page+id);
-		} 
-		else if (method.equalsIgnoreCase("delete")) {
-			response = httpRequest.request(Method.DELETE,page+id);
-		}
-		else {
-			System.out.println("Not a valid input method");
-		}
+            break;
+        case "delete":
+        	response = httpRequest.request(Method.DELETE,page+id);
+            break;
+        default:
+        	System.out.println("not a valid method");
+        	break;
+    }
 
 		//Get Response Body
 		String responseBody = response.getBody().asString();
