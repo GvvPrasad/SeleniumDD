@@ -24,7 +24,7 @@ public class ReportsGeneration extends Base{
 		extent = new ExtentReports();
 		htmlReporter = new ExtentHtmlReporter(htmlReport);
 		extent.attachReporter(htmlReporter);
-		setup = extent.createTest("Test");	
+		//setup = extent.createTest("Test");	
 	}
 
 
