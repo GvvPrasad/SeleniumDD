@@ -18,22 +18,13 @@ import javax.mail.internet.MimeMultipart;
 
 import org.testng.annotations.Test;
 
+import com.autoprac.config.ObjectRespo;
+
 
 public class EmailConfig extends ReportsGeneration{
-
-	//Mail Variables
-	static String senderMail;
-	static String senderPassword;
-	static String receiverMail;
-	static String mailSubject;
-	static String mailContent;
-	
-
 	
 	@Test
 	public static void email(){	
-		//Objects
-		AppConfig.getProperties();
 		
 		// Create object of Property file
 		Properties props = new Properties();
@@ -50,22 +41,22 @@ public class EmailConfig extends ReportsGeneration{
 		Session session = Session.getDefaultInstance(props,
 				new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(senderMail, senderPassword);
+				return new PasswordAuthentication(ObjectRespo.senderMailId, ObjectRespo.senderMailPassword);
 			}
 		});
 
 		try {
 			// Create object of MimeMessage class
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(senderMail));
-			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(receiverMail));
+			message.setFrom(new InternetAddress(ObjectRespo.senderMailId));
+			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(ObjectRespo.receiverMailId));
 
 			// Add the subject 
-			message.setSubject(mailSubject);
+			message.setSubject(ObjectRespo.mailSubject);
 
 			// Create object to add content
 			MimeBodyPart messageBodyPart = new MimeBodyPart();
-			messageBodyPart.setText(mailContent);
+			messageBodyPart.setText(ObjectRespo.mailContent);
 
 			// Create another object to add Attachment
 			MimeBodyPart messageBodyPart1 = new MimeBodyPart();

@@ -6,6 +6,7 @@ import org.json.simple.JSONObject;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.autoprac.config.ObjectRespo;
 import com.autoprac.testscripts.Base;
 import com.autoprac.utilities.ExcelUtil;
 
@@ -16,15 +17,14 @@ import io.restassured.specification.RequestSpecification;
 
 
 public class ApiTestExcel extends Base{
-	
+
 	//Global Variables
-	private static String filePath = projectPath+"//testDataFiles//TestApis.xlsx";
 	private static Response response = null;
 	private static RequestSpecification httpRequest;
 
 	@Test(priority = 1)
 	public static void setExcel() throws IOException {
-		ExcelUtil.getExcel(filePath);
+		ExcelUtil.getExcel(ObjectRespo.apiFilePath);
 	}
 
 
@@ -37,29 +37,28 @@ public class ApiTestExcel extends Base{
 
 		//Request Object
 		httpRequest = RestAssured.given(); 
-		
-		String requestmethod = method.toLowerCase();
-		
-		switch (requestmethod) {
-        case "get":
-        	response = httpRequest.request(Method.GET,page+id);
-            break;
-        case "post":
-        	postAndPut(email, job, name, password);
-			response = httpRequest.request(Method.POST,page);
-            break;
-        case "put":
-        	postAndPut(email, job, name, password);
-			response = httpRequest.request(Method.PUT,page+id);
-            break;
-        case "delete":
-        	response = httpRequest.request(Method.DELETE,page+id);
-            break;
-        default:
-        	System.out.println("not a valid method");
-        	break;
-    }
 
+		String requestmethod = method.toLowerCase();
+
+		switch (requestmethod) {
+		case "get":
+			response = httpRequest.request(Method.GET,page+id);
+			break;
+		case "post":
+			postAndPut(email, job, name, password);
+			response = httpRequest.request(Method.POST,page);
+			break;
+		case "put":
+			postAndPut(email, job, name, password);
+			response = httpRequest.request(Method.PUT,page+id);
+			break;
+		case "delete":
+			response = httpRequest.request(Method.DELETE,page+id);
+			break;
+		default:
+			System.out.println("not a valid method");
+			break;
+		}
 		//Get Response Body
 		String responseBody = response.getBody().asString();
 
@@ -84,6 +83,7 @@ public class ApiTestExcel extends Base{
 		//Attach above data to request
 		httpRequest.body(requestparms.toJSONString());
 	}
+
 
 	@DataProvider
 	public Object[][] apiTestData() throws IOException{

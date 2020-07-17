@@ -224,6 +224,7 @@ public class ExcelUtil extends Base{
 				fileOut = new FileOutputStream(filePath);
 				wbFile.write(fileOut);
 				fileOut.close();
+				
 			}
 		} catch (Exception e) {
 			System.out.println("Data is not entered into excel");

@@ -20,8 +20,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.autoprac.config.ObjectRespo;
 import com.autoprac.testscripts.Base;
 import com.google.common.base.Function;
 
@@ -35,14 +37,14 @@ public class CommomMethods extends Base{
 	//Screenshots
 	public static void screenShot() throws IOException {
 		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshotFile,new File(projectPath+"//ScreenShots//"+timeStamp+".png"));
+		FileUtils.copyFile(screenshotFile,new File(ObjectRespo.screenShotName));
 	}
 
 
 	//Full Page ScreenShot
 	public static void fullPageScreenshot() throws IOException {
 		Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver); 
-		ImageIO.write(screenshot.getImage(),"PNG",new File(projectPath+"//ScreenShots//"+timeStamp+".png"));
+		ImageIO.write(screenshot.getImage(),"PNG",new File(ObjectRespo.fullScreenShotName));
 	}
 
 
@@ -61,7 +63,7 @@ public class CommomMethods extends Base{
 
 	//Fluent Wait
 	public static void presenceOfTheElement(final WebElement webElement) {
-		FluentWait <WebDriver> wait = new FluentWait<WebDriver>(driver)
+		Wait <WebDriver> wait = new FluentWait<WebDriver>(driver)
 				.withTimeout(Duration.ofSeconds(10))
 				.pollingEvery(Duration.ofSeconds(3))
 				.ignoring(Exception.class); 
@@ -152,15 +154,12 @@ public class CommomMethods extends Base{
 		case "dismiss":
 			driver.switchTo().alert().dismiss();
 			break;
-
 		case "accept":
 			driver.switchTo().alert().accept();
 			break;
-
 		case "sendtext":
 			driver.switchTo().alert().sendKeys(textToSend);
 			break;
-
 		case "gettext":
 			String alertText = driver.switchTo().alert().getText();
 			return alertText;
@@ -178,11 +177,9 @@ public class CommomMethods extends Base{
 		case "forward":
 			driver.navigate().forward();
 			break;
-
 		case "backward":
 			driver.navigate().back();
 			break;
-
 		case "refresh":
 			driver.navigate().refresh();
 			break;

@@ -1,3 +1,1 @@
-2020-05-28 16:07:26.031 INFO  com.autoprac.testscripts.Base - from base class
-2020-05-28 16:07:28.079 INFO  com.autoprac.testscripts.Base - from partice2
-2020-05-28 16:07:28.079 ERROR com.autoprac.testscripts.Base - this is error message
+2020-07-12 18:22:58.412 INFO  com.autoprac.testscripts.Base - from base class

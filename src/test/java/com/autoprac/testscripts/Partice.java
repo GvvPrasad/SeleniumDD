@@ -17,5 +17,6 @@ public class Partice extends Base{
 		log.info("from partice2");
 		log.error("this is error message");
 		System.out.println("sfsdf");
+		
 	}
 }

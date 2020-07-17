@@ -12,19 +12,18 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.autoprac.config.ObjectRespo;
 import com.autoprac.testscripts.Base;
 import com.autoprac.utilities.ExcelUtil;
 
 
 public class OtherDomain extends Base{
 
-	private static String filePath = projectPath+"//testDataFiles//TestLinks.xlsx"; 
-
-
+	
 	@BeforeTest
 	public static void beforeClass() throws IOException {
 		Base.headlessBrowserSetUp();
-		ExcelUtil.getExcel(filePath);
+		ExcelUtil.getExcel(ObjectRespo.testLinks);
 	}
 
 
