@@ -15,20 +15,20 @@ public class LoginPage extends Base{
 	}
 
 
-	@FindBy(id = "email")
-	WebElement email;
+	@FindBy(id = "txtUsername")
+	WebElement name;
 
-	@FindBy(id = "passwd")
+	@FindBy(id = "txtPassword")
 	WebElement password;
 
-	@FindBy(id = "SubmitLogin")
+	@FindBy(id = "btnLogin")
 	WebElement submit;
 
 	@FindBy(className = "logout")
 	WebElement logout;
 
 	public void setEmail(String useremail) {
-		email.sendKeys(useremail);
+		name.sendKeys(useremail);
 	}
 	
 	public void setPassword(String pwd) {

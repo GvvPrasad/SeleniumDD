@@ -19,16 +19,18 @@ import javax.mail.internet.MimeMultipart;
 import org.testng.annotations.Test;
 
 import com.autoprac.config.ObjectRespo;
+import com.autoprac.config.PropertiesFile;
 
 
-public class EmailConfig extends ReportsGeneration{
+public class EmailConfig extends ObjectRespo{	
 	
 	@Test
 	public static void email(){	
-		
+					
 		// Create object of Property file
 		Properties props = new Properties();
-
+		PropertiesFile.GetProperties();
+		
 		// this will set host of server
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "587");
@@ -41,15 +43,15 @@ public class EmailConfig extends ReportsGeneration{
 		Session session = Session.getDefaultInstance(props,
 				new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(ObjectRespo.senderMailId, ObjectRespo.senderMailPassword);
+				return new PasswordAuthentication(ObjectRespo.senderMail, ObjectRespo.senderPassword);
 			}
 		});
 
 		try {
 			// Create object of MimeMessage class
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(ObjectRespo.senderMailId));
-			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(ObjectRespo.receiverMailId));
+			message.setFrom(new InternetAddress(ObjectRespo.senderMail));
+			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(ObjectRespo.receiverMail));
 
 			// Add the subject 
 			message.setSubject(ObjectRespo.mailSubject);
@@ -58,6 +60,7 @@ public class EmailConfig extends ReportsGeneration{
 			MimeBodyPart messageBodyPart = new MimeBodyPart();
 			messageBodyPart.setText(ObjectRespo.mailContent);
 
+			
 			// Create another object to add Attachment
 			MimeBodyPart messageBodyPart1 = new MimeBodyPart();
 			DataSource source = new FileDataSource(ReportsGeneration.htmlReport);
@@ -72,8 +75,8 @@ public class EmailConfig extends ReportsGeneration{
 			// Create object of MimeMultipart class
 			Multipart multipart = new MimeMultipart();
 			multipart.addBodyPart(messageBodyPart);
-			multipart.addBodyPart(messageBodyPart1);
-			multipart.addBodyPart(messageBodyPart2);
+			//multipart.addBodyPart(messageBodyPart1);
+			//multipart.addBodyPart(messageBodyPart2);
 
 			// set the content
 			message.setContent(multipart);

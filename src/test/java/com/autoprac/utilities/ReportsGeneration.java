@@ -5,16 +5,11 @@ import org.automationtesting.excelreport.Xl;
 import com.autoprac.config.ObjectRespo;
 import com.autoprac.testscripts.Base;
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
 
 public class ReportsGeneration extends Base{
 
-	//Global Variables 
-	protected static ExtentHtmlReporter htmlReporter;
-	protected static ExtentReports extent;
-	protected static ExtentTest setup;
 
 	//HTML Reports
 	public static void htmlReports() {

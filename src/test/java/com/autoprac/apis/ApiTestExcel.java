@@ -12,24 +12,13 @@ import com.autoprac.utilities.ExcelUtil;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
 
 
 public class ApiTestExcel extends Base{
-
-	//Global Variables
-	private static Response response = null;
-	private static RequestSpecification httpRequest;
-
-	@Test(priority = 1)
-	public static void setExcel() throws IOException {
-		ExcelUtil.getExcel(ObjectRespo.apiFilePath);
-	}
-
-
+	
+	
 	@SuppressWarnings("unused")
-	@Test(priority = 2, dataProvider = "apiTestData")
+	@Test(priority = 0, dataProvider = "apiTestData")
 	public static void getDetails(String sno, String description, String baseurl, String page, String id, String method, String email, String job, String name, String password, String responsedata, String responseCode, String result) throws IOException {
 
 		//API URl
@@ -87,6 +76,7 @@ public class ApiTestExcel extends Base{
 
 	@DataProvider
 	public Object[][] apiTestData() throws IOException{
+		ExcelUtil.getExcel(ObjectRespo.apiFilePath);
 		ExcelUtil.getSheet(3);
 		return ExcelUtil.getData();
 	}

@@ -16,16 +16,16 @@ public class Login extends Base{
 
 	
 	@Test(dataProvider = "loginTestData")
-	public static void signIn(String sno, String useremail, String pwd, String result) throws IOException, InterruptedException {
+	public static void signIn(String no, String useremail, String pwd) throws IOException, InterruptedException {
 		System.out.println(useremail + pwd);
 		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
-
+		log.info("Entering user name");
 		lp.setEmail(useremail);
 		lp.setPassword(pwd);
 		lp.clickSubmit();
 		
 		//Verify
-		String expectedUrl = "http://automationpractice.com/index.php?controller=my-account";
+		String expectedUrl = "https://opensource-demo.orangehrmlive.com/index.php/dashboard";
 		String actualUrl = driver.getCurrentUrl();
 		String loginmessage;
 
@@ -35,15 +35,16 @@ public class Login extends Base{
 		}else {
 			loginmessage ="fail";
 		}
-		
+		log.info("before writing into ecel");
 		ExcelUtil.writeIntoExcel(ObjectRespo.testData, loginmessage);
+		log.info("after writing into ecel");
 	}
 
 
 	@DataProvider
 	public Object[][] loginTestData() throws IOException{
 		ExcelUtil.getExcel(ObjectRespo.testData);
-		ExcelUtil.getSheet(0);
+		ExcelUtil.getSheet(0);		
 		return ExcelUtil.getData();
 	}
 }

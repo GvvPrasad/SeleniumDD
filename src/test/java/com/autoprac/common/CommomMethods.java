@@ -2,9 +2,7 @@ package com.autoprac.common;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.time.Duration;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -34,32 +32,17 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 public class CommomMethods extends Base{
 
-	//Screenshots
-	public static void screenShot() throws IOException {
-		File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshotFile,new File(ObjectRespo.screenShotName));
-	}
-
-
-	//Full Page ScreenShot
-	public static void fullPageScreenshot() throws IOException {
-		Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver); 
-		ImageIO.write(screenshot.getImage(),"PNG",new File(ObjectRespo.fullScreenShotName));
-	}
-
 
 	//Implicit Wait
 	public static void waitTime() throws InterruptedException {
 		Thread.sleep(5000);
 	}
 
-
 	//Explicit Wait
 	public static WebElement waitForElement(WebElement element) {
 		WebDriverWait exwait = new WebDriverWait(driver,10);
 		return exwait.until(ExpectedConditions.visibilityOfElementLocated((By) element));
 	}
-
 
 	//Fluent Wait
 	public static void presenceOfTheElement(final WebElement webElement) {
@@ -75,24 +58,47 @@ public class CommomMethods extends Base{
 	}
 
 
+	//Element Screenshot
+	public static void elementScreenshot(WebElement element) throws IOException {
+		Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver, element); 
+		ImageIO.write(screenshot.getImage(),"PNG",new File(ObjectRespo.screenShotName));
+	}
+
+	//Visible Page Screenshots
+	public static void visiablePageScreenShot() throws IOException {
+		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(screenshot,new File(ObjectRespo.screenShotName));
+	}
+
+	//Full Page ScreenShot
+	public static void fullPageScreenshot() throws IOException {
+		Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver); 
+		ImageIO.write(screenshot.getImage(),"PNG",new File(ObjectRespo.screenShotName));
+	}
+
+
 	//Scroll to Element
-	public static void scrollTillElement(WebElement element) throws Exception{ 
+	public static void scrollToElement(WebElement element) throws Exception{ 
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("arguments[0].scrollIntoView(true);",element);
 	}
 
-
 	//Scroll length
-	public static void scrollLength(int x, int y) {
+	public static void scrollLength() {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
-		jse.executeScript("window.scrollBy(x,y)");
+		jse.executeScript("window.scrollBy(0,500)");
 	}
-
 
 	//Scroll to the bottom of page
 	public static void scrollToBottom() {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+	}
+
+	//Scroll to Top of Page
+	public static void scrollToTop() {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("window.scrollTo(0, 0)");
 	}
 
 
@@ -102,7 +108,6 @@ public class CommomMethods extends Base{
 		act.moveToElement(element).build().perform();
 	}
 
-
 	//Drag and Drop
 	public static void dragAndDrop(WebElement source, WebElement target) {
 		Actions act = new Actions(driver);
@@ -110,8 +115,8 @@ public class CommomMethods extends Base{
 	}
 
 
-	//Web Tables- All Data
-	public static String webTable(WebElement element) {
+	//Web Tables get All Data values
+	public static String webTableAllValues(WebElement element) {
 		String celltext = null;
 
 		List<WebElement> rows = element.findElements(By.tagName("tr"));
@@ -122,25 +127,43 @@ public class CommomMethods extends Base{
 			int columnCount = columns.size();
 			for (int j = 0; j <columnCount; j++) {
 				celltext = columns.get(j).getText()+" ";
-				System.out.println(celltext);
 			}
 		}
 		return celltext;
 	}
 
-
-	//Web Tables- Selected column data
-	public static String webTableSelectedData(WebElement element, int j) {
+	//Web Table - get all values in a row
+	public static String webTableRowValues(WebElement element, int i) {
 		String celltext = null;
+		List<WebElement> rows = element.findElements(By.tagName("tr"));
 
+		List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
+		int columnCount = columns.size();
+		for (int j = 0; j <columnCount; j++) {
+			celltext = columns.get(j).getText()+" ";
+		}
+		return celltext;
+
+	}
+	//Web Table - get all values in a column
+	public static String webTablesColValues(WebElement element, int j) {
+		String celltext = null;
 		List<WebElement> rows = element.findElements(By.tagName("tr"));
 		int rowCount=rows.size();
-
 		for (int i = 0; i<rowCount; i++) {
 			List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
 			celltext = columns.get(j).getText()+" ";
-			System.out.println(celltext);
 		}
+		return celltext;
+	}
+	
+	//Web Table - get specific value
+	public static String webTableSpecificValue(WebElement element, int i, int j) {
+		String celltext = null;
+
+		List<WebElement> rows = element.findElements(By.tagName("tr"));
+		List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
+		celltext = columns.get(j).getText()+" ";
 		return celltext;
 	}
 
@@ -197,8 +220,7 @@ public class CommomMethods extends Base{
 		return handles;
 	}
 
-
-	//switch to windows
+	//switch to Specific windows
 	public static void switchWindows(String windowname) {
 		driver.switchTo().window(windowname);
 	}
@@ -210,7 +232,7 @@ public class CommomMethods extends Base{
 	}
 
 
-	//Compare two values
+	//Compare two string values
 	public static boolean compareValues(String actualValue, String expectedValue) {
 		if (actualValue.equalsIgnoreCase(expectedValue)) {
 			return true;
@@ -232,13 +254,4 @@ public class CommomMethods extends Base{
 		String stringValue = Integer.toString(intValue);
 		return stringValue;
 	}
-
-
-	//Get current Date [formatValue = dd/mm/yyyy HH:mm:ss] in desire format
-	public static String getCurrentDate(String format) {
-		SimpleDateFormat formatter = new SimpleDateFormat(format);  
-		Date date = new Date(); 
-		return formatter.format(date);
-	}
-
 }

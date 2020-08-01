@@ -4,12 +4,10 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import org.apache.poi.hssf.usermodel.HSSFDateUtil;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
@@ -17,14 +15,6 @@ import com.autoprac.testscripts.Base;
 
 
 public class ExcelUtil extends Base{
-
-	//Global Variables
-	private static XSSFWorkbook wbFile;
-	private static XSSFSheet shFile;
-	private static XSSFRow row;
-	private static XSSFCell cell;
-	private static FileInputStream dataFile;
-	private static FileOutputStream fileOut;
 
 
 	//Get Excel File
@@ -38,7 +28,7 @@ public class ExcelUtil extends Base{
 		}
 	}
 
-
+	
 	//Get Excel Sheet
 	public static void getSheet(int sheetno) throws IOException {
 		try {
@@ -49,7 +39,7 @@ public class ExcelUtil extends Base{
 		}
 	}
 
-
+	
 	//Row Count
 	public static int getRowCount() {
 		int rowCount = 0; 
@@ -62,7 +52,7 @@ public class ExcelUtil extends Base{
 		return rowCount;
 	}
 
-
+	
 	//Column Count
 	public static int getColumnCount(){
 		int colCount=0;
@@ -75,7 +65,14 @@ public class ExcelUtil extends Base{
 		return colCount;
 	}
 
+	
+	//Get Specific cell value
+	public static Object getRawValue(int rowNum, int colNum) {
+		Object cellData = shFile.getRow(rowNum).getCell(colNum).getRawValue();
+		return cellData;
+	}
 
+	
 	//Get String Value
 	public static String getStringValue(int rowNum, int colNum) {
 		String cellData = null;
@@ -102,51 +99,26 @@ public class ExcelUtil extends Base{
 	}
 
 
-	//Get raw value
-	public static Object getRawValue(int rowNum, int colNum) {
-		Object cellData = shFile.getRow(rowNum).getCell(colNum).getRawValue();
-		return cellData;
-	}
-
-
 	//Get Date Value
 	public static String getDateValue(int rowNum, int colNum) {
-		XSSFCell cellData;
-		Date date = null;
-		String datevalue = null;
+		Cell cell;
+		String date = null;
 		try {
-			cellData = shFile.getRow(rowNum).getCell(colNum);
-			if (HSSFDateUtil.isCellDateFormatted(cellData)) {
-				date = cellData.getDateCellValue();
+			cell = shFile.getRow(rowNum).getCell(colNum);
+			if (HSSFDateUtil.isCellDateFormatted(cell)) {
 				SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-				datevalue = formatter.format(date);
-				return datevalue;
+				date = formatter.format(cell.getDateCellValue());
+				return date;
 			}else {
 				System.out.println("Not a Date Value");
 			}
 		} catch (Exception e) {
-			System.out.println("Not a Date Value");
+			System.out.println("Date Value exception");
 		}
-		return datevalue;
+		return date;
 	}
 
-
-	//Change datavalue to String
-	public static String setCellDataToString(int rowNum, int colNum) {
-		XSSFCell cell = null;
-		String cellData = null;
-		try {
-			cell = shFile.getRow(rowNum).getCell(colNum);
-			cell.setCellType(CellType.STRING);
-			cellData = cell.getStringCellValue();
-		}catch(Exception e) {
-			System.out.println("Data not found");
-			e.printStackTrace();
-		}
-		return cellData;
-	}
-
-
+	
 	//DataProvider from Excel
 	public static Object[][] getData() throws IOException{
 
@@ -157,7 +129,7 @@ public class ExcelUtil extends Base{
 
 		for(int i=1; i<rowCount; i++)
 		{
-			for(int j=1; j<colCount; j++)
+			for(int j=0; j<colCount; j++)
 			{
 				//Check cell is empty or not
 				if (data[i-1][j] == null) {
@@ -174,12 +146,33 @@ public class ExcelUtil extends Base{
 		return data;
 	}
 
+	
+	//Change cell values to String
+	public static String setCellDataToString(int rowNum, int colNum) {
+		XSSFCell cell = null;
+		String cellData = null;
+		try {
+			cell = shFile.getRow(rowNum).getCell(colNum);
+			cell.setCellType(CellType.STRING);
+			cellData = cell.getStringCellValue();
+		}catch(Exception e) {
+			System.out.println("Data not found");
+			e.printStackTrace();
+		}
+		return cellData;
+	}
+
 
 	//Create Sheet
 	public static int createSheet() throws IOException {
-		XSSFSheet newSheet = wbFile.createSheet();
-		String shName = newSheet.getSheetName();
-		int newSheetno = wbFile.getSheetIndex(shName);
+		int newSheetno = 0;
+		try {
+			XSSFSheet newSheet = wbFile.createSheet();
+			String shName = newSheet.getSheetName();
+			newSheetno = wbFile.getSheetIndex(shName);
+		} catch (Exception e) {
+			System.out.println("Sheet Not created");
+		}
 		return newSheetno;
 	}
 
@@ -191,7 +184,7 @@ public class ExcelUtil extends Base{
 			if (rowCount <= 0) {
 				shFile.createRow(0);
 			}
-			shFile.createRow(rowCount);
+			shFile.createRow(rowCount+1);
 		} catch (Exception e) {
 			System.out.println("New Row did not ccreated");
 		}
@@ -199,13 +192,13 @@ public class ExcelUtil extends Base{
 
 
 	//Create Column
-	public static void createColumn(String filePath) throws IOException {
+	public static void createColumn() throws IOException {
 		int rowCount = ExcelUtil.getRowCount();
 		int colCount = ExcelUtil.getColumnCount();
 
 		try {
 			for (int i =1; i < rowCount; i++) {
-				shFile.getRow(i).createCell(colCount-1);
+				shFile.getRow(i).createCell(colCount+1);
 			}
 		} catch (Exception e) {
 			System.out.println("New Column did not ccreated");
@@ -220,11 +213,10 @@ public class ExcelUtil extends Base{
 
 		try {
 			for (int i = 1; i < rowCount; i++) {
-				shFile.getRow(i).createCell(colCount-1).setCellValue(dataToWrite); 
+				shFile.getRow(i).createCell(colCount).setCellValue(dataToWrite); 
 				fileOut = new FileOutputStream(filePath);
 				wbFile.write(fileOut);
 				fileOut.close();
-				
 			}
 		} catch (Exception e) {
 			System.out.println("Data is not entered into excel");

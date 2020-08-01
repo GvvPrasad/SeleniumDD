@@ -10,8 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -21,13 +19,6 @@ import com.autoprac.utilities.ExcelUtil;
 
 
 public class Url404 extends Base{
-
-
-	@BeforeTest
-	public static void beforeClass() throws IOException {
-		Base.headlessBrowserSetUp();
-		ExcelUtil.getExcel(ObjectRespo.testLinks);
-	}
 
 
 	@Test(dataProvider = "linksData")
@@ -76,14 +67,8 @@ public class Url404 extends Base{
 
 	@DataProvider
 	public Object[][] linksData() throws IOException{
+		ExcelUtil.getExcel(ObjectRespo.testLinks);
 		ExcelUtil.getSheet(0);
 		return ExcelUtil.getData();
 	}
-
-
-	@AfterTest
-	public void afterClass() throws Exception {
-		Base.tearDown();
-	}
-
 }
