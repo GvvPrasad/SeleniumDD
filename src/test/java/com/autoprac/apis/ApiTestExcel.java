@@ -6,16 +6,19 @@ import org.json.simple.JSONObject;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.autoprac.base.Base;
 import com.autoprac.config.ObjectRespo;
-import com.autoprac.testscripts.Base;
 import com.autoprac.utilities.ExcelUtil;
 
 import io.restassured.RestAssured;
 import io.restassured.http.Method;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 
 
 public class ApiTestExcel extends Base{
-	
+	private static Response response = null;
+	private static RequestSpecification httpRequest;
 	
 	@SuppressWarnings("unused")
 	@Test(priority = 0, dataProvider = "apiTestData")

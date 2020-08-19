@@ -9,6 +9,7 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 import com.autoprac.common.CommomMethods;
+import com.autoprac.config.ObjectRespo;
 
 
 public class TestNGListener implements ITestListener, ISuiteListener{
@@ -22,6 +23,7 @@ public class TestNGListener implements ITestListener, ISuiteListener{
 	}
 
 	public void onTestFailure(ITestResult result) {
+		ObjectRespo.methodName = result.getName();
 		System.out.println("Faild Test: " + result.getName());
 
 		try {
@@ -32,13 +34,25 @@ public class TestNGListener implements ITestListener, ISuiteListener{
 	}
 
 	public void onTestSkipped(ITestResult result) {
+		ObjectRespo.methodName = result.getName();
 		System.out.println("Skipped Test: " + result.getName());
 
+		try {
+			CommomMethods.visiablePageScreenShot();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
+		ObjectRespo.methodName = result.getName();
 		System.out.println("FailedButWithinSuccessPercentage Test: " + result.getName());
 
+		try {
+			CommomMethods.visiablePageScreenShot();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void onStart(ITestContext context) {

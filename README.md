@@ -5,22 +5,29 @@ It can also used for testing Rest API's functionality using Rest-Assured.
 #### Project Structure
 ```
   Root
-    ├── src/test
-    │	├── Apis
+    ├── src/main/java
+    │	├── Base
     │	├── Common
     │	├── Config
-    │	├── Links
+    │	│	└── ObjectRepository
+    │	│	└── PropertiesFile
     │	├── Listeners
+    │	└── Utilities
+    ├── src/main/resources
+    │	├── App.properties
+    │	└── log4j2.xml  	
+    ├── src/test/java    
+    │	├── Apis
+    │	├── Links
     │	├── Locators
-    │	├── Test Scripts
-    │	└── Utilities  	
-    ├── Files    
+    │	└── TestScripts
+    ├── src/test/resources
+    │	└── Test Data Files
+    ├── Files
     ├── JarFiles
     ├── Logs
     ├── Reports
     ├── ScreenShots
-    ├── TestDataFiles
-    ├── pom.xml
     └── testNG.xml
 ```
 
@@ -28,30 +35,20 @@ It can also used for testing Rest API's functionality using Rest-Assured.
 ![Data File Design](https://github.com/GvvPrasad/javaSeleniumFramework/blob/master/Files/DataFileTemplate.PNG)
 
 #### Package's Details
-* apis -		It contains the TestCases for testing Rest API's of  "Get, Post, Put and Delete"
-* common -		It contains several Methods that are useful while creating and Executing TestCases 
-* config -		It contains the properties files of the Application, Mails, logs & ObjectRepository
-* links -		It contains the TestCases for checking links and 404 Errors in a given single web page 		
-* listeners -	It contains TestNGListener, RetryAnalzer 
-* locators -	It contains the locators files of the application
-* testscripts - It contains the Base file and TestCase Scripts
-* utilities -	It contains ExcelUtilities, Reportgeneration and Mail configuration  
+|Package Names|Description           							                                                                               |
+|:------------|:-------------------------------------------------------------------------------------------------------------------------------|
+|Base		  | It consists of Base class file where we initiate Browser and its Desired Capabilities, initiate of Reports and closing Browser |
+|Common		  |	It consists of several common methods which can be used across entire application like wait, screenshot, scroll, Mouse Events  |
+|Config		  |	It consists of ObjectRepository, here we define all the variable and properties file to access ".properties" file		       |
+|Listeners	  |	It consists of TestNG Listeners and RetryAnalyzer		                                                                       |
+|Utilities	  |	It consists of Utilities of Excel files, Reports and Email 		                                                               |
+|Apis		  |	It consists of API test case of POST, GET, PUT and DELETE                                                        		       |
+|Links		  |	It consists of class file for checking the all the links and for 404Errors and other domain		                               |
+|Locators     |	It consists of locators for each web page in separate class file 		                                                       |
+|TestScripts  |	It consists of test scripts files as class files                		                                                       |
 
 #### WorkFlow
-![Data File Design](https://github.com/GvvPrasad/javaSeleniumFramework/blob/master/Files/AuroWorkFlow.png)
-
-
-When TestScript / testNG.xml is executed, 1st Base Class is executed it contain the Browser and Application Url Details, it get it's data from AppConfig, AppConfig get details from AppProperties.<br>
-
-The TestData is taken from the Excel Sheet with the help of ExcelMethods contains in the ExcelUtilities File.<br>
  
-The Locators values are present in Locators package, the TestData pass to the locators by using "getData" Method present in the ExcelUtil and by "@DataProvide" TestNG annotation<br>
-
-If the Testcase is fail, the TestCase method is sent to RetryAnalyzer, the method will execute again(base on condition) if it reach the max count then it is consider as Failed testcase and it moves to TestNGListener and a screenshot is taken.<br>
-
-<b>Optional</b><br> 
-After all Testcase are completed logs, HTML and Excel Reports are generated.<br>
-The Reports can be sent as mail also. 
 
 #### Usage
 Clone the project
@@ -64,3 +61,5 @@ Configure build path to generate Excel Reports Using "ATExcelReport". The "ATExc
          
 #### Pending/Issues
 * Methods related to Dates
+* Writing into excel dynamically
+* Attaching the screen to reports

@@ -1,4 +1,4 @@
-package com.autoprac.testscripts;
+package com.autoprac.base;
 
 import java.util.HashMap;
 
@@ -6,8 +6,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 
 import com.autoprac.config.ObjectRespo;
 import com.autoprac.config.PropertiesFile;
@@ -19,7 +19,7 @@ public class Base extends ObjectRespo{
 	
 	
 	//Browser Setup
-	@BeforeClass
+	@BeforeSuite
 	public static void browserSetUp() {
 		
 		//Get Application properties
@@ -94,7 +94,7 @@ public class Base extends ObjectRespo{
 
 
 	//Close Driver & Browser
-	@AfterClass
+	@AfterSuite
 	public static void tearDown() throws Exception {
 		driver.close();
 		driver.quit();

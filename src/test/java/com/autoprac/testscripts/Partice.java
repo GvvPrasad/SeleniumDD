@@ -1,14 +1,13 @@
 package com.autoprac.testscripts;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import static org.testng.Assert.assertEquals;
+
 import org.testng.annotations.Test;
 
+import com.autoprac.base.Base;
 import com.autoprac.common.CommomMethods;
 import com.autoprac.config.ObjectRespo;
 import com.autoprac.utilities.ExcelUtil;
-
-import java.io.IOException;
 
 public class Partice extends Base{
 	
@@ -19,6 +18,14 @@ public class Partice extends Base{
 		ExcelUtil.getExcel(ObjectRespo.testLinks);
 		ExcelUtil.getSheet(0);
 		ExcelUtil.writeIntoExcel(ObjectRespo.testLinks, message);
+		setup = extent.createTest("Testcase");
+		CommomMethods.visiablePageScreenShot();
+		CommomMethods.waitTime();
+		setup.fail("test pass").addScreencastFromPath("D:\\workspace\\javaSeleniumFramework\\ScreenShots\\null_2020-08-17-17-55-40.png");
+		assertEquals(ObjectRespo.url, "abc.com");
+		
+		
+		
 		
 	}
 }

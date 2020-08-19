@@ -1,5 +1,6 @@
 package com.autoprac.utilities;
 
+import java.io.File;
 import java.util.Properties;
 
 import javax.activation.DataHandler;
@@ -22,15 +23,15 @@ import com.autoprac.config.ObjectRespo;
 import com.autoprac.config.PropertiesFile;
 
 
-public class EmailConfig extends ObjectRespo{	
-	
+public class Email extends ObjectRespo{	
+
 	@Test
 	public static void email(){	
-					
+
 		// Create object of Property file
 		Properties props = new Properties();
 		PropertiesFile.GetProperties();
-		
+
 		// this will set host of server
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.socketFactory.port", "587");
@@ -50,6 +51,9 @@ public class EmailConfig extends ObjectRespo{
 		try {
 			// Create object of MimeMessage class
 			Message message = new MimeMessage(session);
+			message.addHeader("Content-type", "text/HTML; charset=UTF-8");
+			message.addHeader("format", "flowed");
+			message.addHeader("Content-Transfer-Encoding", "8bit");
 			message.setFrom(new InternetAddress(ObjectRespo.senderMail));
 			message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(ObjectRespo.receiverMail));
 
@@ -57,26 +61,25 @@ public class EmailConfig extends ObjectRespo{
 			message.setSubject(ObjectRespo.mailSubject);
 
 			// Create object to add content
-			MimeBodyPart messageBodyPart = new MimeBodyPart();
-			messageBodyPart.setText(ObjectRespo.mailContent);
+			MimeBodyPart messagecontent = new MimeBodyPart();
+			messagecontent.setText(ObjectRespo.mailContent);
 
-			
 			// Create another object to add Attachment
-			MimeBodyPart messageBodyPart1 = new MimeBodyPart();
+			MimeBodyPart attachment1 = new MimeBodyPart();
 			DataSource source = new FileDataSource(ReportsGeneration.htmlReport);
-			messageBodyPart1.setDataHandler(new DataHandler(source));
-			messageBodyPart1.setFileName(ReportsGeneration.htmlReport);
-			
-			MimeBodyPart messageBodyPart2 = new MimeBodyPart();
+			attachment1.setDataHandler(new DataHandler(source));
+			attachment1.setFileName(new File(ReportsGeneration.htmlReport).getName());
+
+			MimeBodyPart attachment2 = new MimeBodyPart();
 			DataSource source1 = new FileDataSource(ReportsGeneration.excelReport);
-			messageBodyPart2.setDataHandler(new DataHandler(source1));
-			messageBodyPart2.setFileName(ReportsGeneration.excelReport);
-					
+			attachment2.setDataHandler(new DataHandler(source1));
+			attachment1.setFileName(new File(ReportsGeneration.excelReport).getName());
+
 			// Create object of MimeMultipart class
 			Multipart multipart = new MimeMultipart();
-			multipart.addBodyPart(messageBodyPart);
-			//multipart.addBodyPart(messageBodyPart1);
-			//multipart.addBodyPart(messageBodyPart2);
+			multipart.addBodyPart(messagecontent);
+			multipart.addBodyPart(attachment1);
+			multipart.addBodyPart(attachment2);
 
 			// set the content
 			message.setContent(multipart);

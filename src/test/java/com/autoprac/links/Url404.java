@@ -13,8 +13,8 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import com.autoprac.base.Base;
 import com.autoprac.config.ObjectRespo;
-import com.autoprac.testscripts.Base;
 import com.autoprac.utilities.ExcelUtil;
 
 

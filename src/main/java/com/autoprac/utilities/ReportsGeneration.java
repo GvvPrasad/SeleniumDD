@@ -2,8 +2,8 @@ package com.autoprac.utilities;
 
 import org.automationtesting.excelreport.Xl;
 
+import com.autoprac.base.Base;
 import com.autoprac.config.ObjectRespo;
-import com.autoprac.testscripts.Base;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
@@ -16,7 +16,7 @@ public class ReportsGeneration extends Base{
 		extent = new ExtentReports();
 		htmlReporter = new ExtentHtmlReporter(ObjectRespo.htmlReport);
 		extent.attachReporter(htmlReporter);
-		//setup = extent.createTest("Test");	
+		//setup = extent.createTest("Testcase");	
 	}
 
 
