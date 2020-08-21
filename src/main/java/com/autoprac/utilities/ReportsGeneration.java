@@ -13,10 +13,8 @@ public class ReportsGeneration extends Base{
 
 	//HTML Reports
 	public static void htmlReports() {
-		extent = new ExtentReports();
-		htmlReporter = new ExtentHtmlReporter(ObjectRespo.htmlReport);
-		extent.attachReporter(htmlReporter);
-		//setup = extent.createTest("Testcase");	
+		extent = new ExtentReports(ObjectRespo.htmlReport,true);
+			
 	}
 
 

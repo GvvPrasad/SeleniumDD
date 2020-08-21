@@ -35,7 +35,7 @@ public class ObjectRespo{
 	public static String projectPath = System.getProperty("user.dir");
 	public static String timeStamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date());
 	public static String methodName;
-	
+
 	//Application Variables
 	protected static String browser;
 	protected static String url;
@@ -59,24 +59,22 @@ public class ObjectRespo{
 	protected static FileInputStream dataFile;
 	protected static FileOutputStream fileOut;
 
-	//Reports File
-	protected static ExtentHtmlReporter htmlReporter;
-	protected static ExtentReports extent;
-	protected static ExtentTest setup;
+	//Reports Class Variables
+	public static ExtentReports extent;
+	public static ExtentTest test;
+	protected static String reportsPath = projectPath+"//Reports//"; 
+	protected static String htmlReport = reportsPath+timeStamp+".html";
+	protected static String excelReport = timeStamp+".xlsx";
 
 	//Test Data Files
 	protected static String testData = projectPath+"//src//test//resources//TestData.xlsx";
 
 	//API Test Variables
 	protected static String apiFilePath = projectPath+"//src//test//resources//TestApis.xlsx";
-	
+
 	//Test Links
 	protected static String testLinks = projectPath+"//src//test//resources//TestLinks.xlsx";
 
-	//Reports Variables
-	protected static String reportsPath = projectPath+"//Reports//"; 
-	protected static String htmlReport = reportsPath+timeStamp+".html";
-	protected static String excelReport = timeStamp+".xlsx";
 
 	//Properties file
 	protected static String emailProperties = projectPath+"//src//main//resources//App.properties";
