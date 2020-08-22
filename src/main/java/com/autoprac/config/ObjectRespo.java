@@ -11,7 +11,6 @@ import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
@@ -19,8 +18,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import com.autoprac.base.Base;
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class ObjectRespo{
 
@@ -40,18 +38,21 @@ public class ObjectRespo{
 	protected static String browser;
 	protected static String url;
 
-	//Base Class
+	//Base Class Variables
 	protected static final Logger log = (Logger) LogManager.getLogger(Base.class); 
 	protected static ChromeOptions options = new ChromeOptions();
 	protected static FirefoxProfile profile = new FirefoxProfile();
 	protected static FirefoxOptions foptions = new FirefoxOptions();
 	protected static String downloadFilepath = projectPath+"//DownloadFiles";
 
-	//Common Methods
-	protected static String screenShotName = projectPath+"//ScreenShots//"+methodName+"_"+timeStamp+".png";
-	protected static JavascriptExecutor jse = (JavascriptExecutor) driver;
+	//Properties file variables
+	protected static String emailProperties = projectPath+"//src//main//resources//App.properties";
+	protected static String emailList = projectPath+"//src//test//resources//TestEmailList.xlsx";
 
-	//Excel Utilizes Files
+	//Common Methods variables
+	protected static String screenShotName = projectPath+"//ScreenShots//"+methodName+"_"+timeStamp+".png";
+
+	//Excel Utilizes Files variables
 	protected static XSSFWorkbook wbFile;
 	protected static XSSFSheet shFile;
 	protected static XSSFRow row;
@@ -60,25 +61,11 @@ public class ObjectRespo{
 	protected static FileOutputStream fileOut;
 
 	//Reports Class Variables
-	public static ExtentReports extent;
-	public static ExtentTest test;
+	protected static ExtentSparkReporter report;
+	protected static ExtentReports extent;
 	protected static String reportsPath = projectPath+"//Reports//"; 
 	protected static String htmlReport = reportsPath+timeStamp+".html";
 	protected static String excelReport = timeStamp+".xlsx";
-
-	//Test Data Files
-	protected static String testData = projectPath+"//src//test//resources//TestData.xlsx";
-
-	//API Test Variables
-	protected static String apiFilePath = projectPath+"//src//test//resources//TestApis.xlsx";
-
-	//Test Links
-	protected static String testLinks = projectPath+"//src//test//resources//TestLinks.xlsx";
-
-
-	//Properties file
-	protected static String emailProperties = projectPath+"//src//main//resources//App.properties";
-	protected static String emailList = projectPath+"//src//test//resources//TestEmailList.xlsx";
 
 	//Email Variables
 	protected static String senderMail;
@@ -86,4 +73,9 @@ public class ObjectRespo{
 	protected static String receiverMail;
 	protected static String mailSubject;
 	protected static String mailContent;
+
+	//Test Data Files
+	protected static String testData = projectPath+"//src//test//resources//TestData.xlsx";
+	protected static String apiFilePath = projectPath+"//src//test//resources//TestApis.xlsx";
+	protected static String testLinks = projectPath+"//src//test//resources//TestLinks.xlsx";
 }

@@ -5,7 +5,7 @@ import org.automationtesting.excelreport.Xl;
 import com.autoprac.base.Base;
 import com.autoprac.config.ObjectRespo;
 import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 
 public class ReportsGeneration extends Base{
@@ -13,8 +13,10 @@ public class ReportsGeneration extends Base{
 
 	//HTML Reports
 	public static void htmlReports() {
-		extent = new ExtentReports(ObjectRespo.htmlReport,true);
-			
+		report = new ExtentSparkReporter(ObjectRespo.htmlReport);
+		extent = new ExtentReports();
+		extent.attachReporter(report);
+
 	}
 
 
