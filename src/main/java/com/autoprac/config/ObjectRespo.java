@@ -76,6 +76,5 @@ public class ObjectRespo{
 
 	//Test Data Files
 	protected static String testData = projectPath+"//src//test//resources//TestData.xlsx";
-	protected static String apiFilePath = projectPath+"//src//test//resources//TestApis.xlsx";
 	protected static String testLinks = projectPath+"//src//test//resources//TestLinks.xlsx";
 }

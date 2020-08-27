@@ -20,7 +20,6 @@ It also consists of Rest-Assured methods for testing Rest API's
     │	├── App.properties
     │	└── log4j2.xml  	
     ├── src/test/java    
-    │	├── Apis
     │	├── Links
     │	├── Locators
     │	└── TestScripts
@@ -46,7 +45,6 @@ It also consists of Rest-Assured methods for testing Rest API's
 |Config		  |	It consists of ObjectRepository, here we define all the variable and properties file to access ".properties" file		           |
 |Listeners	  |	It consists of TestNG Listeners and RetryAnalyzer		                                                                           |
 |Utilities	  |	It consists of Utilities of Excel files, Reports and Email 		                                                                   |
-|Apis		  |	It consists of API test case of POST, GET, PUT and DELETE                                                        		           |
 |Links		  |	It consists of class file for checking the all the links and for 404Errors and other domain		                                   |
 |Locators     |	It consists of locators for each web page in separate class file 		                                                           |
 |TestScripts  |	It consists of test scripts files as class files                		                                                           |
