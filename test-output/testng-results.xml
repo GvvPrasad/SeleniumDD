@@ -2,20 +2,20 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="5502" started-at="2020-08-22T15:13:02 IST" finished-at="2020-08-22T15:13:08 IST">
+  <suite name="Default suite" duration-ms="76" started-at="2020-08-29T15:00:23 IST" finished-at="2020-08-29T15:00:23 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="5502" started-at="2020-08-22T15:13:02 IST" finished-at="2020-08-22T15:13:08 IST">
+    <test name="Default test" duration-ms="76" started-at="2020-08-29T15:00:23 IST" finished-at="2020-08-29T15:00:23 IST">
       <class name="com.autoprac.testscripts.Partice">
-        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:com.autoprac.testscripts.Partice@5a45133e]" name="browserSetUp" is-config="true" duration-ms="10727" started-at="2020-08-22T15:12:52 IST" finished-at="2020-08-22T15:13:02 IST">
+        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:com.autoprac.testscripts.Partice@5ba3f27a]" name="browserSetUp" is-config="true" duration-ms="18388" started-at="2020-08-29T15:00:05 IST" finished-at="2020-08-29T15:00:23 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- browserSetUp -->
-        <test-method status="PASS" signature="tab()[pri:0, instance:com.autoprac.testscripts.Partice@5a45133e]" name="tab" duration-ms="5456" started-at="2020-08-22T15:13:02 IST" finished-at="2020-08-22T15:13:08 IST">
+        <test-method status="PASS" signature="tab()[pri:0, instance:com.autoprac.testscripts.Partice@5ba3f27a]" name="tab" duration-ms="9" started-at="2020-08-29T15:00:23 IST" finished-at="2020-08-29T15:00:23 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tab -->
-        <test-method status="FAIL" signature="tearDown()[pri:0, instance:com.autoprac.testscripts.Partice@5a45133e]" name="tearDown" is-config="true" duration-ms="2224" started-at="2020-08-22T15:13:08 IST" finished-at="2020-08-22T15:13:10 IST">
+        <test-method status="FAIL" signature="tearDown()[pri:0, instance:com.autoprac.testscripts.Partice@5ba3f27a]" name="tearDown" is-config="true" duration-ms="8226" started-at="2020-08-29T15:00:24 IST" finished-at="2020-08-29T15:00:32 IST">
           <exception class="java.lang.NoSuchMethodError">
             <message>
               <![CDATA[org.apache.xmlbeans.XmlOptions.setEntityExpansionLimit(I)Lorg/apache/xmlbeans/XmlOptions;]]>

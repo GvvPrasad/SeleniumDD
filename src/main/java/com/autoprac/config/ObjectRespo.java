@@ -31,7 +31,7 @@ public class ObjectRespo{
 	//Global Variables
 	public static WebDriver driver;
 	public static String projectPath = System.getProperty("user.dir");
-	public static String timeStamp = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss").format(new Date());
+	public static String timeStamp = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date());
 	public static String methodName;
 
 	//Application Variables

@@ -1,6 +1,7 @@
+# Selenium DD Framework
+
 #### Description
-It is a Selenium Java DataDriven Framework made with Maven & TestNG for Web Applications in GUI & Non-GUI Mode.<br>
-It also consists of Rest-Assured methods for testing Rest API's
+A framework that is made with Selenium and TestNG with Java Programming language which can be used to create web-based automation scripts.<br>
 
 #### Project Structure
 ```
@@ -34,9 +35,6 @@ It also consists of Rest-Assured methods for testing Rest API's
     └── testNG.xml
 ```
 
-#### Data File Design
-![Data File Design](https://github.com/GvvPrasad/javaSeleniumFramework/blob/master/Files/DataFileTemplate.PNG)
-
 #### Package's Details
 |Package Names|Description           							                                                                                   |
 |:------------|:-----------------------------------------------------------------------------------------------------------------------------------|
@@ -48,6 +46,11 @@ It also consists of Rest-Assured methods for testing Rest API's
 |Links		  |	It consists of class file for checking the all the links and for 404Errors and other domain		                                   |
 |Locators     |	It consists of locators for each web page in separate class file 		                                                           |
 |TestScripts  |	It consists of test scripts files as class files                		                                                           |
+
+
+#### Data File Design
+![Data File Design](https://github.com/GvvPrasad/javaSeleniumFramework/blob/master/Files/TestDataTemplate.PNG)
+
 
 #### WorkFlow
  
@@ -64,3 +67,5 @@ Configure build path to generate Excel Reports Using "ATExcelReport". The "ATExc
 #### Pending/Issues
 * Methods related to Dates
 * Writing into excel dynamically
+* Project Folder Structure Image 
+* Work Flow in Read Me doc

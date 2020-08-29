@@ -129,7 +129,7 @@ public class ExcelUtil extends Base{
 
 		for(int i=1; i<rowCount; i++)
 		{
-			for(int j=0; j<colCount; j++)
+			for(int j=2; j<colCount; j++)
 			{
 				//Check cell is empty or not
 				if (data[i-1][j] == null) {
