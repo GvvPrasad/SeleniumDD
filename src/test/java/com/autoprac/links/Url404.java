@@ -1,7 +1,7 @@
-package com.autoprac.links;
-
 //Links whose Response code >=400 are consider as Broken links
 //If anchor tag is empty, it displays as null   
+package com.autoprac.links;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
@@ -17,9 +17,7 @@ import com.autoprac.base.Base;
 import com.autoprac.config.ObjectRespo;
 import com.autoprac.utilities.ExcelUtil;
 
-
 public class Url404 extends Base{
-
 
 	@Test(dataProvider = "linksData")
 	public static void get404Links(String pageUrl) {
@@ -63,7 +61,6 @@ public class Url404 extends Base{
 			}         
 		}
 	}
-
 
 	@DataProvider
 	public Object[][] linksData() throws IOException{

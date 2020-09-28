@@ -7,6 +7,7 @@ import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -28,11 +29,9 @@ public class ObjectRespo{
 	}
 
 	//Project default Variable and Methods
-	//Global Variables
 	public static WebDriver driver;
 	public static String projectPath = System.getProperty("user.dir");
 	public static String timeStamp = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date());
-	public static String methodName;
 
 	//Application Variables
 	protected static String browser;
@@ -50,11 +49,11 @@ public class ObjectRespo{
 	protected static String emailList = projectPath+"//src//test//resources//TestEmailList.xlsx";
 
 	//Common Methods variables
-	protected static String screenShotName = projectPath+"//ScreenShots//"+methodName+"_"+timeStamp+".png";
+	protected static String screenShotName = projectPath+"//ScreenShots//"+timeStamp+".png";
 
 	//Excel Utilizes Files variables
-	protected static XSSFWorkbook wbFile;
-	protected static XSSFSheet shFile;
+	protected static XSSFWorkbook wb;
+	protected static XSSFSheet sh;
 	protected static XSSFRow row;
 	protected static XSSFCell cell;
 	protected static FileInputStream dataFile;
@@ -77,4 +76,5 @@ public class ObjectRespo{
 	//Test Data Files
 	protected static String testData = projectPath+"//src//test//resources//TestData.xlsx";
 	protected static String testLinks = projectPath+"//src//test//resources//TestLinks.xlsx";
+	protected static String sample = projectPath+"//src//test//resources//TestLinksCopy.xlsx";
 }

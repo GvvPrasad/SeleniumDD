@@ -65,7 +65,8 @@ git clone https://github.com/GvvPrasad/frameworkStructure.git
 Configure build path to generate Excel Reports Using "ATExcelReport". The "ATExcelReport" Jar files are located in the "JarFiles" Folder 
          
 #### Pending/Issues
-* Methods related to Dates
+* Methods to Dates
+* Create Excel file, sheet, row, column  
 * Writing into excel dynamically
 * Project Folder Structure Image 
 * Work Flow in Read Me doc

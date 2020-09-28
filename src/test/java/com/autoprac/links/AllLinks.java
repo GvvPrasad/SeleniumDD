@@ -13,9 +13,7 @@ import com.autoprac.base.Base;
 import com.autoprac.config.ObjectRespo;
 import com.autoprac.utilities.ExcelUtil;
 
-
 public class AllLinks extends Base{
-
 	
 	@Test(dataProvider = "linksData")
 	public static void getAllLinks(String pageUrl) {
@@ -33,7 +31,6 @@ public class AllLinks extends Base{
 			System.out.println(url);
 		}
 	}
-
 	
 	@DataProvider
 	public Object[][] linksData() throws IOException{

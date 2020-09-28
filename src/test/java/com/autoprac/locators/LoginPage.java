@@ -14,7 +14,6 @@ public class LoginPage extends Base{
 		PageFactory.initElements(driver, this);
 	}
 
-
 	@FindBy(id = "txtUsername")
 	WebElement name;
 

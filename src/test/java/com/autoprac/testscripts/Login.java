@@ -14,7 +14,6 @@ import com.autoprac.utilities.ExcelUtil;
 
 @Listeners(com.autoprac.listeners.TestNGListener.class)
 public class Login extends Base{
-
 	
 	@Test(dataProvider = "loginTestData")
 	public static void signIn(String no, String useremail, String pwd) throws IOException, InterruptedException {
@@ -40,7 +39,6 @@ public class Login extends Base{
 		ExcelUtil.writeIntoExcel(ObjectRespo.testData, loginmessage);
 		log.info("after writing into ecel");
 	}
-
 
 	@DataProvider
 	public Object[][] loginTestData() throws IOException{

@@ -29,9 +29,7 @@ import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
-
 public class CommomMethods extends Base{
-
 
 	//Implicit Wait
 	public static void waitTime() throws InterruptedException {
@@ -57,7 +55,6 @@ public class CommomMethods extends Base{
 		});
 	}
 
-
 	//Element Screenshot
 	public static void elementScreenshot(WebElement element) throws IOException {
 		Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver, element); 
@@ -75,7 +72,6 @@ public class CommomMethods extends Base{
 		Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver); 
 		ImageIO.write(screenshot.getImage(),"PNG",new File(ObjectRespo.screenShotName));
 	}
-
 
 	//Scroll to Element
 	public static void scrollToElement(WebElement element) throws Exception{ 
@@ -101,7 +97,6 @@ public class CommomMethods extends Base{
 		jse.executeScript("window.scrollTo(0, 0)");
 	}
 
-
 	//Mouse hover
 	public static void mouseHover(WebElement element) {
 		Actions act = new Actions(driver);
@@ -114,11 +109,9 @@ public class CommomMethods extends Base{
 		act.dragAndDrop(source, target).build().perform();
 	}
 
-
 	//Web Tables get All Data values
 	public static String webTableAllValues(WebElement element) {
 		String celltext = null;
-
 		List<WebElement> rows = element.findElements(By.tagName("tr"));
 		int rowCount=rows.size();
 
@@ -136,15 +129,14 @@ public class CommomMethods extends Base{
 	public static String webTableRowValues(WebElement element, int i) {
 		String celltext = null;
 		List<WebElement> rows = element.findElements(By.tagName("tr"));
-
 		List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
 		int columnCount = columns.size();
 		for (int j = 0; j <columnCount; j++) {
 			celltext = columns.get(j).getText()+" ";
 		}
 		return celltext;
-
 	}
+
 	//Web Table - get all values in a column
 	public static String webTablesColValues(WebElement element, int j) {
 		String celltext = null;
@@ -156,23 +148,19 @@ public class CommomMethods extends Base{
 		}
 		return celltext;
 	}
-	
+
 	//Web Table - get specific value
 	public static String webTableSpecificValue(WebElement element, int i, int j) {
 		String celltext = null;
-
 		List<WebElement> rows = element.findElements(By.tagName("tr"));
 		List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
 		celltext = columns.get(j).getText()+" ";
 		return celltext;
 	}
 
-
 	//Browser Alerts
 	public static String browserAlert(String alertType, String textToSend) {
-
 		String alertMethod = alertType.toLowerCase();
-
 		switch (alertMethod) {
 		case "dismiss":
 			driver.switchTo().alert().dismiss();
@@ -190,12 +178,9 @@ public class CommomMethods extends Base{
 		return alertMethod;
 	}
 
-
 	//Browser Actions
 	public static void browserActions(String action) {
-
 		String requiredAction = action.toLowerCase();
-
 		switch (requiredAction) {
 		case "forward":
 			driver.navigate().forward();
@@ -208,7 +193,6 @@ public class CommomMethods extends Base{
 			break;
 		}
 	}
-
 
 	//Windows Handlers
 	public static String getWindowHandles() {
@@ -225,12 +209,10 @@ public class CommomMethods extends Base{
 		driver.switchTo().window(windowname);
 	}
 
-
 	//Model popup
 	public static void modelPopUp() {
 		driver.switchTo().activeElement();
 	}
-
 
 	//Compare two string values
 	public static boolean compareValues(String actualValue, String expectedValue) {
@@ -241,13 +223,11 @@ public class CommomMethods extends Base{
 		}
 	}
 
-
 	//Convert String to Int
 	public static int stringToInt(String stringValue) {
 		int intValue = Integer.parseInt(stringValue);
 		return intValue;
 	}
-
 
 	//Convert Int to String
 	public static String intToString(int intValue) {

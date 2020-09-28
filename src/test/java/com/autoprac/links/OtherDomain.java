@@ -1,5 +1,4 @@
 // Display Other Domain Url's compare to BaseUrl
-
 package com.autoprac.links;
 
 import java.io.IOException;
@@ -14,9 +13,7 @@ import com.autoprac.base.Base;
 import com.autoprac.config.ObjectRespo;
 import com.autoprac.utilities.ExcelUtil;
 
-
 public class OtherDomain extends Base{
-
 	
 	@Test(dataProvider = "linksData")
 	public static void getOtherDomainLinks(String BaseUrl, String pageUrl) {
@@ -43,7 +40,6 @@ public class OtherDomain extends Base{
 			}
 		}
 	}
-
 
 	@DataProvider
 	public Object[][] linksData() throws IOException{

@@ -22,7 +22,6 @@ import org.testng.annotations.Test;
 import com.autoprac.config.ObjectRespo;
 import com.autoprac.config.PropertiesFile;
 
-
 public class Email extends ObjectRespo{	
 
 	@Test

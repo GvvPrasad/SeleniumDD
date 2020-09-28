@@ -17,7 +17,6 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Base extends ObjectRespo{	
 	
-	
 	//Browser Setup
 	@BeforeSuite
 	public static void browserSetUp() {
@@ -82,16 +81,15 @@ public class Base extends ObjectRespo{
 			break;
 		}
 		
-		
 		//For generating HTML Reports
 		ReportsGeneration.htmlReports();
-
+		
+		//Opening of Browser
 		driver.get(ObjectRespo.url);
 		log.info("Page Opened");
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 	}
-
 
 	//Close Driver & Browser
 	@AfterSuite

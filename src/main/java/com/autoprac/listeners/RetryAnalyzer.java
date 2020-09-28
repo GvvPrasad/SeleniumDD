@@ -3,7 +3,6 @@ package com.autoprac.listeners;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
-
 public class RetryAnalyzer implements IRetryAnalyzer{
 
 	private int count = 0;
