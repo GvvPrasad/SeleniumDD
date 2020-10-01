@@ -1,15 +1,19 @@
-package com.autoprac.utilities;
+package com.autom.utilities;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFDateUtil;
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import com.autoprac.base.Base;
-import com.autoprac.config.ObjectRespo;
+import com.autom.base.Base;
 
 public class ExcelUtil extends Base{
 
@@ -60,50 +64,44 @@ public class ExcelUtil extends Base{
 
 	//Get Specific cell value RAW
 	public static Object getRawValue(int rowNum, int colNum) {
-		Object cellData = sh.getRow(rowNum).getCell(colNum).getRawValue();
-		return cellData;
+		String cellValue = sh.getRow(rowNum).getCell(colNum).getRawValue();
+		return cellValue;
 	}
 
 	//Get String Value
 	public static String getStringValue(int rowNum, int colNum) {
-		String cellData = null;
-		try {
-			cellData = sh.getRow(rowNum).getCell(colNum).getStringCellValue();
-		}catch(Exception e) {
-			System.out.println("Data not found");
-			e.printStackTrace();
-		}
-		return cellData;
+		String cellValue = sh.getRow(rowNum).getCell(colNum).getStringCellValue();
+		return cellValue;
 	}
 
 	//Get Numeric Value
 	public static double getNumericValue(int rowNum, int colNum) {
-		double cellData = 0;
-		try {
-			cellData = sh.getRow(rowNum).getCell(colNum).getNumericCellValue();
-		}catch(Exception e) {
-			System.out.println("Data not found");
-			e.printStackTrace();
-		}
-		return cellData;
+		double cellValue = sh.getRow(rowNum).getCell(colNum).getNumericCellValue();;
+		return cellValue;
 	}
 
 	//Get Date Value
-	public static void getDateValue() {}
+	public static void getDateValue(int rowNum, int colNum) {
+		XSSFCell cell = sh.getRow(rowNum).getCell(colNum);
+		
+	}
+	
+	//Get Time Value
+	public static void getTimeValue() {}
 
 	//Change cell values to String
 	public static String setCellDataToString(int rowNum, int colNum) {
 		XSSFCell cell = null;
-		String cellData = null;
+		String cellValue = null;
 		try {
 			cell = sh.getRow(rowNum).getCell(colNum);
 			cell.setCellType(CellType.STRING);
-			cellData = cell.getStringCellValue();
+			cellValue = cell.getStringCellValue().trim();
 		}catch(Exception e) {
 			System.out.println("Data not found");
 			e.printStackTrace();
 		}
-		return cellData;
+		return cellValue;
 	}
 
 	//DataProvider from Excel
@@ -122,9 +120,9 @@ public class ExcelUtil extends Base{
 
 				//Check if cell has DATE vale or not
 				
-
+				
 				//change values to string
-				data[i-1][j] = ExcelUtil.setCellDataToString(i, j);
+				data[i-1][j] = ExcelUtil.setCellDataToString(i, j).trim();
 			}
 		}
 		return data;

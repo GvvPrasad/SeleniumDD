@@ -1,4 +1,4 @@
-package com.autoprac.config;
+package com.autom.init;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -6,7 +6,7 @@ import java.util.Properties;
 
 import org.testng.annotations.Test;
 
-import com.autoprac.config.ObjectRespo;
+import com.autom.init.ObjectRespo;
 
 public class PropertiesFile{
 

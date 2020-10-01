@@ -1,4 +1,4 @@
-package com.autoprac.utilities;
+package com.autom.init;
 
 import java.io.File;
 import java.util.Properties;
@@ -18,9 +18,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import org.testng.annotations.Test;
-
-import com.autoprac.config.ObjectRespo;
-import com.autoprac.config.PropertiesFile;
 
 public class Email extends ObjectRespo{	
 

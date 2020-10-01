@@ -1,4 +1,4 @@
-package com.autoprac.listeners;
+package com.autom.listeners;
 
 import java.io.IOException;
 
@@ -7,8 +7,6 @@ import org.testng.ISuiteListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
-import com.autoprac.common.CommomMethods;
 
 public class TestNGListener implements ITestListener, ISuiteListener{
 
@@ -19,7 +17,8 @@ public class TestNGListener implements ITestListener, ISuiteListener{
 	public void onTestFailure(ITestResult result) {
 		System.out.println("Faild Test: " + result.getName());
 		try {
-			CommomMethods.visiablePageScreenShot();
+			
+			com.autom.utilities.CommomMethods.visiablePageScreenShot();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -28,7 +27,7 @@ public class TestNGListener implements ITestListener, ISuiteListener{
 	public void onTestSkipped(ITestResult result) {
 		System.out.println("Skipped Test: " + result.getName());
 		try {
-			CommomMethods.visiablePageScreenShot();
+			com.autom.utilities.CommomMethods.visiablePageScreenShot();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -37,7 +36,7 @@ public class TestNGListener implements ITestListener, ISuiteListener{
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 		System.out.println("FailedButWithinSuccessPercentage Test: " + result.getName());
 		try {
-			CommomMethods.visiablePageScreenShot();
+			com.autom.utilities.CommomMethods.visiablePageScreenShot();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

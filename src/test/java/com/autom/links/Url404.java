@@ -1,6 +1,6 @@
 //Links whose Response code >=400 are consider as Broken links
 //If anchor tag is empty, it displays as null   
-package com.autoprac.links;
+package com.autom.links;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -13,9 +13,9 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.autoprac.base.Base;
-import com.autoprac.config.ObjectRespo;
-import com.autoprac.utilities.ExcelUtil;
+import com.autom.base.Base;
+import com.autom.init.ObjectRespo;
+import com.autom.utilities.ExcelUtil;
 
 public class Url404 extends Base{
 

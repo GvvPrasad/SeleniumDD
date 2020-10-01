@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Sat Sep 12 21:50:17 IST 2020</td>
+<td>Started on:</td><td>Wed Sep 30 16:52:52 IST 2020</td>
 </tr>
-<tr><td>Total time:</td><td>0 seconds (69 ms)</td>
+<tr><td>Total time:</td><td>1 seconds (1127 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -76,9 +76,12 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='com.autoprac.testscripts.Partice.tab()'><b>tab</b><br>Test class: com.autoprac.testscripts.Partice</td>
-<td><div><pre>java.lang.AssertionError: methos fail
-	at org.testng.Assert.fail(Assert.java:97)
-	at com.autoprac.testscripts.Partice.tab(Partice.java:14)
+<td><div><pre>java.lang.IllegalStateException: Cannot get a NUMERIC value from a STRING cell
+	at org.apache.poi.xssf.usermodel.XSSFCell.typeMismatch(XSSFCell.java:1050)
+	at org.apache.poi.xssf.usermodel.XSSFCell.getNumericCellValue(XSSFCell.java:316)
+	at org.apache.poi.ss.usermodel.DateUtil.isCellDateFormatted(DateUtil.java:496)
+	at com.autoprac.utilities.ExcelUtil.getDateValue(ExcelUtil.java:85)
+	at com.autoprac.testscripts.Partice.tab(Partice.java:15)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -107,10 +110,13 @@ function toggleAllBoxes() {
 	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
-</pre></div><a href='#' onClick='toggleBox("stack-trace2049348234", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace2049348234'><pre>java.lang.AssertionError: methos fail
-	at org.testng.Assert.fail(Assert.java:97)
-	at com.autoprac.testscripts.Partice.tab(Partice.java:14)
+</pre></div><a href='#' onClick='toggleBox("stack-trace827248723", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace827248723'><pre>java.lang.IllegalStateException: Cannot get a NUMERIC value from a STRING cell
+	at org.apache.poi.xssf.usermodel.XSSFCell.typeMismatch(XSSFCell.java:1050)
+	at org.apache.poi.xssf.usermodel.XSSFCell.getNumericCellValue(XSSFCell.java:316)
+	at org.apache.poi.ss.usermodel.DateUtil.isCellDateFormatted(DateUtil.java:496)
+	at com.autoprac.utilities.ExcelUtil.getDateValue(ExcelUtil.java:85)
+	at com.autoprac.testscripts.Partice.tab(Partice.java:15)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -140,8 +146,8 @@ function toggleAllBoxes() {
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 </pre></div></td>
-<td>0</td>
-<td>com.autoprac.testscripts.Partice@5ba3f27a</td></tr>
+<td>1</td>
+<td>com.autoprac.testscripts.Partice@7bd4937b</td></tr>
 </table><p>
 </body>
 </html>

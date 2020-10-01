@@ -1,4 +1,4 @@
-package com.autoprac.base;
+package com.autom.base;
 
 import java.util.HashMap;
 
@@ -9,9 +9,9 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
-import com.autoprac.config.ObjectRespo;
-import com.autoprac.config.PropertiesFile;
-import com.autoprac.utilities.ReportsGeneration;
+import com.autom.init.ObjectRespo;
+import com.autom.init.PropertiesFile;
+import com.autom.init.ReportsGeneration;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -40,11 +40,7 @@ public class Base extends ObjectRespo{
 			options.addArguments("start-maximized");
 			options.addArguments("--test-type");
 			options.addArguments("--disable-extensions"); //to disable browser extension popup
-			
-			//Headless Setup
-			//options.setHeadless(true);
-			//options.addArguments("--headless");
-			
+
 			break;
 			
 		case "firefox":
@@ -59,10 +55,6 @@ public class Base extends ObjectRespo{
 			profile.setPreference("browser.download.manager.showwhenStarting", false);
 
 			foptions.setProfile(profile);
-			
-			//Headless setup
-			//FirefoxOptions foptions = new FirefoxOptions();
-			//foptions.setHeadless(true);
 			
 			break;
 			
@@ -86,7 +78,6 @@ public class Base extends ObjectRespo{
 		
 		//Opening of Browser
 		driver.get(ObjectRespo.url);
-		log.info("Page Opened");
 		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
 	}

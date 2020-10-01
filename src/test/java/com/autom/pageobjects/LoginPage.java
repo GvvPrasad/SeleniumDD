@@ -1,11 +1,11 @@
-package com.autoprac.locators;
+package com.autom.pageobjects;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import com.autoprac.base.Base;
+import com.autom.base.Base;
 
 public class LoginPage extends Base{
 
@@ -26,20 +26,15 @@ public class LoginPage extends Base{
 	@FindBy(className = "logout")
 	WebElement logout;
 
-	public void setEmail(String useremail) {
+	//Login
+	public void login(String useremail, String pwd) {
 		name.sendKeys(useremail);
-	}
-	
-	public void setPassword(String pwd) {
 		password.sendKeys(pwd);
-	}
-	
-	public void clickSubmit() {
 		submit.click();
 	}
 	
-	public void clickLogout() {
+	//Logout
+	public void logout() {
 		logout.click();
 	}
-
 }

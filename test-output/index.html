@@ -49,7 +49,7 @@
               <ul>
                 <li>
                   <a href="#" class="navigator-link " panel-name="test-xml-Default_suite">
-                    <span>C:\Users\gvv\AppData\Local\Temp\testng-eclipse-39535007\testng-customsuite.xml</span>
+                    <span>C:\Users\gvv\AppData\Local\Temp\testng-eclipse-145319653\testng-customsuite.xml</span>
                   </a> <!-- navigator-link  -->
                 </li>
                 <li>
@@ -128,9 +128,12 @@
                   <a name="tab">
                   </a> <!-- tab -->
                   <span class="method-name">tab</span>
-                  <div class="stack-trace">java.lang.AssertionError: methos fail
-	at org.testng.Assert.fail(Assert.java:97)
-	at com.autoprac.testscripts.Partice.tab(Partice.java:14)
+                  <div class="stack-trace">java.lang.IllegalStateException: Cannot get a NUMERIC value from a STRING cell
+	at org.apache.poi.xssf.usermodel.XSSFCell.typeMismatch(XSSFCell.java:1050)
+	at org.apache.poi.xssf.usermodel.XSSFCell.getNumericCellValue(XSSFCell.java:316)
+	at org.apache.poi.ss.usermodel.DateUtil.isCellDateFormatted(DateUtil.java:496)
+	at com.autoprac.utilities.ExcelUtil.getDateValue(ExcelUtil.java:85)
+	at com.autoprac.testscripts.Partice.tab(Partice.java:15)
 	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
@@ -168,7 +171,7 @@
         </div> <!-- panel Default_suite -->
         <div panel-name="test-xml-Default_suite" class="panel">
           <div class="main-panel-header rounded-window-top">
-            <span class="header-content">C:\Users\gvv\AppData\Local\Temp\testng-eclipse-39535007\testng-customsuite.xml</span>
+            <span class="header-content">C:\Users\gvv\AppData\Local\Temp\testng-eclipse-145319653\testng-customsuite.xml</span>
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <pre>
@@ -221,12 +224,12 @@ data.addRows(1);
 data.setCell(0, 0, 0)
 data.setCell(0, 1, 'tab')
 data.setCell(0, 2, 'com.autoprac.testscripts.Partice')
-data.setCell(0, 3, 9);
+data.setCell(0, 3, 1079);
 window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
 return data;
 }
               </script>
-              <span class="suite-total-time">Total running time: 9 ms</span>
+              <span class="suite-total-time">Total running time: 1 seconds</span>
               <div id="times-div-Default_suite">
               </div> <!-- times-div-Default_suite -->
             </div> <!-- times-div -->
@@ -261,13 +264,11 @@ return data;
                 <img src="failed.png">
                 </img>
                 <span class="method-name">tab</span>
-                <span class="method-start">12889 ms</span>
+                <span class="method-start">11388 ms</span>
               </div> <!-- test-method -->
               <div class="configuration-suite after">
-                <img src="failed.png">
-                </img>
                 <span class="method-name">tearDown</span>
-                <span class="method-start">12986 ms</span>
+                <span class="method-start">12526 ms</span>
               </div> <!-- configuration-suite after -->
           </div> <!-- main-panel-content rounded-window-bottom -->
         </div> <!-- panel -->
