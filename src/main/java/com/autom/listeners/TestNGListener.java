@@ -8,7 +8,7 @@ import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class TestNGListener implements ITestListener, ISuiteListener{
+public class TestNGListener implements ISuiteListener, ITestListener{
 
 	public void onTestStart(ITestResult result) {}
 

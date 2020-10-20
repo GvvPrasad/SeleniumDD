@@ -8,12 +8,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Listeners;
 
 import com.autom.init.ObjectRespo;
 import com.autom.init.PropertiesFile;
 import com.autom.init.ReportsGeneration;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+
 
 public class Base extends ObjectRespo{	
 	
@@ -40,6 +42,7 @@ public class Base extends ObjectRespo{
 			options.addArguments("start-maximized");
 			options.addArguments("--test-type");
 			options.addArguments("--disable-extensions"); //to disable browser extension popup
+			options.addArguments("--disable-notifications"); //to disable notifications
 
 			break;
 			

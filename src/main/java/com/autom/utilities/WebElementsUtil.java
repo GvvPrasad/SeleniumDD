@@ -1,31 +1,54 @@
 package com.autom.utilities;
 
+import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 import com.autom.base.Base;
 
 public class WebElementsUtil extends Base{
 
-	//Mouse hover
-	public static void mouseHover(WebElement element) {
-		Actions act = new Actions(driver);
-		act.moveToElement(element).build().perform();
+	//Objects & Variables
+	static String celltext = null;
+	static String elementValue = null;
+	static Actions act = new Actions(driver);
+
+	
+	//CheckBox or Radio Button
+	public static String checkBoxAndRadioButton(List<WebElement> elements) {
+		List<WebElement> elementsList = elements;
+
+		for (int i = 0; i < elementsList.size(); i++) {
+			elementValue = elementsList.get(i).getAttribute("value");
+		}
+		return elementValue;
 	}
 
-	//Drag and Drop
-	public static void dragAndDrop(WebElement source, WebElement target) {
-		Actions act = new Actions(driver);
-		act.dragAndDrop(source, target).build().perform();
+	//Dropdown
+	public static void dropDown(WebElement element) {
+		Select dropdown = new Select(element);
+	}
+
+	//Date
+	//Time
+
+	//Links
+	public static String AllLinks() {
+		List < WebElement > links = driver.findElements(By.tagName("a"));
+		Iterator < WebElement > it = links.iterator();
+
+		while (it.hasNext()) {
+			url = it.next().getAttribute("href");
+		}
+		return url;
 	}
 
 	//Web Tables get All Data values
 	public static String webTableAllValues(WebElement element) {
-		String celltext = null;
+
 		List<WebElement> rows = element.findElements(By.tagName("tr"));
 		int rowCount=rows.size();
 
@@ -41,7 +64,7 @@ public class WebElementsUtil extends Base{
 
 	//Web Table - get all values in a row
 	public static String webTableRowValues(WebElement element, int i) {
-		String celltext = null;
+
 		List<WebElement> rows = element.findElements(By.tagName("tr"));
 		List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
 		int columnCount = columns.size();
@@ -53,7 +76,7 @@ public class WebElementsUtil extends Base{
 
 	//Web Table - get all values in a column
 	public static String webTablesColValues(WebElement element, int j) {
-		String celltext = null;
+
 		List<WebElement> rows = element.findElements(By.tagName("tr"));
 		int rowCount=rows.size();
 		for (int i = 0; i<rowCount; i++) {
@@ -65,65 +88,44 @@ public class WebElementsUtil extends Base{
 
 	//Web Table - get specific value
 	public static String webTableSpecificValue(WebElement element, int i, int j) {
-		String celltext = null;
+
 		List<WebElement> rows = element.findElements(By.tagName("tr"));
 		List<WebElement> columns = rows.get(i).findElements(By.tagName("td"));
 		celltext = columns.get(j).getText()+" ";
 		return celltext;
 	}
 
-	//Browser Alerts
-	public static String browserAlert(String alertType) {
-		String alertMethod = alertType.toLowerCase();
-		switch (alertMethod) {
-		case "dismiss":
-			driver.switchTo().alert().dismiss();
-			break;
-		case "accept":
-			driver.switchTo().alert().accept();
-			break;
-		case "gettext":
-			String alertText = driver.switchTo().alert().getText();
-			return alertText;
+	//Iframes
+	public static String iFrames(List<WebElement> elements) {
+		List<WebElement> elementsList = elements;
+
+		for (int i = 0; i < elementsList.size(); i++) {
+			elementValue = elementsList.get(i).getAttribute("iframe");
 		}
-		return alertMethod;
+		return elementValue;
 	}
 
-	//Browser Actions
-	public static void browserActions(String action) {
-		String requiredAction = action.toLowerCase();
-		switch (requiredAction) {
-		case "forward":
-			driver.navigate().forward();
-			break;
-		case "backward":
-			driver.navigate().back();
-			break;
-		case "refresh":
-			driver.navigate().refresh();
-			break;
-		}
+	//File Upload
+	public static void fileUpload(WebElement element, String filepath) {
+		WebElement fileupload = element;
+		fileupload.sendKeys(filepath);
 	}
 
-	//Windows Handlers
-	public static String getWindowHandles() {
-		String handles = null;
-		Set<String> allWindowHandles = driver.getWindowHandles();
-		for(String handle : allWindowHandles) {
-			handles = handle;
-		}
-		return handles;
+	//File Download
+
+	//Range Slider
+	public static void slider(WebElement element, int x, int y) {
+		act.dragAndDropBy(element, x, y).build().perform();	
 	}
 
-	//switch to Specific windows
-	public static void switchWindows(String windowname) {
-		driver.switchTo().window(windowname);
+	//Drag and Drop
+	public static void dragAndDrop(WebElement source, WebElement target) {
+		act.dragAndDrop(source, target).build().perform();
 	}
 
-	//Model popup
-	public static void modelPopUp() {
-		driver.switchTo().activeElement();
+	//Mouse hover
+	public static void mouseHover(WebElement element) {
+		act.moveToElement(element).build().perform();
 	}
-
 
 }

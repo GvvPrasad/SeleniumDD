@@ -3,7 +3,7 @@
 <suite name="Suite">
 
 	<listeners>
-		<listener class-name="AnnotationTransformer"></listener>
+		<listener class-name="com.autom.listeners.TestNGListener"></listener>
 	</listeners>
 
 	<test thread-count="5" name="Test">
