@@ -21,20 +21,13 @@ public class LoginPage extends Base{
 	WebElement password;
 
 	@FindBy(id = "btnLogin")
-	WebElement submit;
-
-	@FindBy(className = "logout")
-	WebElement logout;
+	WebElement login;
 
 	//Login
 	public void login(String useremail, String pwd) {
 		name.sendKeys(useremail);
 		password.sendKeys(pwd);
-		submit.click();
+		login.click();
 	}
-	
-	//Logout
-	public void logout() {
-		logout.click();
-	}
+
 }

@@ -2,9 +2,6 @@ package com.autom.utilities;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Calendar;
-
-import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -76,32 +73,6 @@ public class ExcelUtil extends Base{
 		return cellValue;
 	}
 
-	//Get Date Value
-	public static String getDateValue(int rowNum, int colNum) {
-		String cellText = String.valueOf(cell.getNumericCellValue());
-		if ((cell.getCellType().name().equals("NUMERIC")) || (cell.getCellType().name().equals("FORMULA"))) {
-			if (HSSFDateUtil.isCellDateFormatted(cell)) {
-				// format in form of M/D/YY
-				double d = cell.getNumericCellValue();
-
-				Calendar cal = Calendar.getInstance();
-				cal.setTime(HSSFDateUtil.getJavaDate(d));
-				cellText = (String.valueOf(cal.get(Calendar.YEAR))).substring(2);
-				cellText = cal.get(Calendar.MONTH) + 1 + "/" + cal.get(Calendar.DAY_OF_MONTH) + "/" + cellText;
-
-				System.out.println(cellText);
-
-			}
-
-			return cellText;
-		}
-		return cellText;
-		
-	}
-	
-	//Get Time Value
-	public static void getTimeValue() {}
-
 	//Change cell values to String
 	public static String setCellDataToString(int rowNum, int colNum) {
 		XSSFCell cell = null;
@@ -124,7 +95,7 @@ public class ExcelUtil extends Base{
 		Object[][] data = new Object[rowCount-1][colCount];
 		for(int i=1; i<rowCount; i++)
 		{
-			for(int j=2; j<colCount; j++)
+			for(int j=0; j<colCount; j++)
 			{
 				//Check cell is empty or not
 				if (data[i-1][j] == null) {
@@ -135,17 +106,9 @@ public class ExcelUtil extends Base{
 				
 				
 				//change values to string
-				data[i-1][j] = ExcelUtil.setCellDataToString(i, j).trim();
+				data[i-1][j] = ExcelUtil.setCellDataToString(i, j);
 			}
 		}
 		return data;
 	}
-
-	//Create Excel File
-	public static void createExcelFile() throws IOException{}
-
-	//Create Sheet
-	//Create Row
-	//Create Column
-	//Write into Excel
 }

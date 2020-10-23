@@ -3,8 +3,6 @@ package com.autom.utilities;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
@@ -29,8 +27,8 @@ import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 public class CommomMethods extends Base{
 
 	//Implicit Wait
-	public static void waitTime(long TimeOut) throws InterruptedException {
-		driver.manage().timeouts().implicitlyWait(TimeOut, TimeUnit.SECONDS);
+	public static void waitTime() throws InterruptedException {
+		Thread.sleep(5000);
 	}
 
 	//Explicit Wait

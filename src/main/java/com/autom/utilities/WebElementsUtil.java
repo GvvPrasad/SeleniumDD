@@ -28,12 +28,10 @@ public class WebElementsUtil extends Base{
 	}
 
 	//Dropdown
-	public static void dropDown(WebElement element) {
+	public static Select dropDown(WebElement element) {
 		Select dropdown = new Select(element);
+		return dropdown;
 	}
-
-	//Date
-	//Time
 
 	//Links
 	public static String AllLinks() {
@@ -110,8 +108,6 @@ public class WebElementsUtil extends Base{
 		WebElement fileupload = element;
 		fileupload.sendKeys(filepath);
 	}
-
-	//File Download
 
 	//Range Slider
 	public static void slider(WebElement element, int x, int y) {

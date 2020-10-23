@@ -12,6 +12,10 @@ public class Partice extends Base{
 	public static void tab() throws Exception {
 	ExcelUtil.getExcel(ObjectRespo.testData);
 	ExcelUtil.getSheet(0);
-	ExcelUtil.getDateValue(6, 1);
+	int rownumber = ExcelUtil.getRowCount();
+	int colnumber = ExcelUtil.getColumnCount();
+	System.out.println(rownumber + "  " + colnumber);
+	System.out.println(ExcelUtil.getData());
+	
 	}
 }

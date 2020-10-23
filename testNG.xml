@@ -8,7 +8,10 @@
 
 	<test thread-count="5" name="Test">
 		<classes>
-			<class name="" />
+			<class name="com.autom.testscripts.Login" />
+			<class name="com.autom.testscripts.AddEmployee" />
+			<class name="com.autom.testscripts.AssignLeave" />
+			<class name="com.autom.testscripts.LeaveList" />
 		</classes>
 	</test> <!-- Test -->
 </suite> <!-- Suite -->

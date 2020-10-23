@@ -7,7 +7,6 @@ import java.util.Date;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -38,7 +37,7 @@ public class ObjectRespo{
 	protected static String url;
 
 	//Base Class Variables
-	protected static final Logger log = (Logger) LogManager.getLogger(Base.class); 
+	protected static final Logger logger = (Logger) LogManager.getLogger(Base.class); 
 	protected static ChromeOptions options = new ChromeOptions();
 	protected static FirefoxProfile profile = new FirefoxProfile();
 	protected static FirefoxOptions foptions = new FirefoxOptions();

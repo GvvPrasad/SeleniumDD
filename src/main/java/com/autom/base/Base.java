@@ -16,7 +16,7 @@ import com.autom.init.ReportsGeneration;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-
+@Listeners(com.autom.listeners.TestNGListener.class)
 public class Base extends ObjectRespo{	
 	
 	//Browser Setup
@@ -81,8 +81,8 @@ public class Base extends ObjectRespo{
 		
 		//Opening of Browser
 		driver.get(ObjectRespo.url);
-		driver.manage().deleteAllCookies();
 		driver.manage().window().maximize();
+		logger.info(ObjectRespo.url +"  opened in " + ObjectRespo.browser);
 	}
 
 	//Close Driver & Browser
