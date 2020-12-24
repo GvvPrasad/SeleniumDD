@@ -8,21 +8,24 @@ A framework that is made with Selenium and TestNG with Java Programming language
   Root
     ├── src/main/java
     │	├── Base
-    │	├── Common
-    │	├── Config
+    │	├── init
+    │	│	└── Email
     │	│	└── ObjectRepository
     │	│	└── PropertiesFile
-    │	├── Listeners
+    │	│	└── ReportsGeneration
+    │	├── listeners
     │	└── Utilities
-    │		└── Email
-    │		└── Excel
-    │		└── ReportsGeneration
+    │		 └── BrowserUtil
+    │		 └── CommomMethods
+    │		 └── DataBase
+    │		 └── ExcelUtil
+    │		 └── WebElements
     ├── src/main/resources
     │	├── App.properties
     │	└── log4j2.xml  	
     ├── src/test/java    
     │	├── Links
-    │	├── Locators
+    │	├── PageObjects
     │	└── TestScripts
     ├── src/test/resources
     │	└── Test Data Files
@@ -38,13 +41,12 @@ A framework that is made with Selenium and TestNG with Java Programming language
 #### Package's Details
 |Package Names|Description           							                                                                                   |
 |:------------|:-----------------------------------------------------------------------------------------------------------------------------------|
-|Base		  | It consists of Base class file where we initiate Browser and its Desired Capabilities, initiate of Reports and closing Browser     |
-|Common		  |	It consists of several common methods which can be used across entire application like wait, screenshot, scroll, Mouse Events etc  |
-|Config		  |	It consists of ObjectRepository, here we define all the variable and properties file to access ".properties" file		           |
+|Base		  | Here we initiate Browser and its Desired Capabilities, initiate of Reports and closing Browser     |
+|init		  |	It consists of Email Program, ObjectRepository Properties File and Reports Generation File |
 |Listeners	  |	It consists of TestNG Listeners and RetryAnalyzer		                                                                           |
-|Utilities	  |	It consists of Utilities of Excel files, Reports and Email 		                                                                   |
+|Utilities	  |	It consists of Utilities of Browser, Web Elements, Excel, Database and commom Methods 		                                                                   
 |Links		  |	It consists of class file for checking the all the links and for 404Errors and other domain		                                   |
-|Locators     |	It consists of locators for each web page in separate class file 		                                                           |
+|PageObjects  |	It consists of locators for each web page in separate class file 		                                                           |
 |TestScripts  |	It consists of test scripts files as class files                		                                                           |
 
 
@@ -59,7 +61,7 @@ A framework that is made with Selenium and TestNG with Java Programming language
 Clone the project
 
 ```
-git clone https://github.com/GvvPrasad/frameworkStructure.git
+git clone https://github.com/GvvPrasad/SeleniumDD.git
 ```
 
 Configure build path to generate Excel Reports Using "ATExcelReport". The "ATExcelReport" Jar files are located in the "JarFiles" Folder 
@@ -68,5 +70,3 @@ Configure build path to generate Excel Reports Using "ATExcelReport". The "ATExc
 * Methods to Dates
 * Create Excel file, sheet, row, column  
 * Writing into excel dynamically
-* Project Folder Structure Image 
-* Work Flow in Read Me doc

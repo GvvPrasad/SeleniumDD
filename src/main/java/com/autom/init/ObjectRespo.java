@@ -18,7 +18,11 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 
 import com.autom.base.Base;
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.ResultSet;
+import com.mysql.jdbc.Statement;
 
 public class ObjectRespo{
 
@@ -32,6 +36,10 @@ public class ObjectRespo{
 	public static String projectPath = System.getProperty("user.dir");
 	public static String timeStamp = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date());
 
+	//Properties file variables
+	protected static String emailProperties = projectPath+"//src//main//resources//App.properties";
+	protected static String emailList = projectPath+"//src//test//resources//TestEmailList.xlsx";
+
 	//Application Variables
 	protected static String browser;
 	protected static String url;
@@ -42,10 +50,6 @@ public class ObjectRespo{
 	protected static FirefoxProfile profile = new FirefoxProfile();
 	protected static FirefoxOptions foptions = new FirefoxOptions();
 	protected static String downloadFilepath = projectPath+"//DownloadFiles";
-
-	//Properties file variables
-	protected static String emailProperties = projectPath+"//src//main//resources//App.properties";
-	protected static String emailList = projectPath+"//src//test//resources//TestEmailList.xlsx";
 
 	//Common Methods variables
 	protected static String screenShotName = projectPath+"//ScreenShots//"+timeStamp+".png";
@@ -58,22 +62,33 @@ public class ObjectRespo{
 	protected static FileInputStream dataFile;
 	protected static FileOutputStream fileOut;
 
-	//Reports Class Variables
-	protected static ExtentSparkReporter report;
-	protected static ExtentReports extent;
-	protected static String reportsPath = projectPath+"//Reports//"; 
-	protected static String htmlReport = reportsPath+timeStamp+".html";
-	protected static String excelReport = timeStamp+".xlsx";
+	//Test Data Files
+	protected static String testData = projectPath+"//src//test//resources//TestData.xlsx";
+	protected static String testLinks = projectPath+"//src//test//resources//TestLinks.xlsx";
+	protected static String sample = projectPath+"//src//test//resources//TestLinksCopy.xlsx";
 
+	//Reports Class Variables
+	protected static ExtentReports extent;
+	protected static ExtentSparkReporter spark;
+	protected static ExtentTest extentTest;
+	protected static String reportsPath = projectPath+"//Reports//"; 
+	protected static String htmlReport = reportsPath+"extend_Reports"+timeStamp+".html";
+	protected static String excelReport = "excel_Reports"+timeStamp+".xlsx";
+
+	//DataBase connectivity and utilities
+	protected static java.sql.Connection con;
+	protected static java.sql.Statement stmt;
+	protected static String dbUrl;
+	protected static String dbUser;
+	protected static String dbPassword;
+	protected static java.sql.ResultSet dbRes;
+	
+	
+	
 	//Email Variables
 	protected static String senderMail;
 	protected static String senderPassword;
 	protected static String receiverMail;
 	protected static String mailSubject;
 	protected static String mailContent;
-
-	//Test Data Files
-	protected static String testData = projectPath+"//src//test//resources//TestData.xlsx";
-	protected static String testLinks = projectPath+"//src//test//resources//TestLinks.xlsx";
-	protected static String sample = projectPath+"//src//test//resources//TestLinksCopy.xlsx";
 }

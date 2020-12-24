@@ -12,7 +12,6 @@ import com.autom.base.Base;
 import com.autom.init.ObjectRespo;
 import com.autom.pageobjects.LoginPage;
 import com.autom.utilities.ExcelUtil;
-import com.aventstack.extentreports.ExtentTest;
 
 @Listeners(com.autom.listeners.TestNGListener.class)
 public class Login extends Base{
@@ -21,13 +20,14 @@ public class Login extends Base{
 	public static void signIn(String testid, String testcase, String useremail, String pwd) throws IOException, InterruptedException {
 
 		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
-		ExtentTest test = extent.createTest("Loing");
+		extentTest = extent.createTest("Loing");
 
 		lp.login(useremail, pwd);
 
 		Assert.assertEquals(driver.getCurrentUrl().contains("dashboard"), true);
 		logger.info("Login Success");
-		test.info("login Sucess");
+		extentTest.info("login Sucess");
+		
 	}
 
 	@DataProvider

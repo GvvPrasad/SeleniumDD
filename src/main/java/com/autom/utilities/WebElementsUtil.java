@@ -94,11 +94,11 @@ public class WebElementsUtil extends Base{
 	}
 
 	//Iframes
-	public static String iFrames(List<WebElement> elements) {
-		List<WebElement> elementsList = elements;
+	public static String iFrames() {
+		List<WebElement> elementsList = driver.findElements(By.tagName("iframe"));
 
 		for (int i = 0; i < elementsList.size(); i++) {
-			elementValue = elementsList.get(i).getAttribute("iframe");
+			elementValue = elementsList.get(i).getAttribute("title");
 		}
 		return elementValue;
 	}

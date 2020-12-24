@@ -2,7 +2,11 @@ package com.autom.utilities;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
 import javax.imageio.ImageIO;
 
 import org.apache.commons.io.FileUtils;
@@ -17,7 +21,6 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.autom.base.Base;
-import com.autom.init.ObjectRespo;
 import com.google.common.base.Function;
 
 import ru.yandex.qatools.ashot.AShot;
@@ -25,10 +28,13 @@ import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 public class CommomMethods extends Base{
+	
+	public static String projectPath = System.getProperty("user.dir");
+	public static String timeStamp = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date());
 
 	//Implicit Wait
 	public static void waitTime() throws InterruptedException {
-		Thread.sleep(5000);
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 	}
 
 	//Explicit Wait
@@ -51,20 +57,30 @@ public class CommomMethods extends Base{
 	}
 
 	//Element Screenshot
-	public static void elementScreenshot(WebElement element) throws IOException {
-		Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver, element); 
-		ImageIO.write(screenshot.getImage(),"PNG",new File(ObjectRespo.screenShotName));
+	public static String elementScreenshot(WebElement element, String nameofCurrMethod) throws IOException {
+		File src = element.getScreenshotAs(OutputType.FILE);
+		String dest = projectPath+"//ScreenShots//"+nameofCurrMethod+"_"+timeStamp+".png";
+		File destination = new File(dest);
+		FileUtils.copyFile(src,destination);
+		return dest;
 	}
 
 	//Visible Page Screenshots
-	public static void visiablePageScreenShot() throws IOException {
-		File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(screenshot,new File(ObjectRespo.screenShotName));
+	public static String visiablePageScreenShot(String nameofCurrMethod) throws IOException {
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		File source = ts.getScreenshotAs(OutputType.FILE);
+		String dest = projectPath+"//ScreenShots//"+nameofCurrMethod+"_"+timeStamp+".png";
+		File destination = new File(dest);
+		FileUtils.copyFile(source,destination);
+		return dest;
 	}
 
 	//Full Page ScreenShot
-	public static void fullPageScreenshot() throws IOException {
+	public static String fullPageScreenshot(String nameofCurrMethod) throws IOException {
+		String dest = projectPath+"//ScreenShots//"+nameofCurrMethod+"_"+timeStamp+".png";
+		File destination = new File(dest);
 		Screenshot screenshot=new AShot().shootingStrategy(ShootingStrategies.viewportPasting(1000)).takeScreenshot(driver); 
-		ImageIO.write(screenshot.getImage(),"PNG",new File(ObjectRespo.screenShotName));
+		ImageIO.write(screenshot.getImage(),"PNG",destination);
+		return dest;
 	}
 }

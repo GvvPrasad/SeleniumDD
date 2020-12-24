@@ -36,5 +36,6 @@
 	<classpathentry kind="lib" path="D:/workspace/SeleniumDD/JarFiles/jfreechart-dependency-jcommon-1.0.12.jar"/>
 	<classpathentry kind="lib" path="D:/workspace/SeleniumDD/JarFiles/xmlbeans-2.6.0.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="D:/workspace/SeleniumDD/JarFiles/mysql-connector-java-3.1.13-bin.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

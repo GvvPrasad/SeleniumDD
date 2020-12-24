@@ -10,9 +10,10 @@ public class ReportsGeneration extends Base{
 
 	//HTML Reports start generation
 	public static void htmlReports() {
-		report = new ExtentSparkReporter(ObjectRespo.htmlReport);
 		extent = new ExtentReports();
-		extent.attachReporter(report);
+		spark = new ExtentSparkReporter(ObjectRespo.htmlReport);
+		extent.attachReporter(spark);
+		
 	}
 
 	//Excel Reports start generation

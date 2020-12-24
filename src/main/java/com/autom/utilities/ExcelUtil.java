@@ -1,12 +1,17 @@
 package com.autom.utilities;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.autom.base.Base;
+import com.autom.init.ObjectRespo;
 
 public class ExcelUtil extends Base{
 
@@ -103,12 +108,44 @@ public class ExcelUtil extends Base{
 				}
 
 				//Check if cell has DATE vale or not
-				
-				
+
+
 				//change values to string
 				data[i-1][j] = ExcelUtil.setCellDataToString(i, j);
 			}
 		}
 		return data;
 	}
+
+	//Create a Excel File and new sheet
+	public static String createExcelFile(String filename, String sheetName) throws IOException {
+		XSSFWorkbook wb = new XSSFWorkbook();
+		String dest = projectPath+"//src//test//resources//"+filename+".xlsx";
+		File destination = new File(dest);
+		FileOutputStream fileout = new FileOutputStream(destination);
+		wb.createSheet(sheetName); 
+		wb.write(fileout);
+		fileout.close(); 
+		return dest;
+	}
+
+	//Add Sheet to existing excel
+	public static void createSheet(String sheetName) {
+		wb.createSheet(sheetName); 
+	}
+	
+	//Create Row
+	public static void createRow(int i) {
+		sh.createRow(i).createCell(i).setCellValue("dssad");
+		System.out.println("row created");
+	}
+	
+	//Close Excel
+	public static void closeExcel(String excelName) throws IOException {
+		FileOutputStream fileout = new FileOutputStream(excelName);
+		wb.write(fileout);
+		fileout.close();
+	}
+
+
 }

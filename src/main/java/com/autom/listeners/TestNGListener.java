@@ -1,14 +1,18 @@
 package com.autom.listeners;
 
 import java.io.IOException;
-
 import org.testng.ISuite;
 import org.testng.ISuiteListener;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-public class TestNGListener implements ISuiteListener, ITestListener{
+import com.autom.base.Base;
+
+public class TestNGListener extends Base implements ISuiteListener, ITestListener{
+	
+	//Global Variables
+	public static String nameofCurrMethod;
 
 	public void onTestStart(ITestResult result) {}
 
@@ -16,9 +20,10 @@ public class TestNGListener implements ISuiteListener, ITestListener{
 
 	public void onTestFailure(ITestResult result) {
 		System.out.println("Faild Test: " + result.getName());
-		
+		nameofCurrMethod = result.getName();
+
 		try {
-			com.autom.utilities.CommomMethods.visiablePageScreenShot();
+			com.autom.utilities.CommomMethods.visiablePageScreenShot(nameofCurrMethod);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -26,8 +31,10 @@ public class TestNGListener implements ISuiteListener, ITestListener{
 
 	public void onTestSkipped(ITestResult result) {
 		System.out.println("Skipped Test: " + result.getName());
+		nameofCurrMethod = result.getName();
+		
 		try {
-			com.autom.utilities.CommomMethods.visiablePageScreenShot();
+			com.autom.utilities.CommomMethods.visiablePageScreenShot(nameofCurrMethod);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -35,8 +42,10 @@ public class TestNGListener implements ISuiteListener, ITestListener{
 
 	public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
 		System.out.println("FailedButWithinSuccessPercentage Test: " + result.getName());
+		nameofCurrMethod = result.getName();
+				
 		try {
-			com.autom.utilities.CommomMethods.visiablePageScreenShot();
+			com.autom.utilities.CommomMethods.visiablePageScreenShot(nameofCurrMethod);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
