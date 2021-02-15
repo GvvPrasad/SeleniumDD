@@ -21,8 +21,8 @@ public class AllLinks extends Base{
 		driver.navigate().to(pageUrl);
 
 		//collect all the links of the Web Page and we will store them in a list 
-		List < WebElement > links = driver.findElements(By.tagName("a"));
-		Iterator < WebElement > it = links.iterator();
+		List <WebElement> links = driver.findElements(By.tagName("a"));
+		Iterator <WebElement> it = links.iterator();
 
 		while (it.hasNext()) {
 			//Get the href Value of anchor tag and store it in variable url

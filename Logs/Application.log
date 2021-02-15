@@ -1,1 +1,3 @@
-2020-12-05 17:46:14.882 INFO  com.autom.base.Base - Application Opened in chrome
+2021-02-15 12:03:13.499 INFO  com.autom.base.Base - Application Opened in chrome
+2021-02-15 12:03:15.292 INFO  com.autom.base.Base - Entered login details Admin  123456
+2021-02-15 12:03:23.263 INFO  com.autom.base.Base - Entered login details Admin  admin123

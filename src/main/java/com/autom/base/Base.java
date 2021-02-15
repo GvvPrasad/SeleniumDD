@@ -31,6 +31,9 @@ public class Base extends ObjectRespo{
 		//Get Application properties
 		PropertiesFile.GetProperties();
 
+		//For generating HTML Reports
+		ReportsGeneration.htmlReports();
+
 		//Select Browser
 		switch (ObjectRespo.browser) {
 		case "chrome":
@@ -89,26 +92,6 @@ public class Base extends ObjectRespo{
 		driver.manage().deleteAllCookies();
 		driver.get(ObjectRespo.url);
 		logger.info("Application Opened in " + ObjectRespo.browser);
-
-		//For generating HTML Reports
-		ReportsGeneration.htmlReports();
-	}
-
-	//Add Screenshot to Extend Reports
-	@AfterMethod
-	public static void reportLogs(ITestResult result) throws IOException {
-		if (result.getStatus()==ITestResult.FAILURE) {
-			String screenShotPath = CommomMethods.visiablePageScreenShot(result.getName());
-			extentTest.log(Status.FAIL, "Test case Failed: "+result.getName());
-			extentTest.log(Status.FAIL, "Test case Failed: "+result.getThrowable());
-			extentTest.log(Status.FAIL, "Screenshot: "+extentTest.addScreenCaptureFromPath(screenShotPath));
-
-		} else if(result.getStatus()==ITestResult.SKIP){
-			extentTest.log(Status.SKIP, "Test case Skiped: "+result.getName());
-		}else if (result.getStatus()==ITestResult.SUCCESS) {
-			extentTest.log(Status.PASS, "Test case Passed: "+result.getName());
-		}
-
 	}
 
 	//Close Driver & Browser
@@ -119,4 +102,24 @@ public class Base extends ObjectRespo{
 		//For Generating Reports (HTML, Excel)
 		ReportsGeneration.generateReports();
 	}
+
+
+	//Add Screenshot to Extend Reports
+	@AfterMethod
+	public static void reportLogs(ITestResult result) throws IOException {
+		if (result.getStatus()==ITestResult.FAILURE) {
+			String screenShotPath = CommomMethods.visiablePageScreenShot(result.getName());
+			extentTest.log(Status.FAIL, "Failed Test Method: "+result.getName());
+			extentTest.log(Status.FAIL, "Failed log: "+result.getThrowable());
+			extentTest.log(Status.FAIL, "Screenshot: "+extentTest.addScreenCaptureFromPath(screenShotPath));
+
+		} else if(result.getStatus()==ITestResult.SKIP){
+			extentTest.log(Status.SKIP, "Skipped Test Method: "+result.getName());
+		}else if (result.getStatus()==ITestResult.SUCCESS) {
+			extentTest.log(Status.PASS, "Passed Test Method : "+result.getName());
+		}
+
+	}
+
+
 }

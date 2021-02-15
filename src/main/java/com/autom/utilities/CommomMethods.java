@@ -57,9 +57,9 @@ public class CommomMethods extends Base{
 	}
 
 	//Element Screenshot
-	public static String elementScreenshot(WebElement element, String nameofCurrMethod) throws IOException {
+	public static String elementScreenshot(WebElement element, String elementName) throws IOException {
 		File src = element.getScreenshotAs(OutputType.FILE);
-		String dest = projectPath+"//ScreenShots//"+nameofCurrMethod+"_"+timeStamp+".png";
+		String dest = projectPath+"//ScreenShots//"+elementName+"_"+timeStamp+".png";
 		File destination = new File(dest);
 		FileUtils.copyFile(src,destination);
 		return dest;

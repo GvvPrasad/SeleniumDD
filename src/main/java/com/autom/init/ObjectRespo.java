@@ -65,15 +65,15 @@ public class ObjectRespo{
 	//Test Data Files
 	protected static String testData = projectPath+"//src//test//resources//TestData.xlsx";
 	protected static String testLinks = projectPath+"//src//test//resources//TestLinks.xlsx";
-	protected static String sample = projectPath+"//src//test//resources//TestLinksCopy.xlsx";
+	protected static String testResults = projectPath+"//src//test//resources//TestResults.xlsx";
 
 	//Reports Class Variables
 	protected static ExtentReports extent;
 	protected static ExtentSparkReporter spark;
 	protected static ExtentTest extentTest;
 	protected static String reportsPath = projectPath+"//Reports//"; 
-	protected static String htmlReport = reportsPath+"extend_Reports"+timeStamp+".html";
-	protected static String excelReport = "excel_Reports"+timeStamp+".xlsx";
+	protected static String htmlReport = reportsPath+"extend_Reports"+"_"+timeStamp+".html";
+	protected static String excelReport = "excel_Reports"+"_"+timeStamp+".xlsx";
 
 	//DataBase connectivity and utilities
 	protected static java.sql.Connection con;

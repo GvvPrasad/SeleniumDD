@@ -135,14 +135,13 @@ public class ExcelUtil extends Base{
 	}
 	
 	//Create Row
-	public static void createRow(int i) {
-		sh.createRow(i).createCell(i).setCellValue("dssad");
-		System.out.println("row created");
+	public static void createRow(int i, int j, String data) {
+		sh.createRow(i).createCell(j).setCellValue(data);
 	}
 	
 	//Close Excel
-	public static void closeExcel(String excelName) throws IOException {
-		FileOutputStream fileout = new FileOutputStream(excelName);
+	public static void closeExcel(String filePath) throws IOException {
+		FileOutputStream fileout = new FileOutputStream(filePath);
 		wb.write(fileout);
 		fileout.close();
 	}

@@ -16,19 +16,19 @@ import com.autom.utilities.ExcelUtil;
 @Listeners(com.autom.listeners.TestNGListener.class)
 public class Login extends Base{
 
-	@Test(dataProvider = "loginTestData")
+	@Test(priority = 1, dataProvider = "loginTestData")
 	public static void signIn(String testid, String testcase, String useremail, String pwd) throws IOException, InterruptedException {
 
 		LoginPage lp = PageFactory.initElements(driver, LoginPage.class);
-		extentTest = extent.createTest("Loing");
+		extentTest = extent.createTest(testid +":  " + testcase);
 
 		lp.login(useremail, pwd);
+		logger.info("Entered login details "+useremail +"  " +pwd);
+		extentTest.info("Entered Login details");
 
 		Assert.assertEquals(driver.getCurrentUrl().contains("dashboard"), true);
-		logger.info("Login Success");
-		extentTest.info("login Sucess");
-		
 	}
+
 
 	@DataProvider
 	public Object[][] loginTestData() throws IOException{
