@@ -2,16 +2,16 @@
 <testng-results skipped="0" failed="1" ignored="0" total="2" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="9772" started-at="2021-02-15T12:03:13 IST" finished-at="2021-02-15T12:03:23 IST">
+  <suite name="Default suite" duration-ms="8887" started-at="2021-04-03T15:05:12 IST" finished-at="2021-04-03T15:05:21 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="9772" started-at="2021-02-15T12:03:13 IST" finished-at="2021-02-15T12:03:23 IST">
+    <test name="Default test" duration-ms="8887" started-at="2021-04-03T15:05:12 IST" finished-at="2021-04-03T15:05:21 IST">
       <class name="com.autom.testscripts.Login">
-        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:com.autom.testscripts.Login@306e95ec]" name="browserSetUp" is-config="true" duration-ms="9093" started-at="2021-02-15T12:03:04 IST" finished-at="2021-02-15T12:03:13 IST">
+        <test-method status="PASS" signature="browserSetUp()[pri:0, instance:com.autom.testscripts.Login@306e95ec]" name="browserSetUp" is-config="true" duration-ms="7344" started-at="2021-04-03T15:05:04 IST" finished-at="2021-04-03T15:05:12 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- browserSetUp -->
-        <test-method status="FAIL" signature="signIn(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:com.autom.testscripts.Login@306e95ec]" name="signIn" duration-ms="1328" started-at="2021-02-15T12:03:13 IST" data-provider="loginTestData" finished-at="2021-02-15T12:03:15 IST">
+        <test-method status="FAIL" signature="signIn(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:com.autom.testscripts.Login@306e95ec]" name="signIn" duration-ms="2478" started-at="2021-04-03T15:05:12 IST" data-provider="loginTestData" finished-at="2021-04-03T15:05:15 IST">
           <params>
             <param index="0">
               <value>
@@ -80,7 +80,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- signIn -->
-        <test-method status="PASS" signature="reportLogs(org.testng.ITestResult)[pri:0, instance:com.autom.testscripts.Login@306e95ec]" name="reportLogs" is-config="true" duration-ms="405" started-at="2021-02-15T12:03:15 IST" finished-at="2021-02-15T12:03:16 IST">
+        <test-method status="PASS" signature="reportLogs(org.testng.ITestResult)[pri:0, instance:com.autom.testscripts.Login@306e95ec]" name="reportLogs" is-config="true" duration-ms="351" started-at="2021-04-03T15:05:15 IST" finished-at="2021-04-03T15:05:15 IST">
           <params>
             <param index="0">
               <value>
@@ -91,7 +91,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- reportLogs -->
-        <test-method status="PASS" signature="signIn(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:com.autom.testscripts.Login@306e95ec]" name="signIn" duration-ms="7100" started-at="2021-02-15T12:03:16 IST" data-provider="loginTestData" finished-at="2021-02-15T12:03:23 IST">
+        <test-method status="PASS" signature="signIn(java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:1, instance:com.autom.testscripts.Login@306e95ec]" name="signIn" duration-ms="5208" started-at="2021-04-03T15:05:15 IST" data-provider="loginTestData" finished-at="2021-04-03T15:05:21 IST">
           <params>
             <param index="0">
               <value>
@@ -117,7 +117,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- signIn -->
-        <test-method status="PASS" signature="reportLogs(org.testng.ITestResult)[pri:0, instance:com.autom.testscripts.Login@306e95ec]" name="reportLogs" is-config="true" duration-ms="1" started-at="2021-02-15T12:03:23 IST" finished-at="2021-02-15T12:03:23 IST">
+        <test-method status="PASS" signature="reportLogs(org.testng.ITestResult)[pri:0, instance:com.autom.testscripts.Login@306e95ec]" name="reportLogs" is-config="true" duration-ms="2" started-at="2021-04-03T15:05:21 IST" finished-at="2021-04-03T15:05:21 IST">
           <params>
             <param index="0">
               <value>
@@ -128,7 +128,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- reportLogs -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.autom.testscripts.Login@306e95ec]" name="tearDown" is-config="true" duration-ms="2898" started-at="2021-02-15T12:03:23 IST" finished-at="2021-02-15T12:03:26 IST">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.autom.testscripts.Login@306e95ec]" name="tearDown" is-config="true" duration-ms="2976" started-at="2021-04-03T15:05:21 IST" finished-at="2021-04-03T15:05:24 IST">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
