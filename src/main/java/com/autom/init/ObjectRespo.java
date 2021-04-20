@@ -34,11 +34,11 @@ public class ObjectRespo{
 	//Project default Variable and Methods
 	public static WebDriver driver;
 	public static String projectPath = System.getProperty("user.dir");
-	public static String timeStamp = new SimpleDateFormat("dd-MM-yyyy-HH-mm-ss").format(new Date());
+	public static String timeStamp = new SimpleDateFormat("dd-MM-yyyy-HH-mm").format(new Date());
 
 	//Properties file variables
 	protected static String emailProperties = projectPath+"//src//main//resources//App.properties";
-	protected static String emailList = projectPath+"//src//test//resources//TestEmailList.xlsx";
+	//protected static String emailList = projectPath+"//src//test//resources//TestEmailList.xlsx";
 
 	//Application Variables
 	protected static String browser;
@@ -66,6 +66,8 @@ public class ObjectRespo{
 	protected static String testData = projectPath+"//src//test//resources//TestData.xlsx";
 	protected static String testLinks = projectPath+"//src//test//resources//TestLinks.xlsx";
 	protected static String testResults = projectPath+"//src//test//resources//TestResults.xlsx";
+	protected static String emailList = projectPath+"//src//test//resources//TestEmailList.xlsx";
+	protected static String resume = projectPath+"//src//test//resources//Prasad-QA-2Years.docx";
 
 	//Reports Class Variables
 	protected static ExtentReports extent;
@@ -82,8 +84,6 @@ public class ObjectRespo{
 	protected static String dbUser;
 	protected static String dbPassword;
 	protected static java.sql.ResultSet dbRes;
-	
-	
 	
 	//Email Variables
 	protected static String senderMail;

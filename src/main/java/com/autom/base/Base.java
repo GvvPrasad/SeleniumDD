@@ -14,6 +14,7 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 
+import com.autom.init.Email;
 import com.autom.init.ObjectRespo;
 import com.autom.init.PropertiesFile;
 import com.autom.init.ReportsGeneration;
@@ -99,10 +100,11 @@ public class Base extends ObjectRespo{
 	public static void tearDown() throws Exception {
 		driver.close();
 		driver.quit();
+		
 		//For Generating Reports (HTML, Excel)
 		ReportsGeneration.generateReports();
+		Email.email();	
 	}
-
 
 	//Add Screenshot to Extend Reports
 	@AfterMethod
